@@ -1,0 +1,4 @@
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/dtkappco/public_html/transcript-frontend/
+    - /bin/cp -R dist/* $DEPLOYPATH
