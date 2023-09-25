@@ -5,6 +5,16 @@ export const userApiSlice: any = createApi({
 	baseQuery: fetchBaseQuery({
 		baseUrl: "http://localhost:3001",
 	}),
+	tagTypes: [
+		"User",
+		"Users",
+		"Colleges",
+		"Departments",
+		"Destinations",
+		"TranscriptTypes",
+		"TranscriptRequests",
+		"DestinationRequests",
+	],
 	endpoints: (builder) => ({
 		registerUser: builder.mutation({
 			query: (payload) => ({
@@ -17,6 +27,7 @@ export const userApiSlice: any = createApi({
 			}),
 			// Pick out data and prevent nested properties in a hook or selector
 			transformResponse: (response: any) => response.message,
+			invalidatesTags: ["Users"],
 		}),
 		getUsers: builder.query({
 			query: () => ({
@@ -27,10 +38,12 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			providesTags: ["Users"],
 		}),
 		getUser: builder.query({
 			query: (id) => `/user/${id}`,
 			transformResponse: (response: any) => response.data,
+			providesTags: ["User"],
 		}),
 		loginUser: builder.mutation({
 			query: (payload) => ({
@@ -52,6 +65,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			providesTags: ["Departments"],
 		}),
 		getDepartment: builder.query({
 			query: (id) => ({
@@ -72,6 +86,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Departments"],
 		}),
 		deleteDepartment: builder.mutation({
 			query: (id) => ({
@@ -81,6 +96,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Departments"],
 		}),
 		editDepartment: builder.mutation({
 			query: (id) => ({
@@ -90,6 +106,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Departments"],
 		}),
 		getColleges: builder.query({
 			query: () => ({
@@ -100,6 +117,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			providesTags: ["Colleges"],
 		}),
 		getCollege: builder.query({
 			query: (id) => ({
@@ -120,6 +138,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Colleges"],
 		}),
 		deleteCollege: builder.mutation({
 			query: (id) => ({
@@ -129,6 +148,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Colleges"],
 		}),
 		editCollege: builder.mutation({
 			query: (id) => ({
@@ -138,6 +158,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Colleges"],
 		}),
 		getDestinations: builder.query({
 			query: () => ({
@@ -148,6 +169,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			providesTags: ["Destinations"],
 		}),
 		getDestination: builder.query({
 			query: (id) => ({
@@ -168,6 +190,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Destinations"],
 		}),
 		deleteDestination: builder.mutation({
 			query: (id) => ({
@@ -177,6 +200,7 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Destinations"],
 		}),
 		editDestination: builder.mutation({
 			query: (id) => ({
@@ -186,10 +210,143 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
+			invalidatesTags: ["Destinations"],
+		}),
+		getTranscriptTypes: builder.query({
+			query: () => ({
+				url: "/transcript-types",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			providesTags: ["TranscriptTypes"],
+		}),
+		getTranscriptType: builder.query({
+			query: (id) => ({
+				url: `/transcript-type/${id}`,
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+		}),
+		createTranscriptType: builder.mutation({
+			query: (payload) => ({
+				url: "/create-transcript-type",
+				method: "POST",
+				body: payload,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			invalidatesTags: ["TranscriptTypes"],
+		}),
+		deleteTranscriptType: builder.mutation({
+			query: (id) => ({
+				url: `/delete-transcript-type/${id}`,
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			invalidatesTags: ["TranscriptTypes"],
+		}),
+		editTranscriptType: builder.mutation({
+			query: (id) => ({
+				url: `/edit-transcript-type/${id}`,
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			invalidatesTags: ["TranscriptTypes"],
+		}),
+		getTranscriptRequests: builder.query({
+			query: () => ({
+				url: "/transcript-requests",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			providesTags: ["TranscriptRequests"],
+		}),
+		getTranscriptRequest: builder.query({
+			query: (id) => ({
+				url: `/transcript-request/${id}`,
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			providesTags: ["TranscriptRequests"],
+		}),
+		submitTranscriptRequest: builder.mutation({
+			query: () => ({
+				url: "/submit-transcript-request",
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			invalidatesTags: ["TranscriptRequests"],
+		}),
+		getDestinationRequests: builder.query({
+			query: () => ({
+				url: "/destination-requests",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			providesTags: ["DestinationRequests"],
+		}),
+		getDestinationRequest: builder.query({
+			query: (id) => ({
+				url: `/destination-request/${id}`,
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+		}),
+		submitDestinationRequest: builder.mutation({
+			query: () => ({
+				url: "/submit-destination-request",
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			invalidatesTags: ["DestinationRequests"],
+		}),
+		acceptDestinationRequest: builder.mutation({
+			query: () => ({
+				url: "/accept-destination-request/:id",
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response.data,
+			invalidatesTags: ["DestinationRequests"],
 		}),
 		logoutUser: builder.mutation({
 			query: () => ({
 				url: "/logout",
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
 			}),
 			async onQueryStarted({ queryFulfilled }) {
 				try {
@@ -221,6 +378,18 @@ export const {
 	useCreateDestinationMutation,
 	useDeleteDestinationMutation,
 	useEditDestinationMutation,
+	useGetTranscripTypeQuery,
+	useGetTranscriptTypesQuery,
+	useCreateTranscriptTypeMutation,
+	useDeleteTranscriptTypeMutation,
+	useEditTranscriptTypeMutation,
+	useGetTranscriptRequestQuery,
+	useGetTranscriptRequestsQuery,
+	useSubmitTranscriptRequestMutation,
+	useGetDestinationRequestQuery,
+	useGetDestinationRequestsQuery,
+	useSubmitDestinationRequestMutation,
+	useAcceptDestinationRequestMutation,
 	useLoginUserMutation,
 	useLogoutUserMutation,
 } = userApiSlice;

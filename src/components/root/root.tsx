@@ -3,14 +3,62 @@ import "./styles/light/alert.css";
 import images from "../../constants/image";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
+import {
+	useGetUserQuery,
+	useLogoutUserMutation,
+} from "../../features/api/Auth/authApiSlice";
 const Root = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const menuItems = [
-		{ name: "Dashboard", icon: images.user, path: "/app" },
-		{ name: "Users", icon: images.archive, path: "/app/users" },
-		{ name: "Colleges", icon: images.archive, path: "/app/colleges" },
-		{ name: "Departments", icon: images.archive, path: "/app/departments" },
+		{
+			name: "Dashboard",
+			icon: images.user,
+			path: "/app",
+			access: ["User", "Admin"],
+		},
+		{
+			name: "Users",
+			icon: images.archive,
+			path: "/app/users",
+			access: ["Admin"],
+		},
+		{
+			name: "Colleges",
+			icon: images.archive,
+			path: "/app/colleges",
+			access: ["Admin"],
+		},
+		{
+			name: "Departments",
+			icon: images.archive,
+			path: "/app/departments",
+			access: ["Admin"],
+		},
+		{
+			name: "Destinations",
+			icon: images.archive,
+			path: "/app/destinations",
+			access: ["Admin"],
+		},
+		{
+			name: "Transcript requests",
+			icon: images.archive,
+			path: "/app/transcript-requests",
+			access: ["Admin"],
+		},
+		{
+			name: "Request Transcript",
+			icon: images.archive,
+			path: "/app/request-transcript",
+			access: ["User"],
+		},
+		{
+			name: "Request Destination",
+			icon: images.archive,
+			path: "/app/request-destination",
+			access: ["User"],
+		},
 	];
 
 	useEffect(() => {
@@ -28,6 +76,8 @@ const Root = () => {
 		};
 	}, []);
 	const userId = localStorage.getItem("transcript-uid");
+	const { data } = useGetUserQuery(userId);
+	const { logoutUser } = useLogoutUserMutation();
 	useEffect(() => {
 		console.log(userId);
 		if (!userId) navigate("/login");
@@ -529,13 +579,13 @@ const Root = () => {
 									<div className="media mx-auto">
 										<div className="emoji me-2">&#x1F44B;</div>
 										<div className="media-body">
-											<h5>Shaun Park</h5>
-											<p>Project Leader</p>
+											<h5>{data?.name}</h5>
+											<p>{data?.userType}</p>
 										</div>
 									</div>
 								</div>
 								<div className="dropdown-item">
-									<a href="user-profile.html">
+									<Link to="/app">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											width="24"
@@ -552,57 +602,14 @@ const Root = () => {
 											<circle cx="12" cy="7" r="4"></circle>
 										</svg>{" "}
 										<span>Profile</span>
-									</a>
+									</Link>
 								</div>
 								<div className="dropdown-item">
-									<a href="app-mailbox.html">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											className="feather feather-inbox"
-										>
-											<polyline points="22 12 16 12 14 15 10 15 8 12 2 12"></polyline>
-											<path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path>
-										</svg>{" "}
-										<span>Inbox</span>
-									</a>
-								</div>
-								<div className="dropdown-item">
-									<a href="auth-boxed-lockscreen.html">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											className="feather feather-lock"
-										>
-											<rect
-												x="3"
-												y="11"
-												width="18"
-												height="11"
-												rx="2"
-												ry="2"
-											></rect>
-											<path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-										</svg>{" "}
-										<span>Lock Screen</span>
-									</a>
-								</div>
-								<div className="dropdown-item">
-									<a href="auth-boxed-signin.html">
+									<a
+										onClick={() => {
+											logoutUser();
+										}}
+									>
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											width="24"
@@ -635,19 +642,19 @@ const Root = () => {
 						<div className="navbar-nav theme-brand flex-row  text-center">
 							<div className="nav-logo">
 								<div className="nav-item theme-logo">
-									<a href="index.html">
+									<Link to="/app">
 										<img
 											src={images.logo1}
 											className="navbar-logo"
 											alt="logo"
 										/>
-									</a>
+									</Link>
 								</div>
 								<div className="nav-item theme-text">
-									<a href="index.html" className="nav-link">
+									<Link to="/app" className="nav-link">
 										{" "}
 										Transcript{" "}
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className="nav-item sidebar-toggle">
