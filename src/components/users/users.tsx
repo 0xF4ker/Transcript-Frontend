@@ -35,7 +35,7 @@ const Users = () => {
 			if (dataTableContainer) {
 				// Initialize the DataTable if it hasn't been initialized yet
 				if (!dataTableRef.current) {
-					const c1 = ($("#style-1") as any).DataTable({
+					const c1 = ($("#style-1") as any)?.DataTable({
 						headerCallback: function (e: any) {
 							e.getElementsByTagName("th")[0].innerHTML = `
                         <div class="form-check form-check-primary d-block">

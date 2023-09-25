@@ -12,7 +12,7 @@ export const userApiSlice: any = createApi({
 				method: "POST",
 				body: payload,
 				headers: {
-					"Content-type": "application/json; charset=UTF-8",
+					"Content-Type": "application/json; charset=UTF-8",
 				},
 			}),
 			// Pick out data and prevent nested properties in a hook or selector
@@ -23,7 +23,7 @@ export const userApiSlice: any = createApi({
 				url: "/users",
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -38,7 +38,7 @@ export const userApiSlice: any = createApi({
 				method: "POST",
 				body: payload,
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.user,
@@ -48,7 +48,7 @@ export const userApiSlice: any = createApi({
 				url: "/departments",
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -58,7 +58,7 @@ export const userApiSlice: any = createApi({
 				url: `/department/${id}`,
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -69,7 +69,7 @@ export const userApiSlice: any = createApi({
 				method: "POST",
 				body: payload,
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -78,7 +78,7 @@ export const userApiSlice: any = createApi({
 				url: `/delete-department/${id}`,
 				method: "DELETE",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -87,7 +87,7 @@ export const userApiSlice: any = createApi({
 				url: `/edit-department/${id}`,
 				method: "PATCH",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -96,7 +96,7 @@ export const userApiSlice: any = createApi({
 				url: "/colleges",
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -106,7 +106,7 @@ export const userApiSlice: any = createApi({
 				url: `/college/${id}`,
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -117,7 +117,7 @@ export const userApiSlice: any = createApi({
 				method: "POST",
 				body: payload,
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -126,7 +126,7 @@ export const userApiSlice: any = createApi({
 				url: `/delete-college/${id}`,
 				method: "DELETE",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -135,7 +135,7 @@ export const userApiSlice: any = createApi({
 				url: `/edit-college/${id}`,
 				method: "PATCH",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -144,7 +144,7 @@ export const userApiSlice: any = createApi({
 				url: "/destinations",
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -154,7 +154,7 @@ export const userApiSlice: any = createApi({
 				url: `/destination/${id}`,
 				method: "GET",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 			transformResponse: (response: any) => response.data,
@@ -165,7 +165,7 @@ export const userApiSlice: any = createApi({
 				method: "POST",
 				body: payload,
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -174,7 +174,7 @@ export const userApiSlice: any = createApi({
 				url: `/delete-destination/${id}`,
 				method: "DELETE",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),
@@ -183,7 +183,7 @@ export const userApiSlice: any = createApi({
 				url: `/edit-destination/${id}`,
 				method: "PATCH",
 				headers: {
-					"Content-type": "application/json",
+					"Content-Type": "application/json",
 				},
 			}),
 		}),

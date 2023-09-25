@@ -721,8 +721,11 @@ const Root = () => {
 						<div className="footer-section f-section-1">
 							<p className="">
 								Copyright © <span className="dynamic-year">2022</span>{" "}
-								<a target="_blank" href="https://designreset.com/cork-admin/">
-									DesignReset
+								<a
+									target="_blank"
+									href="https://my-portfolio-death-thekidd.vercel.app/"
+								>
+									Deaththekidd
 								</a>
 								, All rights reserved.
 							</p>

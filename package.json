@@ -3,7 +3,7 @@
 	"private": true,
 	"version": "0.0.0",
 	"type": "module",
-	"homepage": "http://transcript.dtkapp.com",
+	"homepage": "https://transcript.dtkapp.com",
 	"scripts": {
 		"dev": "vite",
 		"build": "tsc && vite build",
