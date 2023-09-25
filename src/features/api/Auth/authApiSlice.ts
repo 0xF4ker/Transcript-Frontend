@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const userApiSlice: any = createApi({
 	reducerPath: "userApiSlice",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "https://api.transcript.dtkapp.com",
+		baseUrl: "https://transcript.dtkapp.com.ng",
 	}),
 	endpoints: (builder) => ({
 		registerUser: builder.mutation({
