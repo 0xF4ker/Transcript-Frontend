@@ -1,5 +1,8 @@
-import { useEffect, useRef } from "react";
-import { useGetDestinationsQuery } from "../../features/api/Auth/authApiSlice";
+import { useEffect, useRef, useState } from "react";
+import {
+	useCreateDestinationMutation,
+	useGetDestinationsQuery,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -9,8 +12,35 @@ import "./styles/dark/users.css";
 import "./styles/light/custom_dt_custom.css";
 import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
+import { toast } from "react-toastify";
+import { useForm } from "react-hook-form";
 
 const Destinations = () => {
+	const { register, handleSubmit } = useForm();
+	const [createDestination, { isLoading, isError, error, isSuccess }] =
+		useCreateDestinationMutation();
+	const [hide, setHide] = useState(false);
+	const submitForm = (data: any) => {
+		console.log(data);
+		createDestination(data);
+	};
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("Destination succesfully created");
+			setHide(false);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any)?.data.message, { position: "top-right" });
+			} else {
+				toast.error("Destination creation failed", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
 	const { data } = useGetDestinationsQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
@@ -100,7 +130,71 @@ const Destinations = () => {
 			</div>
 			<div className="row layout-top-spacing d-flex">
 				<div className="col-lg-12">
-					<div className="statbox widget box box-shadow">
+					<button
+						onClick={() => setHide((prev) => !prev)}
+						className="btn btn-primary mb-2 me-4"
+					>
+						Create Destination
+					</button>
+					{hide === true ? (
+						<form
+							className="row layout-top-spacing"
+							onSubmit={handleSubmit(submitForm)}
+						>
+							<div id="flLoginForm" className="col-lg-12 layout-spacing">
+								<div className="statbox widget box box-shadow ">
+									<div className="widget-content widget-content-area p-3">
+										<div className="row g-3">
+											<div className="col-md-12">
+												<label htmlFor="inputName" className="form-label">
+													Name
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													id="inputName"
+													{...register("name", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputMethod" className="form-label">
+													Delivery Method
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													id="inputMethod"
+													{...register("deliveryMethod", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputRate" className="form-label">
+													Rate
+												</label>
+												<div className="input-group">
+													<div className="input-group-text">NGN</div>
+													<input
+														type="number"
+														className="form-control"
+														id="inputRate"
+														{...register("rate", { required: true })}
+													/>
+												</div>
+											</div>
+											<div className="col-12">
+												<button type="submit" className="btn btn-primary">
+													Submit
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					) : (
+						""
+					)}
+					<div className="statbox widget box box-shadow layout-top-spacing">
 						<div className="widget-content widget-content-area">
 							<table
 								id="style-1"

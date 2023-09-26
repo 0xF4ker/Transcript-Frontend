@@ -7,7 +7,10 @@ import {
 	useGetUserQuery,
 	useLogoutUserMutation,
 } from "../../features/api/Auth/authApiSlice";
+import { useDispatch } from "react-redux";
+import { setUserId } from "../../features/User/userSlice";
 const Root = () => {
+	const dispatch = useDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
 	const menuItems = [
@@ -59,6 +62,12 @@ const Root = () => {
 			path: "/app/request-destination",
 			access: ["User"],
 		},
+		{
+			name: "Transcript Types",
+			icon: images.archive,
+			path: "/app/transcript-types",
+			access: ["Admin"],
+		},
 	];
 
 	useEffect(() => {
@@ -77,9 +86,10 @@ const Root = () => {
 	}, []);
 	const userId = localStorage.getItem("transcript-uid");
 	const { data } = useGetUserQuery(userId);
-	const { logoutUser } = useLogoutUserMutation();
+	const [logoutUser] = useLogoutUserMutation();
 	useEffect(() => {
 		console.log(userId);
+		dispatch(setUserId(userId));
 		if (!userId) navigate("/login");
 	}, [userId, navigate]);
 	// const itemRefs = useRef<Array<React.RefObject<HTMLLIElement>>>(

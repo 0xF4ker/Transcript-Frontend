@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const userApiSlice: any = createApi({
 	reducerPath: "userApiSlice",
 	baseQuery: fetchBaseQuery({
-		baseUrl: "http://localhost:3001",
+		baseUrl: "https://transcript.dtkapp.com.ng",
 	}),
 	tagTypes: [
 		"User",
@@ -287,9 +287,10 @@ export const userApiSlice: any = createApi({
 			providesTags: ["TranscriptRequests"],
 		}),
 		submitTranscriptRequest: builder.mutation({
-			query: () => ({
-				url: "/submit-transcript-request",
+			query: (payload) => ({
+				url: "/submit-request",
 				method: "POST",
+				body: payload,
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -319,9 +320,10 @@ export const userApiSlice: any = createApi({
 			transformResponse: (response: any) => response.data,
 		}),
 		submitDestinationRequest: builder.mutation({
-			query: () => ({
+			query: (payload) => ({
 				url: "/submit-destination-request",
 				method: "POST",
+				body: payload,
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -348,9 +350,8 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
-			async onQueryStarted({ queryFulfilled }) {
+			async onQueryStarted() {
 				try {
-					await queryFulfilled;
 					localStorage.removeItem("transcript-uid");
 				} catch (error) {
 					console.log(error);

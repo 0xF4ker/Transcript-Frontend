@@ -1,5 +1,10 @@
-import { useEffect, useRef } from "react";
-import { useGetUsersQuery } from "../../features/api/Auth/authApiSlice";
+import { useEffect, useRef, useState } from "react";
+import {
+	useGetCollegesQuery,
+	useGetDepartmentsQuery,
+	useGetUsersQuery,
+	useRegisterUserMutation,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -9,10 +14,42 @@ import "./styles/dark/users.css";
 import "./styles/light/custom_dt_custom.css";
 import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Users = () => {
+	const { register, handleSubmit, control } = useForm();
+	const [registerUser, { isLoading, isError, error, isSuccess }] =
+		useRegisterUserMutation();
+	const { data: dataColleges = [] } = useGetCollegesQuery("");
+	const { data: dataDepartments = [] } = useGetDepartmentsQuery("");
+	const userTypes = ["Staff", "Student"];
+	const roles = ["User", "Admin"];
+	const [filteredDepartments, setFilteredDepartments] = useState<any[]>([]);
+	const submitForm = (data: any) => {
+		console.log(data);
+		registerUser(data);
+	};
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("User succesfully registered");
+			setHide(false);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any)?.data.message, { position: "top-right" });
+			} else {
+				toast.error("Registration failed", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
 	const { data } = useGetUsersQuery("");
 	const dataTableRef = useRef(null);
+	const [hide, setHide] = useState(false);
 	console.log(data);
 	useEffect(() => {
 		if (!dataTableRef.current) {
@@ -100,7 +137,196 @@ const Users = () => {
 			</div>
 			<div className="row layout-top-spacing d-flex">
 				<div className="col-lg-12">
-					<div className="statbox widget box box-shadow">
+					<button
+						onClick={() => setHide((prev) => !prev)}
+						className="btn btn-primary mb-2 me-4"
+					>
+						Create User/Staff
+					</button>
+					{hide === true ? (
+						<form
+							className="row layout-top-spacing"
+							onSubmit={handleSubmit(submitForm)}
+						>
+							<div id="flLoginForm" className="col-lg-12 layout-spacing">
+								<div className="statbox widget box box-shadow ">
+									<div className="widget-content widget-content-area p-3">
+										<div className="row g-3">
+											<div className="col-md-6">
+												<label htmlFor="inputEmail4" className="form-label">
+													Email
+												</label>
+												<input
+													type="email"
+													className="form-control"
+													id="inputEmail4"
+													{...register("email", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputPassword4" className="form-label">
+													Password
+												</label>
+												<input
+													type="password"
+													className="form-control"
+													id="inputPassword4"
+													{...register("password", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputName4" className="form-label">
+													Full Name
+												</label>
+												<input
+													type="full-name"
+													className="form-control"
+													id="inputName4"
+													{...register("name", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputSchoolId4" className="form-label">
+													School ID
+												</label>
+												<input
+													type="password"
+													className="form-control"
+													id="inputSchoolId4"
+													{...register("schoolId", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputCollege" className="form-label">
+													Select College:
+												</label>
+												<Controller
+													name="college"
+													control={control}
+													defaultValue="" // Set the default value here if needed
+													render={({ field }) => (
+														<select
+															id="inputCollege"
+															className="form-select"
+															{...field}
+															onChange={(e) => {
+																const collegeName = e.target.value;
+																console.log(collegeName);
+																field.onChange(e);
+																// Filter faculties based on the selected collegeId
+																const filtered = dataDepartments?.filter(
+																	(department: any) =>
+																		department?.collegeName === collegeName
+																);
+																setFilteredDepartments(filtered);
+															}}
+														>
+															<option value="">Select a college</option>
+															{dataColleges?.map((college: any) => (
+																<option key={college?.id} value={college?.name}>
+																	{college?.name}
+																</option>
+															))}
+														</select>
+													)}
+												/>
+											</div>
+
+											<div className="col-md-6">
+												<label htmlFor="inputDepartment" className="form-label">
+													Select Department:
+												</label>
+												<Controller
+													name="department"
+													control={control}
+													defaultValue=""
+													render={({ field }) => (
+														<select
+															id="inputDepartment"
+															className="form-select"
+															{...field}
+														>
+															<option value="">Select a department</option>
+															{filteredDepartments?.map((department: any) => (
+																<option
+																	key={department?.id}
+																	value={department?.name}
+																>
+																	{department?.name}
+																</option>
+															))}
+														</select>
+													)}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputUserType" className="form-label">
+													Select User Type:
+												</label>
+												<Controller
+													name="userType"
+													control={control}
+													defaultValue="" // Set the default value here if needed
+													render={({ field }) => (
+														<select
+															id="inputUserType"
+															className="form-select"
+															{...field}
+															onChange={(e) => {
+																const userType = e.target.value;
+																console.log(userType);
+																field.onChange(e);
+															}}
+														>
+															<option value="">Select a user type</option>
+															{userTypes?.map((userType: any, id: number) => (
+																<option key={id} value={userType}>
+																	{userType}
+																</option>
+															))}
+														</select>
+													)}
+												/>
+											</div>
+
+											<div className="col-md-6">
+												<label htmlFor="inputRole" className="form-label">
+													Select Role:
+												</label>
+												<Controller
+													name="role"
+													control={control}
+													defaultValue=""
+													render={({ field }) => (
+														<select
+															id="inputRole"
+															className="form-select"
+															{...field}
+														>
+															<option value="">Select a role</option>
+															{roles?.map((role: any, id: number) => (
+																<option key={id} value={role}>
+																	{role}
+																</option>
+															))}
+														</select>
+													)}
+												/>
+											</div>
+											<div className="col-12">
+												<button type="submit" className="btn btn-primary">
+													Submit
+												</button>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					) : (
+						""
+					)}
+					<div className="layout-top-spacing statbox widget box box-shadow">
 						<div className="widget-content widget-content-area">
 							<table
 								id="style-1"

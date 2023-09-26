@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import {
-	useCreateCollegeMutation,
-	useGetCollegesQuery,
+	useCreateTranscriptTypeMutation,
+	useGetTranscriptTypesQuery,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
@@ -15,17 +15,18 @@ import "./styles/light/users.css";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
 
-const Colleges = () => {
+const TranscriptTypes = () => {
 	const { register, handleSubmit } = useForm();
-	const [createCollege, { isLoading, isError, error, isSuccess }] =
-		useCreateCollegeMutation();
+	const [createTranscriptType, { isLoading, isError, error, isSuccess }] =
+		useCreateTranscriptTypeMutation();
+	const [hide, setHide] = useState(false);
 	const submitForm = (data: any) => {
 		console.log(data);
-		createCollege(data);
+		createTranscriptType(data);
 	};
 	useEffect(() => {
 		if (isSuccess) {
-			toast.success("College created succesfully");
+			toast.success("Transcript type succesfully created");
 			setHide(false);
 		}
 		if (isError) {
@@ -33,19 +34,19 @@ const Colleges = () => {
 			if ((error as any)?.data) {
 				toast.error((error as any)?.data.message, { position: "top-right" });
 			} else {
-				toast.error("College creation failed", {
+				toast.error("Transcript type creation failed", {
 					position: "top-right",
 				});
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const { data } = useGetCollegesQuery("");
+	const { data } = useGetTranscriptTypesQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
-	const [hide, setHide] = useState(false);
 	useEffect(() => {
 		if (!dataTableRef.current) {
+			console.log("agai");
 			// Create a script element
 			const script = document.createElement("script");
 			script.src = "/scripts/datatables.js"; // Replace with the path to your script
@@ -67,8 +68,8 @@ const Colleges = () => {
 					const c1 = ($("#style-1") as any)?.DataTable({
 						headerCallback: function (e: any) {
 							e.getElementsByTagName("th")[0].innerHTML = `
-                        <div className="form-check form-check-primary d-block">
-                            <input className="form-check-input chk-parent" type="checkbox" id="form-check-default">
+                        <div class="form-check form-check-primary d-block">
+                            <input class="form-check-input chk-parent" type="checkbox" id="form-check-default">
                         </div>`;
 						},
 						columnDefs: [
@@ -79,8 +80,8 @@ const Colleges = () => {
 								orderable: !1,
 								render: function () {
 									return `
-                            <div className="form-check form-check-primary d-block">
-                                <input className="form-check-input child-chk" type="checkbox" id="form-check-default">
+                            <div class="form-check form-check-primary d-block">
+                                <input class="form-check-input child-chk" type="checkbox" id="form-check-default">
                             </div>`;
 								},
 							},
@@ -92,13 +93,13 @@ const Colleges = () => {
 						oLanguage: {
 							oPaginate: {
 								sPrevious:
-									'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+									'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
 								sNext:
-									'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
+									'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>',
 							},
 							sInfo: "Showing page _PAGE_ of _PAGES_",
 							sSearch:
-								'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+								'<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
 							sSearchPlaceholder: "Search...",
 							sLengthMenu: "Results :  _MENU_",
 						},
@@ -122,7 +123,7 @@ const Colleges = () => {
 							<a href="#">App</a>
 						</li>
 						<li className="breadcrumb-item active" aria-current="page">
-							Colleges
+							Transcript Types
 						</li>
 					</ol>
 				</nav>
@@ -133,42 +134,52 @@ const Colleges = () => {
 						onClick={() => setHide((prev) => !prev)}
 						className="btn btn-primary mb-2 me-4"
 					>
-						Create College
+						Create Transcript Type
 					</button>
 					{hide === true ? (
-						<div className="statbox widget box box-shadow layout-top-spacing">
-							<div className="widget-content widget-content-area">
-								<form
-									className="row row-cols-lg-auto g-3 align-items-center"
-									onSubmit={handleSubmit(submitForm)}
-								>
-									<div className="col-12">
-										<label
-											className="visually-hidden"
-											htmlFor="inlineFormInputGroupCollege"
-										>
-											College
-										</label>
-										<div className="input-group">
-											<div className="input-group-text">@</div>
-											<input
-												type="text"
-												className="form-control"
-												id="inlineFormInputGroupCollege"
-												placeholder="College"
-												{...(register("name"), { required: true })}
-											/>
+						<form
+							className="row layout-top-spacing"
+							onSubmit={handleSubmit(submitForm)}
+						>
+							<div id="flLoginForm" className="col-lg-12 layout-spacing">
+								<div className="statbox widget box box-shadow ">
+									<div className="widget-content widget-content-area p-3">
+										<div className="row g-3">
+											<div className="col-md-6">
+												<label htmlFor="inputName" className="form-label">
+													Name
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													id="inputName"
+													{...register("name", { required: true })}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputRate" className="form-label">
+													Amount
+												</label>
+												<div className="input-group">
+													<div className="input-group-text">NGN</div>
+													<input
+														type="number"
+														className="form-control"
+														id="inputRate"
+														{...register("amount", { required: true })}
+													/>
+												</div>
+											</div>
+											<div className="col-12">
+												<button type="submit" className="btn btn-primary">
+													Submit
+												</button>
+											</div>
 										</div>
 									</div>
-
-									<div className="col-12">
-										<button type="submit" className="btn btn-primary">
-											Submit
-										</button>
-									</div>
-								</form>
+								</div>
 							</div>
-						</div>
+						</form>
 					) : (
 						""
 					)}
@@ -184,17 +195,19 @@ const Colleges = () => {
 											{" "}
 											Record no.{" "}
 										</th>
-										<th>College Name</th>
-										<th>College ID</th>
+										<th>Name</th>
+										<th>Amount</th>
+										<th>ID</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									{data?.map((college: any, id: number) => (
+									{data?.map((transcriptType: any, id: number) => (
 										<tr>
 											<td className="checkbox-column"> {id} </td>
-											<td className="user-name">{college?.name}</td>
-											<td>{college?.id}</td>
+											<td className="user-name">{transcriptType?.name}</td>
+											<td>{transcriptType?.amount}</td>
+											<td>{transcriptType?.id}</td>
 											<td className="text-center">
 												<div className="dropdown">
 													<a
@@ -259,4 +272,4 @@ const Colleges = () => {
 		</div>
 	);
 };
-export default Colleges;
+export default TranscriptTypes;

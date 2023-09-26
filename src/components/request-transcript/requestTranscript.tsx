@@ -1,5 +1,11 @@
-import { useEffect, useRef } from "react";
-import { useGetUsersQuery } from "../../features/api/Auth/authApiSlice";
+import { useEffect, useRef, useState } from "react";
+import {
+	useGetDestinationsQuery,
+	useGetTranscriptRequestsQuery,
+	useGetTranscriptTypesQuery,
+	useGetUserQuery,
+	useSubmitTranscriptRequestMutation,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -9,9 +15,53 @@ import "./styles/dark/users.css";
 import "./styles/light/custom_dt_custom.css";
 import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
-
+import { useSelector } from "react-redux";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
+import { PaystackButton } from "react-paystack";
+const selector = (state: any) => state.user;
 const RequestTranscript = () => {
-	const { data } = useGetUsersQuery("");
+	const { handleSubmit, control } = useForm();
+	const [submitTranscriptRequest, { isLoading, isError, error, isSuccess }] =
+		useSubmitTranscriptRequestMutation();
+	const [hide, setHide] = useState(false);
+	const submitForm = (data: any) => {
+		console.log({ ...data, userId });
+
+		submitTranscriptRequest({ ...data, userId });
+	};
+	const addDestination = () => {
+		setDestinations([...destinations, ""]);
+	};
+
+	const removeDestination = (index: number) => {
+		const updatedDestinations = [...destinations];
+		updatedDestinations.splice(index, 1);
+		setDestinations(updatedDestinations);
+	};
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("Transcript request submitted");
+			setHide(false);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any)?.data.message, { position: "top-right" });
+			} else {
+				toast.error("Transcript request failed", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
+	const [destinations, setDestinations] = useState<string[]>([""]);
+	const { data } = useGetTranscriptRequestsQuery("");
+	const { data: destinationData } = useGetDestinationsQuery("");
+	const { data: transcriptTypesData } = useGetTranscriptTypesQuery("");
+	const { userId } = useSelector(selector);
+	const { data: userData } = useGetUserQuery(userId);
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -93,14 +143,163 @@ const RequestTranscript = () => {
 							<a href="#">App</a>
 						</li>
 						<li className="breadcrumb-item active" aria-current="page">
-							Users
+							Request Transcript
 						</li>
 					</ol>
 				</nav>
 			</div>
 			<div className="row layout-top-spacing d-flex">
 				<div className="col-lg-12">
-					<div className="statbox widget box box-shadow">
+					<button
+						onClick={() => setHide((prev) => !prev)}
+						className="btn btn-primary mb-2 me-4"
+					>
+						Create Request
+					</button>
+					{hide === true ? (
+						<form
+							className="row layout-top-spacing"
+							onSubmit={handleSubmit(submitForm)}
+						>
+							<div id="flLoginForm" className="col-lg-12 layout-spacing">
+								<div className="statbox widget box box-shadow ">
+									<div className="widget-content widget-content-area p-3">
+										<div className="row g-3">
+											<div className="col-md-6">
+												<label htmlFor="matricNo" className="form-label">
+													Matric No
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													disabled
+													value={userData?.schoolId}
+													id="inputMatricNo"
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputMethod" className="form-label">
+													Transcript Type
+												</label>
+												<Controller
+													name="transcriptType"
+													control={control}
+													defaultValue=""
+													render={({ field }) => (
+														<select
+															className="form-select"
+															id="inlineFormSelectPref"
+															{...field}
+														>
+															<option value="">Select a transcript type</option>
+															{transcriptTypesData?.map(
+																(transcriptType: any) => (
+																	<option
+																		key={transcriptType?.id}
+																		value={transcriptType?.name}
+																	>
+																		{transcriptType?.name}
+																	</option>
+																)
+															)}
+														</select>
+													)}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputCollege" className="form-label">
+													College
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													id="inputColege"
+													disabled
+													value={userData?.college}
+												/>
+											</div>
+											<div className="col-md-6">
+												<label htmlFor="inputDepartment" className="form-label">
+													Department
+												</label>
+												<input
+													type="text"
+													className="form-control"
+													id="inputDepartment"
+													disabled
+													value={userData?.department}
+												/>
+											</div>
+											<>
+												<label>Destination Names</label>
+												{destinations?.map((_: any, index: number) => (
+													<>
+														<Controller
+															name={`destinations[${index}]`}
+															control={control}
+															defaultValue=""
+															render={({ field }) => (
+																<>
+																	<div className="col-md-6" key={index}>
+																		<select
+																			className="form-select"
+																			id="inlineFormSelectPref"
+																			{...field}
+																		>
+																			<option value="">
+																				Select a destination
+																			</option>
+																			{destinationData?.map(
+																				(destination: any) => (
+																					<option
+																						key={destination?.id}
+																						value={destination?.id}
+																					>
+																						{destination?.name}
+																					</option>
+																				)
+																			)}
+																		</select>
+																	</div>
+																	<div className="col-md-6">
+																		<button
+																			type="button"
+																			className="btn btn-danger"
+																			onClick={() => removeDestination(index)}
+																		>
+																			Remove
+																		</button>
+																	</div>
+																</>
+															)}
+														/>
+													</>
+												))}
+												<div className="col-12">
+													<button
+														type="button"
+														className="btn btn-primary"
+														onClick={addDestination}
+													>
+														Add Destination
+													</button>
+												</div>
+												<div className="col-12 layout-top-spacing">
+													<button type="submit" className="btn btn-primary">
+														Submit
+													</button>
+												</div>
+											</>
+										</div>
+									</div>
+								</div>
+							</div>
+						</form>
+					) : (
+						""
+					)}
+
+					<div className="layout-top-spacing statbox widget box box-shadow">
 						<div className="widget-content widget-content-area">
 							<table
 								id="style-1"
@@ -112,85 +311,116 @@ const RequestTranscript = () => {
 											{" "}
 											Record no.{" "}
 										</th>
-										<th>Name</th>
-										<th>User Type</th>
-										<th>Email</th>
-										<th>School ID</th>
-										<th className="">Role</th>
+										<th>ID</th>
+										<th>Transcript Type</th>
+										<th>Matric No</th>
+										<th>Fee</th>
+										<th>isPaid</th>
+										<th className="">Status</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									{data?.map((user: any, id: number) => (
-										<tr>
-											<td className="checkbox-column"> {id} </td>
-											<td className="user-name">{user?.name}</td>
-											<td className="">{user?.userType}</td>
-											<td>{user?.email}</td>
-											<td>{user?.schoolId}</td>
-											<td>
-												<div className="d-flex">
-													<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
-													<span className="label label-success">
-														{user?.isAdmin ? "Admin" : "User"}
-													</span>
-												</div>
-											</td>
-											<td className="text-center">
-												<div className="dropdown">
-													<a
-														className="dropdown-toggle"
-														href="#"
-														role="button"
-														id="dropdownMenuLink2"
-														data-bs-toggle="dropdown"
-														aria-haspopup="true"
-														aria-expanded="true"
-													>
-														<svg
-															xmlns="http://www.w3.org/2000/svg"
-															width="24"
-															height="24"
-															viewBox="0 0 24 24"
-															fill="none"
-															stroke="currentColor"
-															stroke-width="2"
-															stroke-linecap="round"
-															stroke-linejoin="round"
-															className="feather feather-more-horizontal"
-														>
-															<circle cx="12" cy="12" r="1"></circle>
-															<circle cx="19" cy="12" r="1"></circle>
-															<circle cx="5" cy="12" r="1"></circle>
-														</svg>
-													</a>
-													<div
-														className="dropdown-menu"
-														aria-labelledby="dropdownMenuLink2"
-													>
-														<a
-															className="dropdown-item"
-															href="javascript:void(0);"
-														>
-															View
-														</a>
-														<a
-															className="dropdown-item"
-															href="javascript:void(0);"
-														>
-															Edit
-														</a>
-														<a
-															className="dropdown-item"
-															href="javascript:void(0);"
-														>
-															Delete
-														</a>
+									{data
+										?.filter((request: any) => request.userId === userId)
+										?.map((transcriptRequest: any, id: number) => (
+											<tr>
+												<td className="checkbox-column"> {id} </td>
+												<td className="user-name">{transcriptRequest?.id}</td>
+												<td className="">
+													{transcriptRequest?.transcriptType}
+												</td>
+												<td>{transcriptRequest?.matricNo}</td>
+												<td>{transcriptRequest?.totalFee}</td>
+												<td>{transcriptRequest?.isPaid ? "true" : "false"}</td>
+												<td>
+													<div className="d-flex">
+														<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
+														<span className="label label-success">
+															{transcriptRequest?.status}
+														</span>
 													</div>
-												</div>
-											</td>
-										</tr>
-									))}
+												</td>
+												<td className="text-center">
+													<div className="dropdown">
+														<a
+															className="dropdown-toggle"
+															href="#"
+															role="button"
+															id="dropdownMenuLink2"
+															data-bs-toggle="dropdown"
+															aria-haspopup="true"
+															aria-expanded="true"
+														>
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-more-horizontal"
+															>
+																<circle cx="12" cy="12" r="1"></circle>
+																<circle cx="19" cy="12" r="1"></circle>
+																<circle cx="5" cy="12" r="1"></circle>
+															</svg>
+														</a>
+														<div
+															className="dropdown-menu"
+															aria-labelledby="dropdownMenuLink2"
+														>
+															<a
+																className="dropdown-item"
+																href="javascript:void(0);"
+															>
+																View
+															</a>
+															<a
+																className="dropdown-item"
+																href="javascript:void(0);"
+															>
+																Edit
+															</a>
+															<PaystackButton
+																className="dropdown-item"
+																{...{
+																	publicKey:
+																		"pk_test_ca94a46bdb50763f37bafb6bce8a0d6623821a23",
+																	email: userData?.email,
+																	amount: transcriptRequest?.totalFee * 100,
+																	metadata: {
+																		transcriptRequstId: transcriptRequest.id,
+																		custom_fields: [
+																			{
+																				display_name: "Invoice ID",
+
+																				variable_name: "Invoice ID",
+
+																				value: 209,
+																			},
+
+																			{
+																				display_name: "Cart Items",
+
+																				variable_name: "cart_items",
+
+																				value: "3 bananas, 12 mangoes",
+																			},
+																		],
+																	},
+																}}
+															>
+																Checkout
+															</PaystackButton>
+														</div>
+													</div>
+												</td>
+											</tr>
+										))}
 								</tbody>
 							</table>
 						</div>

@@ -1,5 +1,9 @@
-import { useEffect, useRef } from "react";
-import { useGetDepartmentsQuery } from "../../features/api/Auth/authApiSlice";
+import { useEffect, useRef, useState } from "react";
+import {
+	useCreateDepartmentMutation,
+	useGetCollegesQuery,
+	useGetDepartmentsQuery,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -9,9 +13,37 @@ import "./styles/dark/users.css";
 import "./styles/light/custom_dt_custom.css";
 import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
+import { Controller, useForm } from "react-hook-form";
+import { toast } from "react-toastify";
 
 const Departments = () => {
+	const { register, handleSubmit, control } = useForm();
+	const [createDepartment, { isLoading, isError, error, isSuccess }] =
+		useCreateDepartmentMutation();
+	const [hide, setHide] = useState(false);
+	const submitForm = (data: any) => {
+		console.log(data);
+		createDepartment(data);
+	};
+	useEffect(() => {
+		if (isSuccess) {
+			toast.success("Department created succesfully");
+			setHide(false);
+		}
+		if (isError) {
+			console.log(error);
+			if ((error as any)?.data) {
+				toast.error((error as any)?.data.message, { position: "top-right" });
+			} else {
+				toast.error("Department creation failed", {
+					position: "top-right",
+				});
+			}
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isLoading]);
 	const { data } = useGetDepartmentsQuery("");
+	const { data: collegesData } = useGetCollegesQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -99,7 +131,77 @@ const Departments = () => {
 			</div>
 			<div className="row layout-top-spacing d-flex">
 				<div className="col-lg-12">
-					<div className="statbox widget box box-shadow">
+					<button
+						onClick={() => setHide((prev) => !prev)}
+						className="btn btn-primary mb-2 me-4"
+					>
+						Create College
+					</button>
+					{hide === true ? (
+						<div className="statbox widget box box-shadow layout-top-spacing">
+							<div className="widget-content widget-content-area">
+								<form
+									className="row row-cols-lg-auto g-3 align-items-center"
+									onSubmit={handleSubmit(submitForm)}
+								>
+									<div className="col-12">
+										<label
+											className="visually-hidden"
+											htmlFor="inlineFormInputGroupDepartment"
+										>
+											Department
+										</label>
+										<div className="input-group">
+											<div className="input-group-text">@</div>
+											<input
+												type="text"
+												className="form-control"
+												id="inlineFormInputGroupDepartment"
+												placeholder="Department"
+												{...(register("name"), { required: true })}
+											/>
+										</div>
+									</div>
+									<div className="col-12">
+										<label
+											className="visually-hidden"
+											htmlFor="inlineFormSelectPref"
+										>
+											College
+										</label>
+										<Controller
+											name="college"
+											control={control}
+											defaultValue=""
+											render={({ field }) => (
+												<select
+													className="form-select"
+													id="inlineFormSelectPref"
+													{...field}
+												>
+													<option value="">Select a college</option>
+													{collegesData?.map((college: any) => (
+														<option key={college?.id} value={college?.name}>
+															{college?.name}
+														</option>
+													))}
+												</select>
+											)}
+										/>
+									</div>
+
+									<div className="col-12">
+										<button type="submit" className="btn btn-primary">
+											Submit
+										</button>
+									</div>
+								</form>
+							</div>
+						</div>
+					) : (
+						""
+					)}
+					<div className="statbox widget box box-shadow layout-top-spacing">
 						<div className="widget-content widget-content-area">
 							<table
 								id="style-1"
