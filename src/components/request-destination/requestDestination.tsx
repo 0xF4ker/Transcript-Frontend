@@ -1,9 +1,21 @@
 import { useEffect } from "react";
-import { useSubmitDestinationRequestMutation } from "../../features/api/Auth/authApiSlice";
+import {
+	useGetUserQuery,
+	useSubmitDestinationRequestMutation,
+} from "../../features/api/Auth/authApiSlice";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const RequestDestination = () => {
+	const selector = (state: any) => state.user;
+	const { userId } = useSelector(selector);
+	const navigate = useNavigate();
+	const { data: userData, isLoading: isLoadingUser } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { register, handleSubmit, reset } = useForm();
 	const [submitDestinationRequest, { isLoading, isError, error, isSuccess }] =
 		useSubmitDestinationRequestMutation();

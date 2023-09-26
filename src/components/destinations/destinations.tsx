@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
 	useCreateDestinationMutation,
 	useGetDestinationsQuery,
+	useGetUserQuery,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
@@ -14,8 +15,17 @@ import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+const selector = (state: any) => state.user;
 const Destinations = () => {
+	const { userId } = useSelector(selector);
+	const navigate = useNavigate();
+	const { data: userData } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (!userData?.isAdmin) navigate("/error");
+	}, []);
 	const { register, handleSubmit } = useForm();
 	const [createDestination, { isLoading, isError, error, isSuccess }] =
 		useCreateDestinationMutation();
@@ -41,7 +51,8 @@ const Destinations = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const { data } = useGetDestinationsQuery("");
+	const { data, isLoading: isLoadingDestinations } =
+		useGetDestinationsQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -276,6 +287,52 @@ const Destinations = () => {
 											</td>
 										</tr>
 									))}
+									{isLoadingDestinations && (
+										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>

@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
 	useCreateTranscriptTypeMutation,
 	useGetTranscriptTypesQuery,
+	useGetUserQuery,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
@@ -14,8 +15,17 @@ import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+const selector = (state: any) => state.user;
 const TranscriptTypes = () => {
+	const { userId } = useSelector(selector);
+	const navigate = useNavigate();
+	const { data: userData, isSuccess: isSuccessUser } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (!userData?.isAdmin) navigate("/error");
+	}, [isSuccessUser]);
 	const { register, handleSubmit } = useForm();
 	const [createTranscriptType, { isLoading, isError, error, isSuccess }] =
 		useCreateTranscriptTypeMutation();
@@ -41,7 +51,8 @@ const TranscriptTypes = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const { data } = useGetTranscriptTypesQuery("");
+	const { data, isLoading: isLoadingTranscriptTypes } =
+		useGetTranscriptTypesQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -263,6 +274,45 @@ const TranscriptTypes = () => {
 											</td>
 										</tr>
 									))}
+									{isLoadingTranscriptTypes && (
+										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>

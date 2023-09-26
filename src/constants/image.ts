@@ -13,6 +13,7 @@ import logo1 from "../assets/logo1.png";
 import logo2 from "../assets/logo2.png";
 import user from "../assets/user.svg";
 import archive from "../assets/archive.svg";
+import errorsvg from "../assets/error.svg";
 
 export default {
 	us,
@@ -30,4 +31,5 @@ export default {
 	logo2,
 	user,
 	archive,
+	errorsvg,
 };

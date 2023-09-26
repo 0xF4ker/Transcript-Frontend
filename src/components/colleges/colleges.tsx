@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import {
 	useCreateCollegeMutation,
 	useGetCollegesQuery,
+	useGetUserQuery,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
@@ -14,11 +15,21 @@ import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
 import { toast } from "react-toastify";
 import { useForm } from "react-hook-form";
-
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { Skeleton } from "@mui/material";
+const selector = (state: any) => state.user;
 const Colleges = () => {
+	const { userId } = useSelector(selector);
+	const navigate = useNavigate();
+	const { data: userData } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (!userData?.isAdmin) navigate("/error");
+	}, [userData]);
 	const { register, handleSubmit } = useForm();
 	const [createCollege, { isLoading, isError, error, isSuccess }] =
 		useCreateCollegeMutation();
+
 	const submitForm = (data: any) => {
 		console.log(data);
 		createCollege(data);
@@ -40,7 +51,7 @@ const Colleges = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const { data } = useGetCollegesQuery("");
+	const { data, isLoading: isLoadingColleges } = useGetCollegesQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
 	const [hide, setHide] = useState(false);
@@ -250,6 +261,38 @@ const Colleges = () => {
 											</td>
 										</tr>
 									))}
+									{isLoadingColleges && (
+										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>

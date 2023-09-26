@@ -19,8 +19,11 @@ import { useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { PaystackButton } from "react-paystack";
+import { Skeleton } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 const selector = (state: any) => state.user;
 const RequestTranscript = () => {
+	const navigate = useNavigate();
 	const { handleSubmit, control } = useForm();
 	const [submitTranscriptRequest, { isLoading, isError, error, isSuccess }] =
 		useSubmitTranscriptRequestMutation();
@@ -57,11 +60,15 @@ const RequestTranscript = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
 	const [destinations, setDestinations] = useState<string[]>([""]);
-	const { data } = useGetTranscriptRequestsQuery("");
+	const { data, isLoading: isLoadingRequests } =
+		useGetTranscriptRequestsQuery("");
 	const { data: destinationData } = useGetDestinationsQuery("");
 	const { data: transcriptTypesData } = useGetTranscriptTypesQuery("");
 	const { userId } = useSelector(selector);
 	const { data: userData } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (userData?.isAdmin) navigate("/error");
+	}, []);
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -421,6 +428,66 @@ const RequestTranscript = () => {
 												</td>
 											</tr>
 										))}
+									{isLoadingRequests && (
+										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>

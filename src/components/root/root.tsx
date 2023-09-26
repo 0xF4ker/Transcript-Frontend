@@ -85,7 +85,10 @@ const Root = () => {
 		};
 	}, []);
 	const userId = localStorage.getItem("transcript-uid");
-	const { data } = useGetUserQuery(userId);
+	const { data, isError } = useGetUserQuery(userId);
+	if (isError) {
+		localStorage.removeItem("transcript-uid");
+	}
 	const [logoutUser] = useLogoutUserMutation();
 	useEffect(() => {
 		console.log(userId);
@@ -689,43 +692,47 @@ const Root = () => {
 						</div>
 
 						<ul className="list-unstyled menu-categories" id="accordionExample">
-							{menuItems.map((item, index) => (
-								<li
-									key={index}
-									className={
-										location.pathname === item.path ? "menu active" : "menu"
-									}
-								>
-									<Link to={item.path} className="dropdown-toggle">
-										<div className="">
-											<svg
-												xmlns="http://www.w3.org/2000/svg"
-												width="24"
-												height="24"
-												viewBox="0 0 24 24"
-												fill="none"
-												stroke="currentColor"
-												stroke-width="2"
-												stroke-linecap="round"
-												stroke-linejoin="round"
-												className="feather feather-monitor"
-											>
-												<rect
-													x="2"
-													y="3"
-													width="20"
-													height="14"
-													rx="2"
-													ry="2"
-												></rect>
-												<line x1="8" y1="21" x2="16" y2="21"></line>
-												<line x1="12" y1="17" x2="12" y2="21"></line>
-											</svg>
-											<span>{`  ${item.name}`}</span>
-										</div>
-									</Link>
-								</li>
-							))}
+							{menuItems
+								?.filter((menuItem) =>
+									menuItem.access.includes(data?.isAdmin ? "Admin" : "User")
+								)
+								?.map((item, index) => (
+									<li
+										key={index}
+										className={
+											location.pathname === item.path ? "menu active" : "menu"
+										}
+									>
+										<Link to={item.path} className="dropdown-toggle">
+											<div className="">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													className="feather feather-monitor"
+												>
+													<rect
+														x="2"
+														y="3"
+														width="20"
+														height="14"
+														rx="2"
+														ry="2"
+													></rect>
+													<line x1="8" y1="21" x2="16" y2="21"></line>
+													<line x1="12" y1="17" x2="12" y2="21"></line>
+												</svg>
+												<span>{`  ${item.name}`}</span>
+											</div>
+										</Link>
+									</li>
+								))}
 						</ul>
 					</nav>
 				</div>

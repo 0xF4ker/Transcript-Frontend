@@ -17,6 +17,7 @@ import TranscriptRequests from "./components/transcript-requests/transcriptReque
 import RequestTranscript from "./components/request-transcript/requestTranscript";
 import TranscriptTypes from "./components/transcript-types/transcriptTypes";
 import RequestDestination from "./components/request-destination/requestDestination";
+import Error_ from "./components/error/error";
 
 function App() {
 	useEffect(() => {
@@ -28,7 +29,9 @@ function App() {
 		<>
 			<ToastContainer />
 			<Routes>
+				<Route path="*" element={<Error_ />} />
 				<Route path="/" element={<Home />}></Route>
+				<Route path="/error" element={<Error_ />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/signup" element={<SignUp />}></Route>
 				<Route path="/app" element={<Root />}>

@@ -1,5 +1,8 @@
 import { useEffect, useRef } from "react";
-import { useGetTranscriptRequestsQuery } from "../../features/api/Auth/authApiSlice";
+import {
+	useGetTranscriptRequestsQuery,
+	useGetUserQuery,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -9,9 +12,19 @@ import "./styles/dark/users.css";
 import "./styles/light/custom_dt_custom.css";
 import "./styles/light/dt-global_style.css";
 import "./styles/light/users.css";
-
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { Skeleton } from "@mui/material";
+const selector = (state: any) => state.user;
 const TranscriptRequests = () => {
-	const { data } = useGetTranscriptRequestsQuery("");
+	const { userId } = useSelector(selector);
+	const navigate = useNavigate();
+	const { data: userData } = useGetUserQuery(userId);
+	useEffect(() => {
+		if (!userData?.isAdmin) navigate("/error");
+	}, []);
+	const { data, isLoading: isLoadingRequests } =
+		useGetTranscriptRequestsQuery("");
 	const dataTableRef = useRef(null);
 	console.log(data);
 	useEffect(() => {
@@ -191,6 +204,66 @@ const TranscriptRequests = () => {
 											</td>
 										</tr>
 									))}
+									{isLoadingRequests && (
+										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
+										</tr>
+									)}
 								</tbody>
 							</table>
 						</div>
