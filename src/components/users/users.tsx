@@ -24,10 +24,14 @@ const selector = (state: any) => state.user;
 const Users = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isSuccess: isSuccessUser,
+		isLoading: isLoadingUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
-	}, []);
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { register, handleSubmit, control } = useForm();
 	const [registerUser, { isLoading, isError, error, isSuccess }] =
 		useRegisterUserMutation();
@@ -358,7 +362,7 @@ const Users = () => {
 								</thead>
 								<tbody>
 									{data?.map((user: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{user?.name}</td>
 											<td className="">{user?.userType}</td>

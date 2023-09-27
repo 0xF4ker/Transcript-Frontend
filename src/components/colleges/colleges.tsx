@@ -22,10 +22,14 @@ const selector = (state: any) => state.user;
 const Colleges = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isSuccess: isSuccessUser,
+		isLoading: isLoadingUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
-	}, [userData]);
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { register, handleSubmit } = useForm();
 	const [createCollege, { isLoading, isError, error, isSuccess }] =
 		useCreateCollegeMutation();
@@ -202,7 +206,7 @@ const Colleges = () => {
 								</thead>
 								<tbody>
 									{data?.map((college: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{college?.name}</td>
 											<td>{college?.id}</td>

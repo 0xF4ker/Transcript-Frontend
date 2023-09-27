@@ -185,7 +185,7 @@ const Root = () => {
 					</div>
 
 					<ul className="navbar-item flex-row ms-lg-auto ms-0">
-						<li className="nav-item dropdown language-dropdown">
+						{/* <li className="nav-item dropdown language-dropdown">
 							<a
 								href="javascript:void(0);"
 								className="nav-link dropdown-toggle"
@@ -221,7 +221,7 @@ const Root = () => {
 									<span className="align-self-center">&nbsp;German</span>
 								</a>
 							</div>
-						</li>
+						</li> */}
 
 						<li className="nav-item theme-toggle-item">
 							<a href="javascript:void(0);" className="nav-link theme-toggle">
@@ -264,7 +264,7 @@ const Root = () => {
 							</a>
 						</li>
 
-						<li className="nav-item dropdown notification-dropdown">
+						{/* <li className="nav-item dropdown notification-dropdown">
 							<a
 								href="javascript:void(0);"
 								className="nav-link dropdown-toggle"
@@ -562,7 +562,7 @@ const Root = () => {
 									</div>
 								</div>
 							</div>
-						</li>
+						</li> */}
 
 						<li className="nav-item dropdown user-profile-dropdown  order-lg-0 order-1">
 							<a

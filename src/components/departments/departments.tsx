@@ -23,9 +23,13 @@ const selector = (state: any) => state.user;
 const Departments = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData, isLoading: isLoadingUser } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isLoading: isLoadingUser,
+		isSuccess: isSuccessUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
 	}, [isLoadingUser]);
 	const { register, handleSubmit, control } = useForm();
 	const [createDepartment, { isLoading, isError, error, isSuccess }] =
@@ -232,7 +236,7 @@ const Departments = () => {
 								</thead>
 								<tbody>
 									{data?.map((department: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{department?.name}</td>
 											<td>{department?.id}</td>

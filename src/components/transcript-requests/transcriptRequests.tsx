@@ -19,10 +19,14 @@ const selector = (state: any) => state.user;
 const TranscriptRequests = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isSuccess: isSuccessUser,
+		isLoading: isLoadingUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
-	}, []);
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { data, isLoading: isLoadingRequests } =
 		useGetTranscriptRequestsQuery("");
 	const dataTableRef = useRef(null);
@@ -135,7 +139,7 @@ const TranscriptRequests = () => {
 								</thead>
 								<tbody>
 									{data?.map((transcriptRequest: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{transcriptRequest?.id}</td>
 											<td className="">{transcriptRequest?.transcriptType}</td>

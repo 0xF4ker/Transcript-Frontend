@@ -22,10 +22,14 @@ const selector = (state: any) => state.user;
 const Destinations = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isSuccess: isSuccessUser,
+		isLoading: isLoadingUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
-	}, []);
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { register, handleSubmit } = useForm();
 	const [createDestination, { isLoading, isError, error, isSuccess }] =
 		useCreateDestinationMutation();
@@ -226,7 +230,7 @@ const Destinations = () => {
 								</thead>
 								<tbody>
 									{data?.map((destination: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{destination?.name}</td>
 											<td className="">{destination?.deliveryMethod}</td>

@@ -22,10 +22,14 @@ const selector = (state: any) => state.user;
 const TranscriptTypes = () => {
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
-	const { data: userData, isSuccess: isSuccessUser } = useGetUserQuery(userId);
+	const {
+		data: userData,
+		isSuccess: isSuccessUser,
+		isLoading: isLoadingUser,
+	} = useGetUserQuery(userId);
 	useEffect(() => {
-		if (!userData?.isAdmin) navigate("/error");
-	}, [isSuccessUser]);
+		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
+	}, [isLoadingUser]);
 	const { register, handleSubmit } = useForm();
 	const [createTranscriptType, { isLoading, isError, error, isSuccess }] =
 		useCreateTranscriptTypeMutation();
@@ -214,7 +218,7 @@ const TranscriptTypes = () => {
 								</thead>
 								<tbody>
 									{data?.map((transcriptType: any, id: number) => (
-										<tr>
+										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{transcriptType?.name}</td>
 											<td>{transcriptType?.amount}</td>
