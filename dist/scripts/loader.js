@@ -11,7 +11,7 @@ window.addEventListener("load", function () {
 			layout: {
 				name: layoutName,
 				toggle: true,
-				darkMode: true,
+				darkMode: false,
 				boxed: true,
 				logo: {
 					darkLogo: "/logo1.png",
