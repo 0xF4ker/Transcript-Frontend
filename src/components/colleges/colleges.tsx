@@ -171,7 +171,7 @@ const Colleges = () => {
 												className="form-control"
 												id="inlineFormInputGroupCollege"
 												placeholder="College"
-												{...(register("name"), { required: true })}
+												{...register("name", { required: true })}
 											/>
 										</div>
 									</div>

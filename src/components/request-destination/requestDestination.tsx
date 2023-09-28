@@ -30,8 +30,8 @@ const RequestDestination = () => {
 		}
 		if (isError) {
 			console.log(error);
-			if ((error as any)?.data) {
-				toast.error((error as any)?.data.message, { position: "top-right" });
+			if (error as any) {
+				toast.error(error as any, { position: "top-right" });
 			} else {
 				toast.error("Destination request failed", {
 					position: "top-right",
@@ -76,7 +76,7 @@ const RequestDestination = () => {
 											className="form-control"
 											id="inlineFormInputGroupDestination"
 											placeholder="Destination Name"
-											{...(register("name"), { required: true })}
+											{...register("name", { required: true })}
 										/>
 									</div>
 								</div>

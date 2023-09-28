@@ -27,6 +27,7 @@ export const userApiSlice: any = createApi({
 			}),
 			// Pick out data and prevent nested properties in a hook or selector
 			transformResponse: (response: any) => response.message,
+			transformErrorResponse: (response: any) => response.data.error,
 			invalidatesTags: ["Users"],
 		}),
 		getUsers: builder.query({
@@ -55,6 +56,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.user,
+			transformErrorResponse: (response: any) => response.data.error,
 		}),
 		getDepartments: builder.query({
 			query: () => ({
@@ -87,6 +89,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			invalidatesTags: ["Departments"],
+			transformErrorResponse: (response: any) => response.data.error,
 		}),
 		deleteDepartment: builder.mutation({
 			query: (id) => ({
@@ -139,6 +142,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			invalidatesTags: ["Colleges"],
+			transformErrorResponse: (response: any) => response.data.error,
 		}),
 		deleteCollege: builder.mutation({
 			query: (id) => ({
@@ -191,6 +195,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			invalidatesTags: ["Destinations"],
+			transformErrorResponse: (response: any) => response.data.error,
 		}),
 		deleteDestination: builder.mutation({
 			query: (id) => ({
@@ -243,6 +248,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			invalidatesTags: ["TranscriptTypes"],
+			transformErrorResponse: (response: any) => response.data.error,
 		}),
 		deleteTranscriptType: builder.mutation({
 			query: (id) => ({
@@ -296,6 +302,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			transformErrorResponse: (response: any) => response.data.error,
 			invalidatesTags: ["TranscriptRequests"],
 		}),
 		getDestinationRequests: builder.query({
@@ -329,6 +336,7 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 			transformResponse: (response: any) => response.data,
+			transformErrorResponse: (response: any) => response.data.error,
 			invalidatesTags: ["DestinationRequests"],
 		}),
 		acceptDestinationRequest: builder.mutation({

@@ -46,7 +46,7 @@ const Departments = () => {
 		}
 		if (isError) {
 			console.log(error);
-			if ((error as any)?.data) {
+			if ((error as any)?.data?.message) {
 				toast.error((error as any)?.data.message, { position: "top-right" });
 			} else {
 				toast.error("Department creation failed", {
@@ -172,7 +172,7 @@ const Departments = () => {
 												className="form-control"
 												id="inlineFormInputGroupDepartment"
 												placeholder="Department"
-												{...(register("name"), { required: true })}
+												{...register("name", { required: true })}
 											/>
 										</div>
 									</div>
