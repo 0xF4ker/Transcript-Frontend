@@ -292,7 +292,7 @@ const RequestTranscript = () => {
 														className="btn btn-primary"
 														onClick={addDestination}
 													>
-														Add Destination
+														Add New Destination
 													</button>
 												</div>
 												<div className="col-12 layout-top-spacing">

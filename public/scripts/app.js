@@ -424,6 +424,7 @@ let _App = (function () {
 			if (windowWidth <= MediaSize.md) {
 				categoryScroll.scrollCat();
 				toggleFunction.sidebar();
+				toggleFunction.offToggleSidebarSubmenu();
 			}
 		},
 
@@ -444,7 +445,7 @@ let _App = (function () {
 			if (windowWidth > MediaSize.md) {
 				categoryScroll.scrollCat();
 				toggleFunction.sidebar();
-				// toggleFunction.onToggleSidebarSubmenu();
+				toggleFunction.onToggleSidebarSubmenu();
 			}
 		},
 
@@ -453,7 +454,7 @@ let _App = (function () {
 				event.preventDefault();
 				let windowWidth = window.innerWidth;
 				if (windowWidth > MediaSize.md) {
-					// toggleFunction.onToggleSidebarSubmenu();
+					toggleFunction.onToggleSidebarSubmenu();
 				}
 			});
 		},
