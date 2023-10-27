@@ -102,8 +102,8 @@ export const userApiSlice: any = createApi({
 			invalidatesTags: ["Departments"],
 		}),
 		editDepartment: builder.mutation({
-			query: (id) => ({
-				url: `/edit-department/${id}`,
+			query: (payload) => ({
+				url: `/edit-department/${payload?.id}`,
 				method: "PATCH",
 				headers: {
 					"Content-Type": "application/json",
@@ -155,9 +155,10 @@ export const userApiSlice: any = createApi({
 			invalidatesTags: ["Colleges"],
 		}),
 		editCollege: builder.mutation({
-			query: (id) => ({
-				url: `/edit-college/${id}`,
+			query: (payload) => ({
+				url: `/edit-college/${payload?.id}`,
 				method: "PATCH",
+				body: payload,
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -208,9 +209,10 @@ export const userApiSlice: any = createApi({
 			invalidatesTags: ["Destinations"],
 		}),
 		editDestination: builder.mutation({
-			query: (id) => ({
-				url: `/edit-destination/${id}`,
+			query: (payload) => ({
+				url: `/edit-destination/${payload?.id}`,
 				method: "PATCH",
+				body: payload,
 				headers: {
 					"Content-Type": "application/json",
 				},
@@ -261,9 +263,10 @@ export const userApiSlice: any = createApi({
 			invalidatesTags: ["TranscriptTypes"],
 		}),
 		editTranscriptType: builder.mutation({
-			query: (id) => ({
-				url: `/edit-transcript-type/${id}`,
+			query: (payload) => ({
+				url: `/edit-transcript-type/${payload?.id}`,
 				method: "PATCH",
+				body: payload,
 				headers: {
 					"Content-Type": "application/json",
 				},

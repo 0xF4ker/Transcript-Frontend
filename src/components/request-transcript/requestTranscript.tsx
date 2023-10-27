@@ -24,12 +24,13 @@ import { useNavigate } from "react-router-dom";
 const selector = (state: any) => state.user;
 const RequestTranscript = () => {
 	const navigate = useNavigate();
-	const { handleSubmit, control } = useForm();
+	const { handleSubmit, control, resetForm } = useForm();
 	const [submitTranscriptRequest, { isLoading, isError, error, isSuccess }] =
 		useSubmitTranscriptRequestMutation();
 	const [hide, setHide] = useState(false);
 	const submitForm = (data: any) => {
 		console.log({ ...data, userId });
+		resetForm();
 
 		submitTranscriptRequest({ ...data, userId });
 	};
@@ -297,7 +298,9 @@ const RequestTranscript = () => {
 												</div>
 												<div className="col-12 layout-top-spacing">
 													<button type="submit" className="btn btn-primary">
-														Submit
+													{
+													isLoading ? (<><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-loader spin me-2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> </>): ("SUBMIT")
+												}
 													</button>
 												</div>
 											</>
@@ -322,7 +325,7 @@ const RequestTranscript = () => {
 											{" "}
 											Record no.{" "}
 										</th>
-										<th>ID</th>
+										<th>Name</th>
 										<th>Transcript Type</th>
 										<th>Matric No</th>
 										<th>Fee</th>
@@ -337,7 +340,7 @@ const RequestTranscript = () => {
 										?.map((transcriptRequest: any, id: number) => (
 											<tr key={id}>
 												<td className="checkbox-column"> {id} </td>
-												<td className="user-name">{transcriptRequest?.id}</td>
+												<td className="user-name">{transcriptRequest?.name}</td>
 												<td className="">
 													{transcriptRequest?.transcriptType}
 												</td>
@@ -353,50 +356,8 @@ const RequestTranscript = () => {
 													</div>
 												</td>
 												<td className="text-center">
-													<div className="dropdown">
-														<a
-															className="dropdown-toggle"
-															href="#"
-															role="button"
-															id="dropdownMenuLink2"
-															data-bs-toggle="dropdown"
-															aria-haspopup="true"
-															aria-expanded="true"
-														>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-more-horizontal"
-															>
-																<circle cx="12" cy="12" r="1"></circle>
-																<circle cx="19" cy="12" r="1"></circle>
-																<circle cx="5" cy="12" r="1"></circle>
-															</svg>
-														</a>
-														<div
-															className="dropdown-menu"
-															aria-labelledby="dropdownMenuLink2"
-														>
-															<a
-																className="dropdown-item"
-																href="javascript:void(0);"
-															>
-																View
-															</a>
-															<a
-																className="dropdown-item"
-																href="javascript:void(0);"
-															>
-																Edit
-															</a>
-															<PaystackButton
+								
+															{!transcriptRequest.isPaid && ( <PaystackButton
 																className="dropdown-item"
 																{...{
 																	publicKey:
@@ -426,9 +387,7 @@ const RequestTranscript = () => {
 																}}
 															>
 																Checkout
-															</PaystackButton>
-														</div>
-													</div>
+															</PaystackButton>)}
 												</td>
 											</tr>
 										))}
