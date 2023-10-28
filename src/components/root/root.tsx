@@ -45,6 +45,12 @@ const Root = () => {
 			access: ["Admin"],
 		},
 		{
+			name: "Destination requests",
+			icon: images.archive,
+			path: "/app/destination-requests",
+			access: ["Admin"],
+		},
+		{
 			name: "Transcript requests",
 			icon: images.archive,
 			path: "/app/transcript-requests",

@@ -329,7 +329,6 @@ const RequestTranscript = () => {
 										<th>Transcript Type</th>
 										<th>Matric No</th>
 										<th>Fee</th>
-										<th>isPaid</th>
 										<th className="">Status</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
@@ -346,12 +345,11 @@ const RequestTranscript = () => {
 												</td>
 												<td>{transcriptRequest?.matricNo}</td>
 												<td>{transcriptRequest?.totalFee}</td>
-												<td>{transcriptRequest?.isPaid ? "true" : "false"}</td>
 												<td>
 													<div className="d-flex">
 														<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
 														<span className="label label-success">
-															{transcriptRequest?.status}
+														<div className="td-content"><span className={`badge badge-${transcriptRequest?.status === "pending" ?"danger" : transcriptRequest?.status === "paid" ? "success" : transcriptRequest?.status === "shipped" ? "primary": "danger"}`}>{transcriptRequest?.status}</span></div>
 														</span>
 													</div>
 												</td>

@@ -295,6 +295,27 @@ export const userApiSlice: any = createApi({
 			transformResponse: (response: any) => response.data,
 			providesTags: ["TranscriptRequests"],
 		}),
+		updateTranscriptStatus: builder.mutation({
+			query: (payload) => ({
+				url: `/update-transcript-status/${payload?.id}`,
+				method: "PATCH",
+				body: payload,
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			invalidatesTags: ["TranscriptRequests"],
+		}),
+		deleteTranscriptRequest: builder.mutation({
+			query: (id) => ({
+				url: `/delete-transcript-request/${id}`,
+				method: "DELETE",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			invalidatesTags: ["TranscriptRequests"],
+		}),
 		submitTranscriptRequest: builder.mutation({
 			query: (payload) => ({
 				url: "/submit-request",
@@ -398,6 +419,8 @@ export const {
 	useGetTranscriptRequestQuery,
 	useGetTranscriptRequestsQuery,
 	useSubmitTranscriptRequestMutation,
+	useDeleteTranscriptRequestMutation,
+	useUpdateTranscriptRequestMutation,
 	useGetDestinationRequestQuery,
 	useGetDestinationRequestsQuery,
 	useSubmitDestinationRequestMutation,

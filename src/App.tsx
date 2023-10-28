@@ -18,6 +18,7 @@ import RequestTranscript from "./components/request-transcript/requestTranscript
 import TranscriptTypes from "./components/transcript-types/transcriptTypes";
 import RequestDestination from "./components/request-destination/requestDestination";
 import Error_ from "./components/error/error";
+import DestinationRequests from "./components/destination-requests/destinationRequests";
 
 function App() {
 	useEffect(() => {
@@ -40,6 +41,7 @@ function App() {
 					<Route path="colleges" element={<Colleges />} />
 					<Route path="departments" element={<Departments />} />
 					<Route path="destinations" element={<Destinations />} />
+					<Route path="destination-requests" element={<DestinationRequests />} />
 					<Route path="transcript-requests" element={<TranscriptRequests />} />
 					<Route path="transcript-types" element={<TranscriptTypes />} />
 					<Route path="request-transcript" element={<RequestTranscript />} />

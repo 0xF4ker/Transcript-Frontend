@@ -35,7 +35,7 @@ const Departments = () => {
 		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
 	}, [isLoadingUser]);
 	const { register, handleSubmit, control, reset } = useForm();
-	const { register: registerEdit, handleSubmit: handleSubmitEdit, reset: resetEdit, setValue: setValueEdit } = useForm();
+	const { register: registerEdit, handleSubmit: handleSubmitEdit, reset: resetEdit, setValue: setValueEdit, control: controlEdit } = useForm();
 	const { register: registerDelete, setValue: setValueDelete, getValues: getValueDelete } = useForm();
 	const [createDepartment, { isLoading, isError, error, isSuccess }] =
 		useCreateDepartmentMutation();
@@ -350,7 +350,7 @@ const Departments = () => {
 										</label>
 										<Controller
 											name="college"
-											control={control}
+											control={controlEdit}
 											defaultValue=""
 											render={({ field }) => (
 												<select
