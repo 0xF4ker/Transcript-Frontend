@@ -3426,8 +3426,8 @@ body.dark .bg-secondary {
 	color: #fff;
 }
 body.dark .bg-dark {
-	background-color: #3b3f5c !important;
-	border-color: #3b3f5c;
+	background-color: #343a40 !important;
+	border-color: #343a40;
 	color: #fff;
 }
 body.dark .bg-light-primary {

@@ -13,68 +13,6 @@ const Root = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const menuItems = [
-		{
-			name: "Dashboard",
-			icon: images.user,
-			path: "/app",
-			access: ["User", "Admin"],
-		},
-		{
-			name: "Users",
-			icon: images.archive,
-			path: "/app/users",
-			access: ["Admin"],
-		},
-		{
-			name: "Colleges",
-			icon: images.archive,
-			path: "/app/colleges",
-			access: ["Admin"],
-		},
-		{
-			name: "Departments",
-			icon: images.archive,
-			path: "/app/departments",
-			access: ["Admin"],
-		},
-		{
-			name: "Destinations",
-			icon: images.archive,
-			path: "/app/destinations",
-			access: ["Admin"],
-		},
-		{
-			name: "Destination requests",
-			icon: images.archive,
-			path: "/app/destination-requests",
-			access: ["Admin"],
-		},
-		{
-			name: "Transcript requests",
-			icon: images.archive,
-			path: "/app/transcript-requests",
-			access: ["Admin"],
-		},
-		{
-			name: "Request Transcript",
-			icon: images.archive,
-			path: "/app/request-transcript",
-			access: ["User"],
-		},
-		{
-			name: "Request Destination",
-			icon: images.archive,
-			path: "/app/request-destination",
-			access: ["User"],
-		},
-		{
-			name: "Transcript Types",
-			icon: images.archive,
-			path: "/app/transcript-types",
-			access: ["Admin"],
-		},
-	];
 
 	useEffect(() => {
 		// Create a script element
@@ -581,11 +519,7 @@ const Root = () => {
 							>
 								<div className="avatar-container">
 									<div className="avatar avatar-sm avatar-indicators avatar-online">
-										<img
-											alt="avatar"
-											src={images.pfp30}
-											className="rounded-circle"
-										/>
+										<img alt="avatar" src={images.pfp30} className="rounded-circle" />
 									</div>
 								</div>
 							</a>
@@ -604,7 +538,7 @@ const Root = () => {
 									</div>
 								</div>
 								<div className="dropdown-item">
-									<Link to="/app">
+									<Link to="/app/user-profile">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
 											width="24"
@@ -662,11 +596,7 @@ const Root = () => {
 							<div className="nav-logo">
 								<div className="nav-item theme-logo">
 									<Link to="/app">
-										<img
-											src={images.logo1}
-											className="navbar-logo"
-											alt="logo"
-										/>
+										<img src={images.logo1} className="navbar-logo" alt="logo" />
 									</Link>
 								</div>
 								<div className="nav-item theme-text">
@@ -698,47 +628,34 @@ const Root = () => {
 						</div>
 
 						<ul className="list-unstyled menu-categories" id="accordionExample">
-							{menuItems
-								?.filter((menuItem) =>
-									menuItem.access.includes(data?.isAdmin ? "Admin" : "User")
-								)
-								?.map((item, index) => (
-									<li
-										key={index}
-										className={
-											location.pathname === item.path ? "menu active" : "menu"
-										}
-									>
-										<Link to={item.path} className="dropdown-toggle">
-											<div className="">
-												<svg
-													xmlns="http://www.w3.org/2000/svg"
-													width="24"
-													height="24"
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="currentColor"
-													stroke-width="2"
-													stroke-linecap="round"
-													stroke-linejoin="round"
-													className="feather feather-monitor"
-												>
-													<rect
-														x="2"
-														y="3"
-														width="20"
-														height="14"
-														rx="2"
-														ry="2"
-													></rect>
-													<line x1="8" y1="21" x2="16" y2="21"></line>
-													<line x1="12" y1="17" x2="12" y2="21"></line>
-												</svg>
-												<span>{`  ${item.name}`}</span>
-											</div>
-										</Link>
-									</li>
-								))}
+							{data?.privileges?.map((item: any, index: number) => (
+								<li
+									key={index}
+									className={location.pathname === item.path ? "menu active" : "menu"}
+								>
+									<Link to={item.path} className="dropdown-toggle">
+										<div className="">
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="feather feather-monitor"
+											>
+												<rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+												<line x1="8" y1="21" x2="16" y2="21"></line>
+												<line x1="12" y1="17" x2="12" y2="21"></line>
+											</svg>
+											<span>{`  ${item.name}`}</span>
+										</div>
+									</Link>
+								</li>
+							))}
 						</ul>
 					</nav>
 				</div>

@@ -16,13 +16,13 @@ const RequestDestination = () => {
 	useEffect(() => {
 		if (userData?.isAdmin) navigate("/error");
 	}, [isLoadingUser]);
-	const { register, handleSubmit, resetForm } = useForm();
+	const { register, handleSubmit, reset } = useForm();
 	const [submitDestinationRequest, { isLoading, isError, error, isSuccess }] =
 		useSubmitDestinationRequestMutation();
 	const submitForm = (data: any) => {
 		console.log(data);
-		submitDestinationRequest(data);
-		resetForm();
+		submitDestinationRequest({...data, userId});
+		reset();
 	};
 	useEffect(() => {
 		if (isSuccess) {

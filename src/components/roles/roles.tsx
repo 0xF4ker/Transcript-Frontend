@@ -1,30 +1,19 @@
 import { useEffect, useRef, useState } from "react";
 import {
-	useDeleteUserMutation,
-	useGetCollegesQuery,
-	useGetDepartmentsQuery,
+	useCreateRoleMutation,
+	useDeleteRoleMutation,
+	useEditRoleMutation,
+	useGetPrivilegesQuery,
 	useGetRolesQuery,
 	useGetUserQuery,
-	useGetUsersQuery,
-	useRegisterUserMutation,
-	useUpdateUserMutation,
 } from "../../features/api/Auth/authApiSlice";
-import "./styles/datables.css";
-
-import "./styles/dark/custom_dt_custom.css";
-import "./styles/dark/dt-global_style.css";
-import "./styles/dark/users.css";
-
-import "./styles/light/custom_dt_custom.css";
-import "./styles/light/dt-global_style.css";
-import "./styles/light/users.css";
-import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
+import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 const selector = (state: any) => state.user;
-const Users = () => {
+const Roles = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
 	const { userId } = useSelector(selector);
 	const navigate = useNavigate();
@@ -36,7 +25,7 @@ const Users = () => {
 	useEffect(() => {
 		if (isSuccessUser) if (!userData?.isAdmin) navigate("/error");
 	}, [isLoadingUser]);
-	const { register, handleSubmit, control, reset } = useForm();
+	const { register, handleSubmit, reset, control } = useForm();
 	const {
 		register: registerEdit,
 		handleSubmit: handleSubmitEdit,
@@ -50,35 +39,35 @@ const Users = () => {
 		getValues: getValueDelete,
 	} = useForm();
 	const [
-		updateUser,
+		editRole,
 		{
 			isLoading: isLoadingEdit,
 			isError: isErrorEdit,
 			error: errorEdit,
 			isSuccess: isSuccessEdit,
 		},
-	] = useUpdateUserMutation();
+	] = useEditRoleMutation();
 
 	const [
-		deleteUser,
+		deleteRole,
 		{
 			isLoading: isLoadingDelete,
 			isError: isErrorDelete,
 			error: errorDelete,
 			isSuccess: isSuccessDelete,
 		},
-	] = useDeleteUserMutation();
+	] = useDeleteRoleMutation();
 
 	useEffect(() => {
 		if (isSuccessDelete) {
-			toast.success("User deleted succesfully");
+			toast.success("Role deleted succesfully");
 		}
 		if (isErrorDelete) {
 			console.log(errorDelete);
 			if ((errorDelete as any)?.data) {
 				toast.error((errorEdit as any)?.data.message, { position: "top-right" });
 			} else {
-				toast.error("User delete failed", {
+				toast.error("Role delete failed", {
 					position: "top-right",
 				});
 			}
@@ -88,40 +77,49 @@ const Users = () => {
 
 	const submitEditForm = (data: any) => {
 		console.log(data);
-		updateUser(data);
+		editRole(data);
 		resetEdit();
 	};
 	useEffect(() => {
 		if (isSuccessEdit) {
-			toast.success("User updated succesfully");
+			toast.success("Role updated succesfully");
 		}
 		if (isErrorEdit) {
 			console.log(errorEdit);
 			if ((errorEdit as any)?.data) {
 				toast.error((errorEdit as any)?.data.message, { position: "top-right" });
 			} else {
-				toast.error("User update failed", {
+				toast.error("Role update failed", {
 					position: "top-right",
 				});
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoadingEdit]);
-	const [registerUser, { isLoading, isError, error, isSuccess }] =
-		useRegisterUserMutation();
-	const { data: dataColleges = [] } = useGetCollegesQuery("");
-	const { data: dataDepartments = [] } = useGetDepartmentsQuery("");
-	const userTypes = ["Staff", "Student"];
-	const { data: rolesData = [] } = useGetRolesQuery("");
-	const [filteredDepartments, setFilteredDepartments] = useState<any[]>([]);
+
+	const [privileges, setPrivileges] = useState<string[]>([""]);
+	const addPrivilege = () => {
+		console.log(privileges);
+		setPrivileges([...privileges, ""]);
+	};
+
+	const removePrivilege = (index: number) => {
+		const updatedPrivileges = [...privileges];
+		updatedPrivileges.splice(index, 1);
+		setPrivileges(updatedPrivileges);
+	};
+
+	const [createRole, { isLoading, isError, error, isSuccess }] =
+		useCreateRoleMutation();
+	const [hide, setHide] = useState(false);
 	const submitForm = (data: any) => {
 		console.log(data);
-		registerUser(data);
+		createRole(data);
 		reset();
 	};
 	useEffect(() => {
 		if (isSuccess) {
-			toast.success("User succesfully registered");
+			toast.success("Role succesfully created");
 			setHide(false);
 		}
 		if (isError) {
@@ -129,27 +127,16 @@ const Users = () => {
 			if (error as any) {
 				toast.error(error as any, { position: "top-right" });
 			} else {
-				toast.error("Registration failed", {
+				toast.error("Role creation failed", {
 					position: "top-right",
 				});
 			}
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const [roles, setRoles] = useState<string[]>([""]);
-	const addRole = () => {
-		console.log(roles);
-		setRoles([...roles, ""]);
-	};
-
-	const removeRole = (index: number) => {
-		const updatedRoles = [...roles];
-		updatedRoles.splice(index, 1);
-		setRoles(updatedRoles);
-	};
-	const { data, isLoading: isLoadingUsers } = useGetUsersQuery("");
+	const { data, isLoading: isLoadingRoles } = useGetRolesQuery("");
+	const { data: privilegeData = [] } = useGetPrivilegesQuery("");
 	const dataTableRef = useRef(null);
-	const [hide, setHide] = useState(false);
 	console.log(data);
 	useEffect(() => {
 		if (!dataTableRef.current) {
@@ -230,7 +217,7 @@ const Users = () => {
 							<a href="#">App</a>
 						</li>
 						<li className="breadcrumb-item active" aria-current="page">
-							Users
+							Roles
 						</li>
 					</ol>
 				</nav>
@@ -241,7 +228,7 @@ const Users = () => {
 						onClick={() => setHide((prev) => !prev)}
 						className="btn btn-primary mb-2 me-4"
 					>
-						Create User/Staff
+						Create Role
 					</button>
 					{hide === true ? (
 						<form
@@ -253,139 +240,22 @@ const Users = () => {
 									<div className="widget-content widget-content-area p-3">
 										<div className="row g-3">
 											<div className="col-md-6">
-												<label htmlFor="inputEmail4" className="form-label">
-													Email
+												<label htmlFor="inputName" className="form-label">
+													Name
 												</label>
 												<input
-													type="email"
+													type="text"
 													className="form-control"
-													id="inputEmail4"
-													{...register("email", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputPassword4" className="form-label">
-													Password
-												</label>
-												<input
-													type="password"
-													className="form-control"
-													id="inputPassword4"
-													{...register("password", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputName4" className="form-label">
-													Full Name
-												</label>
-												<input
-													type="full-name"
-													className="form-control"
-													id="inputName4"
+													id="inputName"
 													{...register("name", { required: true })}
 												/>
 											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputSchoolId4" className="form-label">
-													School ID
-												</label>
-												<input
-													type="password"
-													className="form-control"
-													id="inputSchoolId4"
-													{...register("schoolId", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputCollege" className="form-label">
-													Select College:
-												</label>
-												<Controller
-													name="college"
-													control={control}
-													defaultValue="" // Set the default value here if needed
-													render={({ field }) => (
-														<select
-															id="inputCollege"
-															className="form-select"
-															{...field}
-															onChange={(e) => {
-																const collegeName = e.target.value;
-																console.log(collegeName);
-																field.onChange(e);
-																// Filter faculties based on the selected collegeId
-																const filtered = dataDepartments?.filter(
-																	(department: any) => department?.collegeName === collegeName
-																);
-																setFilteredDepartments(filtered);
-															}}
-														>
-															<option value="">Select a college</option>
-															{dataColleges?.map((college: any) => (
-																<option key={college?.id} value={college?.name}>
-																	{college?.name}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
-
-											<div className="col-md-6">
-												<label htmlFor="inputDepartment" className="form-label">
-													Select Department:
-												</label>
-												<Controller
-													name="department"
-													control={control}
-													defaultValue=""
-													render={({ field }) => (
-														<select id="inputDepartment" className="form-select" {...field}>
-															<option value="">Select a department</option>
-															{filteredDepartments?.map((department: any) => (
-																<option key={department?.id} value={department?.name}>
-																	{department?.name}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputUserType" className="form-label">
-													Select User Type:
-												</label>
-												<Controller
-													name="userType"
-													control={control}
-													defaultValue="" // Set the default value here if needed
-													render={({ field }) => (
-														<select
-															id="inputUserType"
-															className="form-select"
-															{...field}
-															onChange={(e) => {
-																const userType = e.target.value;
-																console.log(userType);
-																field.onChange(e);
-															}}
-														>
-															<option value="">Select a user type</option>
-															{userTypes?.map((userType: any, id: number) => (
-																<option key={id} value={userType}>
-																	{userType}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
 											<>
-												<label>Roles</label>
-												{roles?.map((_: any, index: number) => (
+												<label>Privileges</label>
+												{privileges?.map((_: any, index: number) => (
 													<>
 														<Controller
-															name={`roles[${index}]`}
+															name={`privileges[${index}]`}
 															control={control}
 															defaultValue=""
 															render={({ field }) => (
@@ -396,10 +266,10 @@ const Users = () => {
 																			id="inlineFormSelectPref"
 																			{...field}
 																		>
-																			<option value="">Select a Role</option>
-																			{rolesData?.map((role: any) => (
-																				<option key={role?.id} value={role?.name}>
-																					{role?.name}
+																			<option value="">Select a Privilege</option>
+																			{privilegeData?.map((privilege: any) => (
+																				<option key={privilege?.id} value={privilege?.name}>
+																					{privilege?.name}
 																				</option>
 																			))}
 																		</select>
@@ -408,7 +278,7 @@ const Users = () => {
 																		<button
 																			type="button"
 																			className="btn btn-danger"
-																			onClick={() => removeRole(index)}
+																			onClick={() => removePrivilege(index)}
 																		>
 																			Remove
 																		</button>
@@ -422,9 +292,9 @@ const Users = () => {
 													<button
 														type="button"
 														className="btn btn-primary"
-														onClick={addRole}
+														onClick={addPrivilege}
 													>
-														Add New Role
+														Add New Privilege
 													</button>
 												</div>
 											</>
@@ -467,54 +337,38 @@ const Users = () => {
 					) : (
 						""
 					)}
-					<div className="layout-top-spacing statbox widget box box-shadow">
+					<div className="statbox widget box box-shadow layout-top-spacing">
 						<div className="widget-content widget-content-area">
 							<table id="style-1" className="table style-1 dt-table-hover non-hover">
 								<thead>
 									<tr>
 										<th className="checkbox-column dt-no-sorting"> Record no. </th>
 										<th>Name</th>
-										<th>User Type</th>
-										<th>Email</th>
-										<th>School ID</th>
-										<th className="">Role</th>
+										<th>Privileges</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									{data?.map((user: any, id: number) => (
+									{data?.map((role: any, id: number) => (
 										<tr key={id}>
 											<td className="checkbox-column"> {id} </td>
-											<td className="user-name">{user?.name}</td>
-											<td className="">{user?.userType}</td>
-											<td>{user?.email}</td>
-											<td>{user?.schoolId}</td>
-											<td>
-												<div className="d-flex">
-													<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
-													<span className="label label-success">
-														{user?.isAdmin ? "Admin" : "User"}
-													</span>
-												</div>
-											</td>
+											<td className="user-name">{role?.name}</td>
+											<td>{role?.privileges?.length}</td>
 											<td className="text-center">
 												<ul className="table-controls">
 													<li>
 														<a
 															onClick={() => {
-																setValueEdit("name", user?.name);
-																setValueEdit("email", user?.email);
-																setValueEdit("password", user?.password);
-																setValueEdit("schoolId", user?.schoolId);
-																setValueEdit("roles", user?.roles);
-																setRoles(user?.roles);
-																setValueEdit("college", user?.college);
-																setValueEdit("department", user?.department);
-																setValueEdit("userType", user?.userType);
+																setValueEdit("name", role?.name);
+																setPrivileges(role?.privileges);
+																role.privileges?.map((privilege: any, index: number) => {
+																	setValueEdit(`privileges[${index}]`, privilege);
+																	console.log(privilege);
+																});
 																setIsForceUpdate(!isForceUpdate);
 															}}
 															data-bs-toggle="modal"
-															data-bs-target="#editUser"
+															data-bs-target="#editRole"
 															className="bs-tooltip"
 															data-bs-placement="top"
 															title="Edit"
@@ -539,14 +393,14 @@ const Users = () => {
 													<li>
 														<a
 															onClick={() => {
-																setValueDelete("id", user?.id);
+																setValueDelete("id", role?.id);
 																setIsForceUpdate(!isForceUpdate);
 																const { id } = getValueDelete();
 																console.log(id);
 															}}
 															data-bs-toggle="modal"
 															className="bs-tooltip"
-															data-bs-target="#deleteUser"
+															data-bs-target="#deleteRole"
 															data-bs-placement="top"
 															title="Delete"
 															data-original-title="Delete"
@@ -571,10 +425,10 @@ const Users = () => {
 												</ul>
 												<div
 													className="modal fade"
-													id="editUser"
+													id="editRole"
 													tabIndex={-1}
 													role="dialog"
-													aria-labelledby="editUserTitle"
+													aria-labelledby="editRoleTitle"
 													aria-hidden="true"
 												>
 													<div
@@ -584,7 +438,7 @@ const Users = () => {
 														<div className="modal-content">
 															<div className="modal-header">
 																<h5 className="modal-title" id="editDepartmentTitle">
-																	Edit User
+																	Edit Role
 																</h5>
 																<button
 																	type="button"
@@ -620,144 +474,22 @@ const Users = () => {
 																			<div className="widget-content widget-content-area p-3">
 																				<div className="row g-3">
 																					<div className="col-md-6">
-																						<label htmlFor="inputEmail4" className="form-label">
-																							Email
+																						<label htmlFor="inputName" className="form-label">
+																							Name
 																						</label>
 																						<input
-																							type="email"
+																							type="text"
 																							className="form-control"
-																							id="inputEmail4"
-																							{...registerEdit("email", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputPassword4" className="form-label">
-																							Password
-																						</label>
-																						<input
-																							type="password"
-																							className="form-control"
-																							id="inputPassword4"
-																							{...registerEdit("password", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputName4" className="form-label">
-																							Full Name
-																						</label>
-																						<input
-																							type="full-name"
-																							className="form-control"
-																							id="inputName4"
+																							id="inputName"
 																							{...registerEdit("name", { required: true })}
 																						/>
 																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputSchoolId4" className="form-label">
-																							School ID
-																						</label>
-																						<input
-																							type="password"
-																							className="form-control"
-																							id="inputSchoolId4"
-																							{...registerEdit("schoolId", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputCollege" className="form-label">
-																							Select College:
-																						</label>
-																						<Controller
-																							name="college"
-																							control={controlEdit}
-																							defaultValue="" // Set the default value here if needed
-																							render={({ field }) => (
-																								<select
-																									id="inputCollege"
-																									className="form-select"
-																									{...field}
-																									onChange={(e) => {
-																										const collegeName = e.target.value;
-																										console.log(collegeName);
-																										field.onChange(e);
-																										// Filter faculties based on the selected collegeId
-																										const filtered = dataDepartments?.filter(
-																											(department: any) =>
-																												department?.collegeName === collegeName
-																										);
-																										setFilteredDepartments(filtered);
-																									}}
-																								>
-																									<option value="">Select a college</option>
-																									{dataColleges?.map((college: any) => (
-																										<option key={college?.id} value={college?.name}>
-																											{college?.name}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
-
-																					<div className="col-md-6">
-																						<label htmlFor="inputDepartment" className="form-label">
-																							Select Department:
-																						</label>
-																						<Controller
-																							name="department"
-																							control={controlEdit}
-																							defaultValue=""
-																							render={({ field }) => (
-																								<select
-																									id="inputDepartment"
-																									className="form-select"
-																									{...field}
-																								>
-																									<option value="">Select a department</option>
-																									{filteredDepartments?.map((department: any) => (
-																										<option key={department?.id} value={department?.name}>
-																											{department?.name}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputUserType" className="form-label">
-																							Select User Type:
-																						</label>
-																						<Controller
-																							name="userType"
-																							control={controlEdit}
-																							defaultValue="" // Set the default value here if needed
-																							render={({ field }) => (
-																								<select
-																									id="inputUserType"
-																									className="form-select"
-																									{...field}
-																									onChange={(e) => {
-																										const userType = e.target.value;
-																										console.log(userType);
-																										field.onChange(e);
-																									}}
-																								>
-																									<option value="">Select a user type</option>
-																									{userTypes?.map((userType: any, id: number) => (
-																										<option key={id} value={userType}>
-																											{userType}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
 																					<>
-																						<label>Roles</label>
-																						{roles?.map((_: any, index: number) => (
+																						<label>Privileges</label>
+																						{privileges?.map((_: any, index: number) => (
 																							<>
 																								<Controller
-																									name={`roles[${index}]`}
+																									name={`privileges[${index}]`}
 																									control={controlEdit}
 																									defaultValue=""
 																									render={({ field }) => (
@@ -768,10 +500,13 @@ const Users = () => {
 																													id="inlineFormSelectPref"
 																													{...field}
 																												>
-																													<option value="">Select a Role</option>
-																													{rolesData?.map((role: any) => (
-																														<option key={role?.id} value={role?.name}>
-																															{role?.name}
+																													<option value="">Select a Privilege</option>
+																													{privilegeData?.map((privilege: any) => (
+																														<option
+																															key={privilege?.id}
+																															value={privilege?.name}
+																														>
+																															{privilege?.name}
 																														</option>
 																													))}
 																												</select>
@@ -780,7 +515,7 @@ const Users = () => {
 																												<button
 																													type="button"
 																													className="btn btn-danger"
-																													onClick={() => removeRole(index)}
+																													onClick={() => removePrivilege(index)}
 																												>
 																													Remove
 																												</button>
@@ -794,9 +529,9 @@ const Users = () => {
 																							<button
 																								type="button"
 																								className="btn btn-primary"
-																								onClick={addRole}
+																								onClick={addPrivilege}
 																							>
-																								Add New Role
+																								Add New Privilege
 																							</button>
 																						</div>
 																					</>
@@ -857,10 +592,10 @@ const Users = () => {
 												</div>
 												<div
 													className="modal fade"
-													id="deleteUser"
+													id="deleteRole"
 													tabIndex={-1}
 													role="dialog"
-													aria-labelledby="exampleUserTitle"
+													aria-labelledby="exampleRoleTitle"
 													aria-hidden="true"
 												>
 													<div
@@ -870,7 +605,7 @@ const Users = () => {
 														<div className="modal-content">
 															<div className="modal-header">
 																<h5 className="modal-title" id="exampleTranscriptRequestTitle">
-																	Delete User
+																	Delete Role
 																</h5>
 																<button
 																	type="button"
@@ -909,7 +644,7 @@ const Users = () => {
 																	onClick={() => {
 																		const { id } = getValueDelete();
 																		console.log(id);
-																		deleteUser(id);
+																		deleteRole(id);
 																	}}
 																	className="btn btn-danger"
 																>
@@ -948,14 +683,8 @@ const Users = () => {
 											</td>
 										</tr>
 									))}
-									{isLoadingUsers && (
+									{isLoadingRoles && (
 										<tr>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
 											<td>
 												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
@@ -982,4 +711,4 @@ const Users = () => {
 		</div>
 	);
 };
-export default Users;
+export default Roles;

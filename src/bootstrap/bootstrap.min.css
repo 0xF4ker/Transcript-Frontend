@@ -73,8 +73,8 @@
 	--bs-font-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto,
 		"Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif,
 		"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-	--bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas,
-		"Liberation Mono", "Courier New", monospace;
+	--bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+		"Courier New", monospace;
 	--bs-gradient: linear-gradient(
 		180deg,
 		rgba(255, 255, 255, 0.15),
@@ -433,7 +433,7 @@ button {
 	border-radius: 0;
 }
 button:focus:not(:focus-visible) {
-	outline: 0;
+	outline: none;
 }
 button,
 input,
@@ -2029,7 +2029,7 @@ progress {
 	color: var(--bs-body-color);
 	background-color: var(--bs-body-bg);
 	border-color: #86b7fe;
-	outline: 0;
+	outline: none;
 	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 .form-control::-webkit-date-and-time-value {
@@ -2066,9 +2066,8 @@ progress {
 	border-width: 0;
 	border-inline-end-width: var(--bs-border-width);
 	border-radius: 0;
-	-webkit-transition: color 0.15s ease-in-out,
-		background-color 0.15s ease-in-out, border-color 0.15s ease-in-out,
-		box-shadow 0.15s ease-in-out;
+	-webkit-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 	transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
 		border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
@@ -2115,7 +2114,7 @@ progress {
 	border-width: var(--bs-border-width) 0;
 }
 .form-control-plaintext:focus {
-	outline: 0;
+	outline: none;
 }
 .form-control-plaintext.form-control-lg,
 .form-control-plaintext.form-control-sm {
@@ -2218,7 +2217,7 @@ textarea.form-control-lg {
 }
 .form-select:focus {
 	border-color: #86b7fe;
-	outline: 0;
+	outline: none;
 	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 .form-select[multiple],
@@ -2300,7 +2299,7 @@ textarea.form-control-lg {
 }
 .form-check-input:focus {
 	border-color: #86b7fe;
-	outline: 0;
+	outline: none;
 	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 .form-check-input:checked {
@@ -2390,7 +2389,7 @@ textarea.form-control-lg {
 	appearance: none;
 }
 .form-range:focus {
-	outline: 0;
+	outline: none;
 }
 .form-range:focus::-webkit-slider-thumb {
 	box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
@@ -2931,12 +2930,12 @@ textarea.form-control.is-invalid {
 	color: var(--bs-btn-hover-color);
 	background-color: var(--bs-btn-hover-bg);
 	border-color: var(--bs-btn-hover-border-color);
-	outline: 0;
+	outline: none;
 	box-shadow: var(--bs-btn-focus-box-shadow);
 }
 .btn-check:focus-visible + .btn {
 	border-color: var(--bs-btn-hover-border-color);
-	outline: 0;
+	outline: none;
 	box-shadow: var(--bs-btn-focus-box-shadow);
 }
 .btn-check:checked + .btn,
@@ -3730,7 +3729,7 @@ fieldset:disabled .btn {
 	color: var(--bs-nav-link-hover-color);
 }
 .nav-link:focus-visible {
-	outline: 0;
+	outline: none;
 	box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
 }
 .nav-link.disabled {
@@ -3947,7 +3946,7 @@ fieldset:disabled .btn {
 }
 .navbar-toggler:focus {
 	text-decoration: none;
-	outline: 0;
+	outline: none;
 	box-shadow: 0 0 0 var(--bs-navbar-toggler-focus-width);
 }
 .navbar-toggler-icon {
@@ -4523,8 +4522,7 @@ fieldset:disabled .btn {
 .accordion-item {
 	color: var(--bs-accordion-color);
 	background-color: var(--bs-accordion-bg);
-	border: var(--bs-accordion-border-width) solid
-		var(--bs-accordion-border-color);
+	border: var(--bs-accordion-border-width) solid var(--bs-accordion-border-color);
 }
 .accordion-item:first-of-type {
 	border-top-left-radius: var(--bs-accordion-border-radius);
@@ -5849,8 +5847,7 @@ fieldset:disabled .btn {
 	width: var(--bs-popover-arrow-width);
 	margin-left: calc(-0.5 * var(--bs-popover-arrow-width));
 	content: "";
-	border-bottom: var(--bs-popover-border-width) solid
-		var(--bs-popover-header-bg);
+	border-bottom: var(--bs-popover-border-width) solid var(--bs-popover-header-bg);
 }
 .bs-popover-auto[data-popper-placement^="left"] > .popover-arrow,
 .bs-popover-start > .popover-arrow {
@@ -7408,10 +7405,7 @@ fieldset:disabled .btn {
 	);
 }
 .focus-ring-light {
-	--bs-focus-ring-color: rgba(
-		var(--bs-light-rgb),
-		var(--bs-focus-ring-opacity)
-	);
+	--bs-focus-ring-color: rgba(var(--bs-light-rgb), var(--bs-focus-ring-opacity));
 }
 .focus-ring-dark {
 	--bs-focus-ring-color: rgba(var(--bs-dark-rgb), var(--bs-focus-ring-opacity));
@@ -7513,10 +7507,7 @@ fieldset:disabled .btn {
 }
 .border-primary {
 	--bs-border-opacity: 1;
-	border-color: rgba(
-		var(--bs-primary-rgb),
-		var(--bs-border-opacity)
-	) !important;
+	border-color: rgba(var(--bs-primary-rgb), var(--bs-border-opacity)) !important;
 }
 .border-secondary {
 	--bs-border-opacity: 1;
@@ -7527,10 +7518,7 @@ fieldset:disabled .btn {
 }
 .border-success {
 	--bs-border-opacity: 1;
-	border-color: rgba(
-		var(--bs-success-rgb),
-		var(--bs-border-opacity)
-	) !important;
+	border-color: rgba(var(--bs-success-rgb), var(--bs-border-opacity)) !important;
 }
 .border-info {
 	--bs-border-opacity: 1;
@@ -7538,10 +7526,7 @@ fieldset:disabled .btn {
 }
 .border-warning {
 	--bs-border-opacity: 1;
-	border-color: rgba(
-		var(--bs-warning-rgb),
-		var(--bs-border-opacity)
-	) !important;
+	border-color: rgba(var(--bs-warning-rgb), var(--bs-border-opacity)) !important;
 }
 .border-danger {
 	--bs-border-opacity: 1;
@@ -8543,10 +8528,7 @@ fieldset:disabled .btn {
 }
 .bg-primary {
 	--bs-bg-opacity: 1;
-	background-color: rgba(
-		var(--bs-primary-rgb),
-		var(--bs-bg-opacity)
-	) !important;
+	background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-secondary {
 	--bs-bg-opacity: 1;
@@ -8557,10 +8539,7 @@ fieldset:disabled .btn {
 }
 .bg-success {
 	--bs-bg-opacity: 1;
-	background-color: rgba(
-		var(--bs-success-rgb),
-		var(--bs-bg-opacity)
-	) !important;
+	background-color: rgba(var(--bs-success-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-info {
 	--bs-bg-opacity: 1;
@@ -8568,10 +8547,7 @@ fieldset:disabled .btn {
 }
 .bg-warning {
 	--bs-bg-opacity: 1;
-	background-color: rgba(
-		var(--bs-warning-rgb),
-		var(--bs-bg-opacity)
-	) !important;
+	background-color: rgba(var(--bs-warning-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-danger {
 	--bs-bg-opacity: 1;
@@ -8595,10 +8571,7 @@ fieldset:disabled .btn {
 }
 .bg-body {
 	--bs-bg-opacity: 1;
-	background-color: rgba(
-		var(--bs-body-bg-rgb),
-		var(--bs-bg-opacity)
-	) !important;
+	background-color: rgba(var(--bs-body-bg-rgb), var(--bs-bg-opacity)) !important;
 }
 .bg-transparent {
 	--bs-bg-opacity: 1;

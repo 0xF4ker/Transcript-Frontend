@@ -19,6 +19,9 @@ import TranscriptTypes from "./components/transcript-types/transcriptTypes";
 import RequestDestination from "./components/request-destination/requestDestination";
 import Error_ from "./components/error/error";
 import DestinationRequests from "./components/destination-requests/destinationRequests";
+import Dashboard from "./components/admin-dashboard/adminDashboard";
+import AdminDashboard from "./components/admin-dashboard/adminDashboard";
+import Roles from "./components/roles/roles";
 
 function App() {
 	useEffect(() => {
@@ -36,7 +39,9 @@ function App() {
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/signup" element={<SignUp />}></Route>
 				<Route path="/app" element={<Root />}>
-					<Route index element={<UserProfile />} />
+					<Route index element={<Dashboard />} />
+					<Route path="admin-dashboard" element={<AdminDashboard />} />
+					<Route path="user-profile" element={<UserProfile />} />
 					<Route path="users" element={<Users />} />
 					<Route path="colleges" element={<Colleges />} />
 					<Route path="departments" element={<Departments />} />
@@ -44,6 +49,7 @@ function App() {
 					<Route path="destination-requests" element={<DestinationRequests />} />
 					<Route path="transcript-requests" element={<TranscriptRequests />} />
 					<Route path="transcript-types" element={<TranscriptTypes />} />
+					<Route path="roles" element={<Roles />} />
 					<Route path="request-transcript" element={<RequestTranscript />} />
 					<Route path="request-destination" element={<RequestDestination />} />
 				</Route>

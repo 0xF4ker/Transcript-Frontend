@@ -265,7 +265,6 @@ const TranscriptTypes = () => {
 										</th>
 										<th>Name</th>
 										<th>Amount</th>
-										<th>ID</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
 								</thead>
@@ -275,7 +274,6 @@ const TranscriptTypes = () => {
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{transcriptType?.name}</td>
 											<td>{transcriptType?.amount}</td>
-											<td>{transcriptType?.id}</td>
 											<td className="text-center">
 											<ul className="table-controls">
                                                         <li><a onClick={()=> {

@@ -24,16 +24,17 @@ import { useNavigate } from "react-router-dom";
 const selector = (state: any) => state.user;
 const RequestTranscript = () => {
 	const navigate = useNavigate();
-	const { handleSubmit, control, resetForm } = useForm();
+	const { handleSubmit, control, reset } = useForm();
 	const [submitTranscriptRequest, { isLoading, isError, error, isSuccess }] =
 		useSubmitTranscriptRequestMutation();
 	const [hide, setHide] = useState(false);
 	const submitForm = (data: any) => {
 		console.log({ ...data, userId });
-		resetForm();
+		reset();
 
 		submitTranscriptRequest({ ...data, userId });
 	};
+	const [destinations, setDestinations] = useState<string[]>([""]);
 	const addDestination = () => {
 		setDestinations([...destinations, ""]);
 	};
@@ -60,7 +61,7 @@ const RequestTranscript = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	const [destinations, setDestinations] = useState<string[]>([""]);
+	
 	const { data, isLoading: isLoadingRequests } =
 		useGetTranscriptRequestsQuery("");
 	const { data: destinationData } = useGetDestinationsQuery("");

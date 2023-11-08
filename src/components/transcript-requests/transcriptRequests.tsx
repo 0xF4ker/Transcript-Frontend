@@ -3,7 +3,7 @@ import {
 	useDeleteTranscriptRequestMutation,
 	useGetTranscriptRequestsQuery,
 	useGetUserQuery,
-	useUpdateTranscriptRequestMutation,
+	useUpdateTranscriptRequestStatusMutation,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
@@ -28,8 +28,8 @@ const TranscriptRequests = () => {
 	const statuses = ["pending", "paid", "shipped"];
 	const {  handleSubmit: handleSubmitEdit, reset: resetEdit, setValue: setValueEdit, control: controlEdit } = useForm();
 	const { register: registerDelete, setValue: setValueDelete, getValues: getValueDelete } = useForm();
-		const [updateTranscriptRequest, { isLoading: isLoadingEdit, isError: isErrorEdit, error: errorEdit, isSuccess: isSuccessEdit }] =
-		useUpdateTranscriptRequestMutation();
+		const [updateTranscriptRequestStatus, { isLoading: isLoadingEdit, isError: isErrorEdit, error: errorEdit, isSuccess: isSuccessEdit }] =
+		useUpdateTranscriptRequestStatusMutation();
 
 		const [deleteTranscriptRequest, { isLoading: isLoadingDelete, isError: isErrorDelete, error: errorDelete, isSuccess: isSuccessDelete }] =
 		useDeleteTranscriptRequestMutation();
@@ -53,7 +53,7 @@ const TranscriptRequests = () => {
 
 		const submitEditForm = (data: any) => {
 			console.log(data);
-			updateTranscriptRequest(data);
+			updateTranscriptRequestStatus(data);
 			resetEdit();
 		};
 		useEffect(() => {
@@ -184,6 +184,7 @@ const TranscriptRequests = () => {
 										<th>Name</th>
 										<th>Transcript Type</th>
 										<th>Matric No</th>
+										<th>Fee</th>
 										<th className="">Status</th>
 										<th className="text-center dt-no-sorting">Action</th>
 									</tr>
@@ -194,7 +195,9 @@ const TranscriptRequests = () => {
 											<td className="checkbox-column"> {id} </td>
 											<td className="user-name">{transcriptRequest?.name}</td>
 											<td className="">{transcriptRequest?.transcriptType}</td>
+											
 											<td>{transcriptRequest?.matricNo}</td>
+											<td>{transcriptRequest?.totalFee}</td>
 											<td>
 												<div className="d-flex">
 													<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
@@ -217,7 +220,7 @@ const TranscriptRequests = () => {
 															console.log(id)
 														}}  data-bs-toggle="modal" className="bs-tooltip" data-bs-target="#deleteTranscriptRequest" data-bs-placement="top" title="Delete" data-original-title="Delete"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-trash p-1 br-8 mb-1"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path></svg></a></li>
                                                     </ul>
-													<div className="modal fade" id="editDestination" tabIndex={-1} role="dialog" aria-labelledby="editDestinationTitle" aria-hidden="true">
+													<div className="modal fade" id="updateTranscriptRequest" tabIndex={-1} role="dialog" aria-labelledby="updateTranscriptRequestTitle" aria-hidden="true">
                                         <div className="modal-dialog modal-dialog-centered modal-xl" role="document">
                                             <div className="modal-content">
                                                 <div className="modal-header">
@@ -303,6 +306,13 @@ const TranscriptRequests = () => {
 									))}
 									{isLoadingRequests && (
 										<tr>
+											<td>
+												<Skeleton
+													variant="rectangular"
+													width={"100%"}
+													height={20}
+												/>
+											</td>
 											<td>
 												<Skeleton
 													variant="rectangular"
