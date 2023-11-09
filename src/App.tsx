@@ -19,9 +19,10 @@ import TranscriptTypes from "./components/transcript-types/transcriptTypes";
 import RequestDestination from "./components/request-destination/requestDestination";
 import Error_ from "./components/error/error";
 import DestinationRequests from "./components/destination-requests/destinationRequests";
-import Dashboard from "./components/admin-dashboard/adminDashboard";
 import AdminDashboard from "./components/admin-dashboard/adminDashboard";
 import Roles from "./components/roles/roles";
+import Dashboard from "./components/dashboard/dashboard";
+import TranscriptCheckout from "./components/transcript-checkout/transcriptCheckout";
 
 function App() {
 	useEffect(() => {
@@ -51,6 +52,7 @@ function App() {
 					<Route path="transcript-types" element={<TranscriptTypes />} />
 					<Route path="roles" element={<Roles />} />
 					<Route path="request-transcript" element={<RequestTranscript />} />
+					<Route path="transcript-checkout/:id" element={<TranscriptCheckout />} />
 					<Route path="request-destination" element={<RequestDestination />} />
 				</Route>
 			</Routes>

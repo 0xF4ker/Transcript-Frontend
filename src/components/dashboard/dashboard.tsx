@@ -1,13 +1,14 @@
 import {
+	useGetDestinationRequestsQuery,
 	useGetTranscriptRequestsQuery,
-	useGetUserQuery,
 } from "../../features/api/Auth/authApiSlice";
 import { useState } from "react";
 const Dashboard = () => {
 	const [userId] = useState(localStorage.getItem("transcript-uid"));
-	const { data }: { data: Array<any> } = useGetUserQuery(userId);
 	const { data: dataRequests }: { data: Array<any> } =
 		useGetTranscriptRequestsQuery("");
+	const { data: dataRequestss }: { data: Array<any> } =
+		useGetDestinationRequestsQuery("");
 	return (
 		<>
 			<div className="middle-content container-xxl p-0">
@@ -46,7 +47,12 @@ const Dashboard = () => {
 										</svg>
 									</div>
 									<div className="">
-										<p className="w-value">{data?.length}</p>
+										<p className="w-value">
+											{
+												dataRequestss?.filter((request: any) => request.userId === userId)
+													.length
+											}
+										</p>
 										<h5 className="">Total Destination Requests</h5>
 									</div>
 								</div>
@@ -79,7 +85,12 @@ const Dashboard = () => {
 										</svg>
 									</div>
 									<div className="">
-										<p className="w-value">{dataRequests?.length}</p>
+										<p className="w-value">
+											{
+												dataRequests?.filter((request: any) => request.userId === userId)
+													.length
+											}
+										</p>
 										<h5 className="">Total Transcript Request</h5>
 									</div>
 								</div>

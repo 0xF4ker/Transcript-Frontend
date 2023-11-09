@@ -16,7 +16,7 @@ const Login = () => {
 	const location = useLocation();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
-	const from = location.state?.from?.pathname || "/app";
+	const from = location.state?.from?.pathname || "/app/user-profile";
 	const submitForm = (data: any) => {
 		console.log(data);
 		loginUser(data);

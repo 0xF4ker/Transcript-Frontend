@@ -18,9 +18,8 @@ import "./styles/light/users.css";
 import { useSelector } from "react-redux";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
-import { PaystackButton } from "react-paystack";
 import { Skeleton } from "@mui/material";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 const selector = (state: any) => state.user;
 const RequestTranscript = () => {
 	const navigate = useNavigate();
@@ -48,11 +47,12 @@ const RequestTranscript = () => {
 		if (isSuccess) {
 			toast.success("Transcript request submitted");
 			setHide(false);
+			navigate(`/app/transcript-checkout/${data[-1]?.id}`);
 		}
 		if (isError) {
 			console.log(error);
-			if ((error as any)) {
-				toast.error((error as any), { position: "top-right" });
+			if (error as any) {
+				toast.error(error as any, { position: "top-right" });
 			} else {
 				toast.error("Transcript request failed", {
 					position: "top-right",
@@ -61,7 +61,7 @@ const RequestTranscript = () => {
 		}
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [isLoading]);
-	
+
 	const { data, isLoading: isLoadingRequests } =
 		useGetTranscriptRequestsQuery("");
 	const { data: destinationData } = useGetDestinationsQuery("");
@@ -205,16 +205,11 @@ const RequestTranscript = () => {
 															{...field}
 														>
 															<option value="">Select a transcript type</option>
-															{transcriptTypesData?.map(
-																(transcriptType: any) => (
-																	<option
-																		key={transcriptType?.id}
-																		value={transcriptType?.name}
-																	>
-																		{transcriptType?.name}
-																	</option>
-																)
-															)}
+															{transcriptTypesData?.map((transcriptType: any) => (
+																<option key={transcriptType?.id} value={transcriptType?.name}>
+																	{transcriptType?.name}
+																</option>
+															))}
 														</select>
 													)}
 												/>
@@ -259,19 +254,12 @@ const RequestTranscript = () => {
 																			id="inlineFormSelectPref"
 																			{...field}
 																		>
-																			<option value="">
-																				Select a destination
-																			</option>
-																			{destinationData?.map(
-																				(destination: any) => (
-																					<option
-																						key={destination?.id}
-																						value={destination?.id}
-																					>
-																						{destination?.name}
-																					</option>
-																				)
-																			)}
+																			<option value="">Select a destination</option>
+																			{destinationData?.map((destination: any) => (
+																				<option key={destination?.id} value={destination?.id}>
+																					{destination?.name}
+																				</option>
+																			))}
 																		</select>
 																	</div>
 																	<div className="col-md-6">
@@ -299,9 +287,33 @@ const RequestTranscript = () => {
 												</div>
 												<div className="col-12 layout-top-spacing">
 													<button type="submit" className="btn btn-primary">
-													{
-													isLoading ? (<><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" className="feather feather-loader spin me-2"><line x1="12" y1="2" x2="12" y2="6"></line><line x1="12" y1="18" x2="12" y2="22"></line><line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line><line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line><line x1="2" y1="12" x2="6" y2="12"></line><line x1="18" y1="12" x2="22" y2="12"></line><line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line><line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line></svg> </>): ("SUBMIT")
-												}
+														{isLoading ? (
+															<>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-loader spin me-2"
+																>
+																	<line x1="12" y1="2" x2="12" y2="6"></line>
+																	<line x1="12" y1="18" x2="12" y2="22"></line>
+																	<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+																	<line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+																	<line x1="2" y1="12" x2="6" y2="12"></line>
+																	<line x1="18" y1="12" x2="22" y2="12"></line>
+																	<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+																	<line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+																</svg>{" "}
+															</>
+														) : (
+															"SUBMIT"
+														)}
 													</button>
 												</div>
 											</>
@@ -316,16 +328,10 @@ const RequestTranscript = () => {
 
 					<div className="layout-top-spacing statbox widget box box-shadow">
 						<div className="widget-content widget-content-area">
-							<table
-								id="style-1"
-								className="table style-1 dt-table-hover non-hover"
-							>
+							<table id="style-1" className="table style-1 dt-table-hover non-hover">
 								<thead>
 									<tr>
-										<th className="checkbox-column dt-no-sorting">
-											{" "}
-											Record no.{" "}
-										</th>
+										<th className="checkbox-column dt-no-sorting"> Record no. </th>
 										<th>Name</th>
 										<th>Transcript Type</th>
 										<th>Matric No</th>
@@ -341,112 +347,68 @@ const RequestTranscript = () => {
 											<tr key={id}>
 												<td className="checkbox-column"> {id} </td>
 												<td className="user-name">{transcriptRequest?.name}</td>
-												<td className="">
-													{transcriptRequest?.transcriptType}
-												</td>
+												<td className="">{transcriptRequest?.transcriptType}</td>
 												<td>{transcriptRequest?.matricNo}</td>
 												<td>{transcriptRequest?.totalFee}</td>
 												<td>
 													<div className="d-flex">
 														<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
 														<span className="label label-success">
-														<div className="td-content"><span className={`badge badge-${transcriptRequest?.status === "pending" ?"danger" : transcriptRequest?.status === "paid" ? "success" : transcriptRequest?.status === "shipped" ? "primary": "danger"}`}>{transcriptRequest?.status}</span></div>
+															<div className="td-content">
+																<span
+																	className={`badge badge-${
+																		transcriptRequest?.status === "pending"
+																			? "danger"
+																			: transcriptRequest?.status === "paid"
+																			? "success"
+																			: transcriptRequest?.status === "shipped"
+																			? "primary"
+																			: "danger"
+																	}`}
+																>
+																	{transcriptRequest?.status}
+																</span>
+															</div>
 														</span>
 													</div>
 												</td>
 												<td className="text-center">
-								
-															{!transcriptRequest.isPaid && ( <PaystackButton
-																className="dropdown-item"
-																{...{
-																	publicKey:
-																		"pk_test_ca94a46bdb50763f37bafb6bce8a0d6623821a23",
-																	email: userData?.email,
-																	amount: transcriptRequest?.totalFee * 100,
-																	metadata: {
-																		transcriptRequstId: transcriptRequest.id,
-																		custom_fields: [
-																			{
-																				display_name: "Invoice ID",
-
-																				variable_name: "Invoice ID",
-
-																				value: 209,
-																			},
-
-																			{
-																				display_name: "Cart Items",
-
-																				variable_name: "cart_items",
-
-																				value: "3 bananas, 12 mangoes",
-																			},
-																		],
-																	},
-																}}
-															>
-																Checkout
-															</PaystackButton>)}
+													{!transcriptRequest.isPaid && (
+														<Link
+															to={`/app/transcript-checkout/${transcriptRequest?.id}`}
+															className="btn btn-primary"
+														>
+															Checkout
+														</Link>
+													)}
 												</td>
 											</tr>
 										))}
 									{isLoadingRequests && (
 										<tr>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 											<td>
-												<Skeleton
-													variant="rectangular"
-													width={"100%"}
-													height={20}
-												/>
+												<Skeleton variant="rectangular" width={"100%"} height={20} />
 											</td>
 										</tr>
 									)}
