@@ -121,6 +121,7 @@ const SignUp = () => {
 											name="college"
 											control={control}
 											defaultValue="" // Set the default value here if needed
+											rules={{ required: "College is required" }}
 											render={({ field }) => (
 												<select
 													id="inputCollege"
@@ -156,6 +157,7 @@ const SignUp = () => {
 											name="faculty"
 											control={control}
 											defaultValue=""
+											rules={{ required: "Department is required" }}
 											render={({ field }) => (
 												<select id="inputFaculty" className="form-select" {...field}>
 													<option value="">Select a faculty</option>

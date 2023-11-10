@@ -205,6 +205,7 @@ const RequestTranscript = () => {
 													name="transcriptType"
 													control={control}
 													defaultValue=""
+													rules={{ required: "transcript type is required" }}
 													render={({ field }) => (
 														<select
 															className="form-select"
@@ -253,6 +254,7 @@ const RequestTranscript = () => {
 															name={`destinations[${index}]`}
 															control={control}
 															defaultValue=""
+															rules={{ required: "Destination is required" }}
 															render={({ field }) => (
 																<>
 																	<div className="col-md-6" key={index}>

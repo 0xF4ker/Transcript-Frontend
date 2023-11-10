@@ -268,6 +268,7 @@ const Departments = () => {
 											name="college"
 											control={control}
 											defaultValue=""
+											rules={{ required: 'College is required' }}
 											render={({ field }) => (
 												<select
 													className="form-select"
@@ -482,6 +483,7 @@ const Departments = () => {
 																					name="college"
 																					control={controlEdit}
 																					defaultValue=""
+																					rules={{ required: 'College is required' }}
 																					render={({ field }) => (
 																						<select
 																							className="form-select"

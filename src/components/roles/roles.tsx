@@ -265,6 +265,7 @@ const Roles = () => {
 															name={`privileges[${index}]`}
 															control={control}
 															defaultValue=""
+															rules={{ required: "Privilege is required" }}
 															render={({ field }) => (
 																<>
 																	<div className="col-md-6" key={index}>
@@ -499,6 +500,7 @@ const Roles = () => {
 																									name={`privileges[${index}]`}
 																									control={controlEdit}
 																									defaultValue=""
+																									rules={{ required: "Privilege is required" }}
 																									render={({ field }) => (
 																										<>
 																											<div className="col-md-6" key={index}>

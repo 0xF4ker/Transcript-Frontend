@@ -311,6 +311,7 @@ const Users = () => {
 													name="college"
 													control={control}
 													defaultValue="" // Set the default value here if needed
+													rules={{ required: 'College is required' }}
 													render={({ field }) => (
 														<select
 															id="inputCollege"
@@ -346,6 +347,7 @@ const Users = () => {
 													name="department"
 													control={control}
 													defaultValue=""
+													rules={{ required: 'Department is required' }}
 													render={({ field }) => (
 														<select id="inputDepartment" className="form-select" {...field}>
 															<option value="">Select a department</option>
@@ -366,6 +368,7 @@ const Users = () => {
 													name="userType"
 													control={control}
 													defaultValue="" // Set the default value here if needed
+													rules={{ required: 'User type is required' }}
 													render={({ field }) => (
 														<select
 															id="inputUserType"
@@ -395,6 +398,7 @@ const Users = () => {
 															name={`roles[${index}]`}
 															control={control}
 															defaultValue=""
+															rules={{ required: 'Role is required' }}
 															render={({ field }) => (
 																<>
 																	<div className="col-md-6" key={index}>
@@ -677,6 +681,7 @@ const Users = () => {
 																						<Controller
 																							name="college"
 																							control={controlEdit}
+																							rules={{ required: 'College is required' }}
 																							defaultValue="" // Set the default value here if needed
 																							render={({ field }) => (
 																								<select
@@ -713,6 +718,7 @@ const Users = () => {
 																						<Controller
 																							name="department"
 																							control={controlEdit}
+																							rules={{ required: 'Department is required' }}
 																							defaultValue=""
 																							render={({ field }) => (
 																								<select
@@ -736,6 +742,7 @@ const Users = () => {
 																						</label>
 																						<Controller
 																							name="userType"
+																							rules={{ required: 'User type is required' }}
 																							control={controlEdit}
 																							defaultValue="" // Set the default value here if needed
 																							render={({ field }) => (
@@ -766,6 +773,7 @@ const Users = () => {
 																								<Controller
 																									name={`roles[${index}]`}
 																									control={controlEdit}
+																									rules={{ required: 'Role is required' }}
 																									defaultValue=""
 																									render={({ field }) => (
 																										<>
