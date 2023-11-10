@@ -9,7 +9,13 @@ const Home = () => {
 				<div className="container-fluid">
 					<nav className="navbar navbar-expand-lg navbar-light">
 						<a className="navbar-brand" href="#">
-							<img src={images.logo1} className="navbar-logo" alt="logo" /> Transcript
+							<img
+								style={{ height: 40 }}
+								src={images.logo1}
+								className="navbar-logo"
+								alt="logo"
+							/>{" "}
+							Transcript
 						</a>
 						<button
 							className="navbar-toggler"
@@ -41,7 +47,7 @@ const Home = () => {
 			</header>
 
 			<main role="main">
-				<section id="hero" style={{ paddingTop: 116 }} className="hero-block">
+				<section id="hero" style={{ paddingTop: 70 }} className="hero-block">
 					<div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
 						<div className="carousel-inner">
 							<div className="carousel-item active">
@@ -52,8 +58,8 @@ const Home = () => {
 									height="700"
 								/>
 								<div className="carousel-caption">
-									<h2>Effortless Transcript Requests</h2>
-									<p>
+									<h2 className="white-color">Effortless Transcript Requests</h2>
+									<p className="white-color">
 										Streamline the process with our user-friendly platform. Submit and
 										track your transcript requests effortlessly.
 									</p>
@@ -70,8 +76,8 @@ const Home = () => {
 									height="700"
 								/>
 								<div className="carousel-caption">
-									<h2>Secure and Fast Delivery</h2>
-									<p>
+									<h2 className="white-color">Secure and Fast Delivery</h2>
+									<p className="white-color">
 										Experience reliable and speedy transcript delivery. We prioritize
 										security to ensure your records are handled with care.
 									</p>
@@ -88,8 +94,8 @@ const Home = () => {
 									height="700"
 								/>
 								<div className="carousel-caption">
-									<h2>24/7 Access Anywhere</h2>
-									<p>
+									<h2 className="white-color">24/7 Access Anywhere</h2>
+									<p className="white-color">
 										Enjoy the convenience of accessing your transcripts anytime, anywhere.
 										Our platform is available 24/7 for your convenience.
 									</p>

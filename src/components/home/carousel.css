@@ -21,6 +21,10 @@ body {
 	z-index: 10;
 }
 
+.white-color {
+	color: #fff;
+}
+
 /* Declare heights because of positioning of img element */
 .carousel-item {
 	height: 32rem;
@@ -178,4 +182,22 @@ body {
 	right: 0;
 	left: 0;
 	opacity: 1;
+}
+
+.carousel-item:after {
+	content: "";
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.6);
+}
+
+.btn.btn-primary {
+	padding: 13px 35px;
+	font-size: 14px;
+	line-height: 18px;
+	font-weight: 600;
+	text-transform: uppercase;
 }
