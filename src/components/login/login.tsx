@@ -100,7 +100,7 @@ const Login = () => {
 
 									<div className="col-12">
 										<div className="mb-4">
-											<button className="btn btn-secondary w-100">
+											<button className="btn btn-primary w-100">
 												{isLoading ? (
 													<>
 														<svg

@@ -5,119 +5,118 @@ import images from "../../constants/image";
 const Home = () => {
 	return (
 		<>
-			<header>
-				<nav className="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-					<a className="navbar-brand" href="#">
-						<img src={images.logo1} className="navbar-logo" alt="logo" />
-					</a>
-					<button
-						className="navbar-toggler"
-						type="button"
-						data-bs-toggle="collapse"
-						data-bs-target="#navbarCollapse"
-						aria-controls="navbarCollapse"
-						aria-expanded="false"
-						aria-label="Toggle navigation"
-						style={{ color: "grey" }}
-					>
-						<span className="navbar-toggler-icon"></span>
-					</button>
-					<div className="collapse navbar-collapse" id="navbarCollapse">
-						{/* I want the element to be on the extreme right of the navbar */}
-						<ul className="navbar-nav ml-auto ">
-							<li className="nav-item">
-								<Link className="nav-link btn btn-dark" to="/login">
-									Sign In
-								</Link>
-							</li>
-							<li className="nav-item">
-								<Link className="nav-link btn btn-dark" to="/signup">
-									Sign Up
-								</Link>
-							</li>
-						</ul>
-					</div>
-				</nav>
+			<header id="header">
+				<div className="container-fluid">
+					<nav className="navbar navbar-expand-lg navbar-light">
+						<a className="navbar-brand" href="#">
+							<img src={images.logo1} className="navbar-logo" alt="logo" /> Transcript
+						</a>
+						<button
+							className="navbar-toggler"
+							type="button"
+							data-bs-toggle="collapse"
+							data-bs-target="#navbarNav"
+							aria-controls="navbarNav"
+							aria-expanded="false"
+							aria-label="Toggle navigation"
+						>
+							<span className="navbar-toggler-icon"></span>
+						</button>
+						<div className="collapse navbar-collapse" id="navbarNav">
+							<ul className="navbar-nav">
+								<li className="nav-item">
+									<Link className="nav-link" to="/login">
+										Login
+									</Link>
+								</li>
+								<li className="nav-item">
+									<Link className="nav-link" to="/signup">
+										Sign Up
+									</Link>
+								</li>
+							</ul>
+						</div>
+					</nav>
+				</div>
 			</header>
 
 			<main role="main">
-				<div
-					id="carouselExampleCaptions"
-					className="carousel slide"
-					data-bs-ride="carousel"
-				>
-					<ol className="carousel-indicators">
-						<li
-							data-bs-target="#carouselExampleCaptions"
-							data-bs-slide-to="0"
-							className="active"
-						></li>
-						<li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"></li>
-						<li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-					</ol>
-					<div className="carousel-inner">
-						<div className="carousel-item active">
-							<img
-								className="d-block w-100"
-								src="../src/assets/img/1.jpeg"
-								alt="First slide"
-							/>
-							<div className="carousel-caption text-right">
-								<h1>Example headline.</h1>
-								<p>
-									Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id
-									elit non mi porta gravida at eget metus. Nullam id dolor id nibh
-									ultricies vehicula ut id elit.
-								</p>
-								<p>
-									<Link className="btn btn-lg btn-dark" to="/signup" role="button">
-										Sign up today
+				<section id="hero" style={{ paddingTop: 116 }} className="hero-block">
+					<div id="myCarousel" className="carousel slide" data-bs-ride="carousel">
+						<div className="carousel-inner">
+							<div className="carousel-item active">
+								<img
+									src={images.hero1}
+									alt="Image Description"
+									width="1920"
+									height="700"
+								/>
+								<div className="carousel-caption">
+									<h2>Effortless Transcript Requests</h2>
+									<p>
+										Streamline the process with our user-friendly platform. Submit and
+										track your transcript requests effortlessly.
+									</p>
+									<Link className="btn btn-primary" to="/signup">
+										Sign Up <i className="fas fa-chevron-right"></i>
 									</Link>
-								</p>
+								</div>
+							</div>
+							<div className="carousel-item">
+								<img
+									src={images.hero1}
+									alt="Image Description"
+									width="1920"
+									height="700"
+								/>
+								<div className="carousel-caption">
+									<h2>Secure and Fast Delivery</h2>
+									<p>
+										Experience reliable and speedy transcript delivery. We prioritize
+										security to ensure your records are handled with care.
+									</p>
+									<Link className="btn btn-primary" to="/signup">
+										Sign Up <i className="fas fa-chevron-right"></i>
+									</Link>
+								</div>
+							</div>
+							<div className="carousel-item">
+								<img
+									src={images.hero1}
+									alt="Image Description"
+									width="1920"
+									height="700"
+								/>
+								<div className="carousel-caption">
+									<h2>24/7 Access Anywhere</h2>
+									<p>
+										Enjoy the convenience of accessing your transcripts anytime, anywhere.
+										Our platform is available 24/7 for your convenience.
+									</p>
+									<Link className="btn btn-primary" to="/signup">
+										Sign Up <i className="fas fa-chevron-right"></i>
+									</Link>
+								</div>
 							</div>
 						</div>
-						<div className="carousel-item">
-							<img
-								className="d-block w-100"
-								src="../src/assets/img/3.jpeg"
-								alt="Second slide"
-							/>
-							<div className="carousel-caption d-none d-sm-block">
-								<h3>Second slide</h3>
-								<h5>Lorem ipsum dolor sit amet, dolore magna aliqua.</h5>
-							</div>
-						</div>
-						<div className="carousel-item">
-							<img
-								className="d-block w-100"
-								src="../src/assets/img/2.jpg"
-								alt="Third slide"
-							/>
-							<div className="carousel-caption d-none d-sm-block">
-								<h3>Third slide</h3>
-								<h5>Lorem ipsum dolor sit amet, dolore magna aliqua.</h5>
-							</div>
-						</div>
+						<a
+							className="carousel-control-prev"
+							href="#myCarousel"
+							role="button"
+							data-bs-slide="prev"
+						>
+							<span className="carousel-control-prev-icon" aria-hidden="true"></span>
+						</a>
+						<a
+							className="carousel-control-next"
+							href="#myCarousel"
+							role="button"
+							data-bs-slide="next"
+						>
+							<span className="carousel-control-next-icon" aria-hidden="true"></span>
+						</a>
 					</div>
-					<a
-						className="carousel-control-prev"
-						href="#carouselExampleCaptions"
-						role="button"
-						data-bs-slide="prev"
-					>
-						<span className="carousel-control-prev-icon" aria-hidden="true"></span>
-						<span className="visually-hidden">Previous</span>
-					</a>
-					<a
-						className="carousel-control-next"
-						href="#carouselExampleCaptions"
-						role="button"
-						data-bs-slide="next"
-					>
-						<span className="carousel-control-next-icon" aria-hidden="true"></span>
-						<span className="visually-hidden">Next</span>
-					</a>
-				</div>
+				</section>
 
 				<div className="container marketing">
 					<hr className="featurette-divider" />
@@ -125,20 +124,19 @@ const Home = () => {
 					<div className="row featurette">
 						<div className="col-md-7">
 							<h2 className="featurette-heading">
-								First featurette heading.{" "}
-								<span className="text-muted">It'll blow your mind.</span>
+								Rapid <span className="text-muted">Processing.</span>
 							</h2>
 							<p className="lead">
-								Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula
-								porta felis euismod semper. Praesent commodo cursus magna, vel
-								scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+								Experience swift transcript processing. Our advanced system ensures
+								quick turnaround times, allowing you to access your records promptly.
 							</p>
 						</div>
 						<div className="col-md-5">
 							<img
 								className="featurette-image img-fluid mx-auto"
-								data-src="holder.js/500x500/auto"
+								data-bs-src="holder.js/500x500/auto"
 								alt="Generic placeholder image"
+								src={images.rapid}
 							/>
 						</div>
 					</div>
@@ -148,20 +146,20 @@ const Home = () => {
 					<div className="row featurette">
 						<div className="col-md-7 order-md-2">
 							<h2 className="featurette-heading">
-								Oh yeah, it's that good.{" "}
-								<span className="text-muted">See for yourself.</span>
+								Secure <span className="text-muted"> Data Encryption</span>
 							</h2>
 							<p className="lead">
-								Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula
-								porta felis euismod semper. Praesent commodo cursus magna, vel
-								scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+								Rest easy with our top-notch security measures. Your personal and
+								academic information is encrypted and protected throughout the entire
+								transcript request journey.
 							</p>
 						</div>
 						<div className="col-md-5 order-md-1">
 							<img
 								className="featurette-image img-fluid mx-auto"
-								data-src="holder.js/500x500/auto"
+								data-bs-src="holder.js/500x500/auto"
 								alt="Generic placeholder image"
+								src={images.secure}
 							/>
 						</div>
 					</div>
@@ -171,19 +169,20 @@ const Home = () => {
 					<div className="row featurette">
 						<div className="col-md-7">
 							<h2 className="featurette-heading">
-								And lastly, this one. <span className="text-muted">Checkmate.</span>
+								User-Friendly <span className="text-muted">Interface</span>
 							</h2>
 							<p className="lead">
-								Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula
-								porta felis euismod semper. Praesent commodo cursus magna, vel
-								scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.
+								Navigate with ease through our intuitive interface. Our user-friendly
+								design simplifies the transcript request process, making it accessible
+								for everyone.
 							</p>
 						</div>
 						<div className="col-md-5">
 							<img
 								className="featurette-image img-fluid mx-auto"
-								data-src="holder.js/500x500/auto"
+								data-bs-src="holder.js/500x500/auto"
 								alt="Generic placeholder image"
+								src={images.userFriendly}
 							/>
 						</div>
 					</div>
@@ -191,12 +190,9 @@ const Home = () => {
 					<hr className="featurette-divider" />
 				</div>
 				<footer className="container">
-					<p className="float-right">
-						<a href="#">Back to top</a>
-					</p>
 					<p>
-						&copy; 2017-2018 Company, Inc. &middot; <a href="#">Privacy</a> &middot;{" "}
-						<a href="#">Terms</a>
+						&copy; 2023 Bells University of Technology, Ota. &middot;{" "}
+						<a href="#">Privacy</a> &middot; <a href="#">Terms</a>
 					</p>
 				</footer>
 			</main>

@@ -85,3 +85,97 @@ body {
 		margin-top: 7rem;
 	}
 }
+#header {
+	padding: 15px 0;
+	position: fixed;
+	left: 0;
+	right: 0;
+	z-index: 9999;
+	background: #fff;
+	box-shadow: 0 0 8px 0px rgba(0, 0, 0, 0.1);
+	transition: all 0.5s linear;
+}
+@media only screen and (max-width: 1023px) {
+	#header {
+		padding: 10px 0;
+	}
+}
+#header .navbar {
+	padding: 0;
+	justify-content: space-between;
+}
+#header .navbar-brand {
+	color: #4361ee;
+	text-transform: uppercase;
+	font-weight: 600;
+	height: auto;
+	padding: 0;
+	font-size: 22px;
+	line-height: 1.6;
+}
+#header .navbar-collapse {
+	flex-grow: 0;
+}
+#header .navbar-collapse .navbar-nav {
+	font-size: 14px;
+	line-height: 20px;
+	padding: 10px 0 0;
+}
+@media only screen and (max-width: 1023px) {
+	#header .navbar-collapse .navbar-nav {
+		float: none;
+	}
+}
+@media only screen and (max-width: 767px) {
+	#header .navbar-collapse .navbar-nav {
+		margin: 0;
+	}
+}
+#header .navbar-collapse .nav-item {
+	padding: 0 10px 5px;
+}
+@media only screen and (max-width: 1023px) {
+	#header .navbar-collapse .nav-item {
+		float: none;
+		display: block;
+		padding: 7px 0;
+	}
+}
+#header .navbar-collapse .nav-item:last-child {
+	padding-right: 0;
+}
+#header .navbar-collapse .nav-item a {
+	padding: 0;
+	color: #4d4d4d;
+	position: relative;
+}
+#header .navbar-collapse .nav-item a:hover {
+	background: none;
+	color: #4361ee;
+}
+#header .navbar-collapse .nav-item a:hover:before {
+	right: 0;
+	left: 0;
+	opacity: 1;
+}
+#header .navbar-collapse .nav-item a:before {
+	content: "";
+	background: #4361ee;
+	height: 1px;
+	position: absolute;
+	bottom: -1px;
+	left: -20px;
+	right: 100%;
+	transition: all 0.3s linear;
+	-webkit-transition: all 0.3s linear;
+	opacity: 0;
+}
+#header .navbar-collapse .nav-item.active > a {
+	background: none;
+	color: #4361ee;
+}
+#header .navbar-collapse .nav-item.active > a:before {
+	right: 0;
+	left: 0;
+	opacity: 1;
+}

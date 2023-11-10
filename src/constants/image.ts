@@ -14,6 +14,10 @@ import logo2 from "../assets/logo2.png";
 import user from "../assets/user.svg";
 import archive from "../assets/archive.svg";
 import errorsvg from "../assets/error.svg";
+import hero1 from "../assets/img-hero1.jpg";
+import rapid from "../assets/rapid.jpg";
+import secure from "../assets/secure.jpg";
+import userFriendly from "../assets/user-friendly.jpg";
 
 export default {
 	us,
@@ -32,4 +36,8 @@ export default {
 	user,
 	archive,
 	errorsvg,
+	hero1,
+	rapid,
+	secure,
+	userFriendly,
 };

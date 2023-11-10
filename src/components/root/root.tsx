@@ -672,7 +672,7 @@ const Root = () => {
 									target="_blank"
 									href="https://my-portfolio-death-thekidd.vercel.app/"
 								>
-									Deaththekidd
+									Bells University of Technology, Ota
 								</a>
 								, All rights reserved.
 							</p>
