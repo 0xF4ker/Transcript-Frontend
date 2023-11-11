@@ -4,6 +4,7 @@ import { toast } from "react-toastify";
 import {
 	useGetCollegesQuery,
 	useGetDepartmentsQuery,
+	useGetRootQuery,
 	useRegisterUserMutation,
 } from "../../features/api/Auth/authApiSlice";
 import { useForm, Controller } from "react-hook-form";
@@ -12,7 +13,6 @@ import { useDispatch } from "react-redux";
 import image from "../../constants/image";
 
 const SignUp = () => {
-	const [userId] = useState(localStorage.getItem("transcript-uid"));
 	const { register, handleSubmit, control } = useForm();
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
@@ -27,14 +27,19 @@ const SignUp = () => {
 		console.log({ ...data, roles: ["User"], userType: "Student" });
 		registerUser({ ...data, roles: ["User"], userType: "Student" });
 	};
+	const { data: dataRoot } = useGetRootQuery("");
+
 	useEffect(() => {
-		if (userId) {
-			dispatch(setUserId(userId));
+		if (dataRoot?.valid) {
+			dispatch(setUserId(dataRoot?.userId));
+			localStorage.setItem("transcript-uid", dataRoot?.userId);
 			setTimeout(() => {
-				navigate("/dashboard/account");
+				navigate("/app/user-profile");
 			}, 2000);
+		} else {
+			localStorage.removeItem("transcript-uid");
 		}
-	}, [userId, navigate]);
+	}, [dataRoot]);
 	useEffect(() => {
 		if (isSuccess) {
 			toast.success("You succesfully registered");

@@ -1,15 +1,17 @@
 import { useForm } from "react-hook-form";
-import { useLoginUserMutation } from "../../features/api/Auth/authApiSlice";
+import {
+	useGetRootQuery,
+	useLoginUserMutation,
+} from "../../features/api/Auth/authApiSlice";
 import "./styles/dark/login.css";
 import "./styles/light/login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../../features/User/userSlice";
 import image from "../../constants/image";
 const Login = () => {
-	const [userId] = useState(localStorage.getItem("transcript-uid"));
 	const { register, handleSubmit } = useForm();
 	const [loginUser, { isLoading, isError, isSuccess, data, error }] =
 		useLoginUserMutation();
@@ -21,14 +23,19 @@ const Login = () => {
 		console.log(data);
 		loginUser(data);
 	};
+	const { data: dataRoot } = useGetRootQuery("");
+
 	useEffect(() => {
-		if (userId) {
-			dispatch(setUserId(userId));
+		if (dataRoot?.valid) {
+			dispatch(setUserId(dataRoot?.userId));
+			localStorage.setItem("transcript-uid", dataRoot?.userId);
 			setTimeout(() => {
 				navigate("/app/user-profile");
 			}, 2000);
+		} else {
+			localStorage.removeItem("transcript-uid");
 		}
-	}, [userId, navigate]);
+	}, [dataRoot]);
 	useEffect(() => {
 		if (isSuccess) {
 			toast.success("Sign in succesful");

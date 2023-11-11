@@ -4,6 +4,7 @@ import images from "../../constants/image";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
 import {
+	useGetRootQuery,
 	useGetUserQuery,
 	useLogoutUserMutation,
 } from "../../features/api/Auth/authApiSlice";
@@ -13,6 +14,16 @@ const Root = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
+	const { data: dataRoot } = useGetRootQuery("");
+
+	useEffect(() => {
+		if (dataRoot?.valid) {
+			dispatch(setUserId(dataRoot?.userId));
+		} else {
+			localStorage.removeItem("transcript-uid");
+			navigate("/login");
+		}
+	}, [dataRoot]);
 
 	useEffect(() => {
 		// Create a script element

@@ -17,6 +17,16 @@ export const userApiSlice: any = createApi({
 		"Roles",
 	],
 	endpoints: (builder) => ({
+		getRoot: builder.query({
+			query: () => ({
+				url: "/",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response?.data,
+		}),
 		registerUser: builder.mutation({
 			query: (payload) => ({
 				url: "/signup",
@@ -487,6 +497,7 @@ export const userApiSlice: any = createApi({
 	}),
 });
 export const {
+	useGetRootQuery,
 	useRegisterUserMutation,
 	useGetUsersQuery,
 	useGetUserQuery,
