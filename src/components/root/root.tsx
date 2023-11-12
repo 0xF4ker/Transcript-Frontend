@@ -14,16 +14,27 @@ const Root = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
 	const navigate = useNavigate();
-	const { data: dataRoot } = useGetRootQuery("");
+	const {
+		data: dataRoot,
+		isLoading: isLoadingRoot,
+		isSuccess: isSuccess,
+	} = useGetRootQuery("", {
+		pollingInterval: 3000,
+		refetchOnMountOrArgChange: true,
+		skip: false,
+	});
 
 	useEffect(() => {
-		if (dataRoot?.valid) {
-			dispatch(setUserId(dataRoot?.userId));
-		} else {
-			localStorage.removeItem("transcript-uid");
-			navigate("/login");
+		if (isSuccess) {
+			if (dataRoot?.valid) {
+				dispatch(setUserId(dataRoot?.userId));
+				localStorage.setItem("transcript-uid", dataRoot?.userId);
+			} else {
+				localStorage.removeItem("transcript-uid");
+				navigate("/login");
+			}
 		}
-	}, [dataRoot]);
+	}, [dataRoot, isLoadingRoot]);
 
 	useEffect(() => {
 		// Create a script element
@@ -40,35 +51,8 @@ const Root = () => {
 		};
 	}, []);
 	const userId = localStorage.getItem("transcript-uid");
-	const { data, isError } = useGetUserQuery(userId);
-	if (isError) {
-		localStorage.removeItem("transcript-uid");
-	}
+	const { data } = useGetUserQuery(userId);
 	const [logoutUser] = useLogoutUserMutation();
-	useEffect(() => {
-		console.log(userId);
-		dispatch(setUserId(userId));
-		if (!userId) navigate("/login");
-	}, [userId, navigate]);
-	// const itemRefs = useRef<Array<React.RefObject<HTMLLIElement>>>(
-	// 	menuItems.map(() => React.createRef<HTMLLIElement>())
-	// );
-
-	// const handleClick = (index: number) => {
-	// 	setActiveItem(index);
-	// 	// Remove active class from all items
-	// 	itemRefs.current.forEach((itemRef, i) => {
-	// 		if (itemRef.current && i !== index) {
-	// 			itemRef.current.classList.remove("active");
-	// 		}
-	// 	});
-	// 	// Add active class to the clicked item
-	// 	if (itemRefs.current[index].current) {
-	// 		(itemRefs.current[index].current as HTMLLIElement).classList.add(
-	// 			"active"
-	// 		);
-	// 	}
-	// };
 
 	return (
 		<>

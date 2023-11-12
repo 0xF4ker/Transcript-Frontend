@@ -4,6 +4,7 @@ export const userApiSlice: any = createApi({
 	reducerPath: "userApiSlice",
 	baseQuery: fetchBaseQuery({
 		baseUrl: "https://api.transcript.dtkapp.com.ng",
+		credentials: "include",
 	}),
 	tagTypes: [
 		"User",
@@ -25,7 +26,6 @@ export const userApiSlice: any = createApi({
 					"Content-Type": "application/json",
 				},
 			}),
-			transformResponse: (response: any) => response?.data,
 		}),
 		registerUser: builder.mutation({
 			query: (payload) => ({
