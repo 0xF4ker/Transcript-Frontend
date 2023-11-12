@@ -1,6 +1,6 @@
 import { useForm } from "react-hook-form";
 import {
-	useGetRootQuery,
+	useGetRootOutsideQuery,
 	useLoginUserMutation,
 } from "../../features/api/Auth/authApiSlice";
 import "./styles/dark/login.css";
@@ -23,7 +23,11 @@ const Login = () => {
 		console.log(data);
 		loginUser(data);
 	};
-	const { data: dataRoot } = useGetRootQuery("");
+	const { data: dataRoot } = useGetRootOutsideQuery("", {
+		pollingInterval: 3000,
+		refetchOnMountOrArgChange: true,
+		skip: false,
+	});
 
 	useEffect(() => {
 		if (dataRoot?.valid) {

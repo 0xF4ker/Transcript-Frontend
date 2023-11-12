@@ -27,6 +27,15 @@ export const userApiSlice: any = createApi({
 				},
 			}),
 		}),
+		getRootOutside: builder.query({
+			query: () => ({
+				url: "/",
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+		}),
 		registerUser: builder.mutation({
 			query: (payload) => ({
 				url: "/signup",
@@ -498,6 +507,7 @@ export const userApiSlice: any = createApi({
 });
 export const {
 	useGetRootQuery,
+	useGetRootOutsideQuery,
 	useRegisterUserMutation,
 	useGetUsersQuery,
 	useGetUserQuery,
