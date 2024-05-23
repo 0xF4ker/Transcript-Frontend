@@ -10,9 +10,11 @@ export const collegeApiSlice = createApi({
 		getColleges: builder.query({
 			query: () => "/college/colleges",
 			providesTags: ["Colleges"],
+			transformResponse: (response: any) => response?.data,
 		}),
 		getCollege: builder.query({
 			query: (id) => `/college/college/${id}`,
+			transformResponse: (response: any) => response?.data,
 		}),
 		createCollege: builder.mutation({
 			query: (payload) => ({

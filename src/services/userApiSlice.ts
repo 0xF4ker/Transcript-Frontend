@@ -26,10 +26,12 @@ export const userApiSlice = createApi({
 		getUsers: builder.query({
 			query: () => "/user/users",
 			providesTags: ["Users"],
+			transformResponse: (response: any) => response?.data,
 		}),
 		getUser: builder.query({
 			query: (id) => `/user/user/${id}`,
 			providesTags: ["User"],
+			transformResponse: (response: any) => response?.data,
 		}),
 		updateUser: builder.mutation({
 			query: (payload) => ({

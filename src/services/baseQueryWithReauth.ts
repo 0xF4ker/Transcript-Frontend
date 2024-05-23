@@ -24,7 +24,7 @@ const baseQueryWithReauth: BaseQueryFn<
 
 	if (result.error && result.error.status === 401) {
 		api.dispatch(logout());
-		window.location.href = "/login";
+		// window.location.href = "/login";
 	}
 
 	return result;

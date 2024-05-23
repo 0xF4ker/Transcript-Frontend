@@ -10,9 +10,11 @@ export const departmentApiSlice = createApi({
 		getDepartments: builder.query({
 			query: () => "/department/departments",
 			providesTags: ["Departments"],
+			transformResponse: (response: any) => response?.data,
 		}),
 		getDepartment: builder.query({
 			query: (id) => `/department/department/${id}`,
+			transformResponse: (response: any) => response?.data,
 		}),
 		createDepartment: builder.mutation({
 			query: (payload) => ({

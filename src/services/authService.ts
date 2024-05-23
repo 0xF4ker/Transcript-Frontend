@@ -2,7 +2,7 @@
 
 export const checkAuthStatus = async () => {
 	const response = await fetch(
-		"https://api.transcript.dtkapp.com.ng/api/auth/status",
+		"https://api.transcript.adenibuyan.com/auth/status",
 		{
 			credentials: "include",
 		}
