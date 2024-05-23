@@ -1,12 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import {
-	useCreateDepartmentMutation,
-	useDeleteDepartmentMutation,
-	useEditDepartmentMutation,
-	useGetCollegesQuery,
-	useGetDepartmentsQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -21,6 +13,14 @@ import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import {
+	useCreateDepartmentMutation,
+	useDeleteDepartmentMutation,
+	useEditDepartmentMutation,
+	useGetDepartmentsQuery,
+} from "../../services/departmentApiSlice";
+import { useGetUserQuery } from "../../services/userApiSlice";
+import { useGetCollegesQuery } from "../../services/collegeApiSlice";
 const selector = (state: any) => state.user;
 const Departments = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
@@ -56,7 +56,7 @@ const Departments = () => {
 			isLoading: isLoadingEdit,
 			isError: isErrorEdit,
 			error: errorEdit,
-			isSuccessEdit,
+			isSuccess: isSuccessEdit,
 		},
 	] = useEditDepartmentMutation();
 
@@ -268,7 +268,7 @@ const Departments = () => {
 											name="college"
 											control={control}
 											defaultValue=""
-											rules={{ required: 'College is required' }}
+											rules={{ required: "College is required" }}
 											render={({ field }) => (
 												<select
 													className="form-select"
@@ -483,7 +483,7 @@ const Departments = () => {
 																					name="college"
 																					control={controlEdit}
 																					defaultValue=""
-																					rules={{ required: 'College is required' }}
+																					rules={{ required: "College is required" }}
 																					render={({ field }) => (
 																						<select
 																							className="form-select"

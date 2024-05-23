@@ -1,8 +1,4 @@
 import { useForm } from "react-hook-form";
-import {
-	useGetRootOutsideQuery,
-	useLoginUserMutation,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/dark/login.css";
 import "./styles/light/login.css";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -11,6 +7,8 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../../features/User/userSlice";
 import image from "../../constants/image";
+import { useGetRootOutsideQuery } from "../../services/rootApiSlice";
+import { useLoginUserMutation } from "../../services/authApiSlice";
 const Login = () => {
 	const { register, handleSubmit } = useForm();
 	const [loginUser, { isLoading, isError, isSuccess, data, error }] =

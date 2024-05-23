@@ -1,14 +1,10 @@
-import {
-	useGetDestinationRequestsQuery,
-	useGetTranscriptRequestsQuery,
-} from "../../features/api/Auth/authApiSlice";
 import { useState } from "react";
+import { useGetTranscriptRequestsQuery } from "../../services/transcriptRequestApiSlice";
+import { useGetDestinationRequestsQuery } from "../../services/destinationRequestApiSlice";
 const Dashboard = () => {
 	const [userId] = useState(localStorage.getItem("transcript-uid"));
-	const { data: dataRequests }: { data: Array<any> } =
-		useGetTranscriptRequestsQuery("");
-	const { data: dataRequestss }: { data: Array<any> } =
-		useGetDestinationRequestsQuery("");
+	const { data: dataRequests } = useGetTranscriptRequestsQuery("");
+	const { data: dataRequestss } = useGetDestinationRequestsQuery("");
 	return (
 		<>
 			<div className="middle-content container-xxl p-0">

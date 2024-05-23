@@ -1,17 +1,17 @@
 import { useEffect, useRef, useState } from "react";
-import {
-	useCreateRoleMutation,
-	useDeleteRoleMutation,
-	useEditRoleMutation,
-	useGetPrivilegesQuery,
-	useGetRolesQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import { toast } from "react-toastify";
 import { Controller, useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import { useGetUserQuery } from "../../services/userApiSlice";
+import {
+	useCreateRoleMutation,
+	useDeleteRoleMutation,
+	useEditRoleMutation,
+	useGetRolesQuery,
+} from "../../services/roleApiSlice";
+import { useGetPrivilegesQuery } from "../../services/privilegeApiSlice";
 const selector = (state: any) => state.user;
 const Roles = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);

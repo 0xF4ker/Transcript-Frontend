@@ -1,15 +1,15 @@
 import { toast } from "react-toastify";
 import image from "../../constants/image";
-import {
-	useGetCollegesQuery,
-	useGetDepartmentsQuery,
-	useGetUserQuery,
-	useUpdateUserMutation,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/dark/user-profile.css";
 import "./styles/light/user-profile.css";
 import { useEffect, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
+import {
+	useGetUserQuery,
+	useUpdateUserMutation,
+} from "../../services/userApiSlice";
+import { useGetCollegesQuery } from "../../services/collegeApiSlice";
+import { useGetDepartmentsQuery } from "../../services/departmentApiSlice";
 const UserProfile = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
 	const [userId] = useState(localStorage.getItem("transcript-uid"));

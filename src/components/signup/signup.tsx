@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
-import {
-	useGetCollegesQuery,
-	useGetDepartmentsQuery,
-	useGetRootQuery,
-	useRegisterUserMutation,
-} from "../../features/api/Auth/authApiSlice";
 import { useForm, Controller } from "react-hook-form";
 import { setUserId } from "../../features/User/userSlice";
 import { useDispatch } from "react-redux";
 import image from "../../constants/image";
+import { useRegisterUserMutation } from "../../services/userApiSlice";
+import { useGetCollegesQuery } from "../../services/collegeApiSlice";
+import { useGetDepartmentsQuery } from "../../services/departmentApiSlice";
+import { useGetRootQuery } from "../../services/rootApiSlice";
 
 const SignUp = () => {
 	const { register, handleSubmit, control } = useForm();

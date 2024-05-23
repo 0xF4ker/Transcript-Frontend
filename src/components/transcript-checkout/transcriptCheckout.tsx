@@ -1,11 +1,9 @@
-import {
-	useGetTranscriptRequestQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import { useEffect } from "react";
 import { PaystackButton } from "react-paystack";
 import { useSelector } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetUserQuery } from "../../services/userApiSlice";
+import { useGetTranscriptRequestQuery } from "../../services/transcriptRequestApiSlice";
 const selector = (state: any) => state.user;
 const TranscriptCheckout = () => {
 	const navigate = useNavigate();

@@ -1,11 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import {
-	useGetDestinationsQuery,
-	useGetTranscriptRequestsQuery,
-	useGetTranscriptTypesQuery,
-	useGetUserQuery,
-	useSubmitTranscriptRequestMutation,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -20,6 +13,13 @@ import { Controller, useForm } from "react-hook-form";
 import { toast } from "react-toastify";
 import { Skeleton } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import {
+	useGetTranscriptRequestsQuery,
+	useSubmitTranscriptRequestMutation,
+} from "../../services/transcriptRequestApiSlice";
+import { useGetTranscriptTypesQuery } from "../../services/transcriptTypeApiSlice";
+import { useGetDestinationsQuery } from "../../services/destinatiionApiSlice";
+import { useGetUserQuery } from "../../services/userApiSlice";
 const selector = (state: any) => state.user;
 const RequestTranscript = () => {
 	const navigate = useNavigate();

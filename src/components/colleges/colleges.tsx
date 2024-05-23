@@ -1,11 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import {
-	useCreateCollegeMutation,
-	useDeleteCollegeMutation,
-	useEditCollegeMutation,
-	useGetCollegesQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -20,6 +13,13 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import {
+	useCreateCollegeMutation,
+	useDeleteCollegeMutation,
+	useEditCollegeMutation,
+	useGetCollegesQuery,
+} from "../../services/collegeApiSlice";
+import { useGetUserQuery } from "../../services/userApiSlice";
 const selector = (state: any) => state.user;
 const Colleges = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
@@ -54,7 +54,7 @@ const Colleges = () => {
 			isLoading: isLoadingEdit,
 			isError: isErrorEdit,
 			error: errorEdit,
-			isSuccessEdit,
+			isSuccess: isSuccessEdit,
 		},
 	] = useEditCollegeMutation();
 

@@ -1,11 +1,4 @@
 import { useEffect, useRef, useState } from "react";
-import {
-	useCreateDestinationMutation,
-	useDeleteDestinationMutation,
-	useEditDestinationMutation,
-	useGetDestinationsQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -20,6 +13,13 @@ import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import {
+	useCreateDestinationMutation,
+	useDeleteDestinationMutation,
+	useEditDestinationMutation,
+	useGetDestinationsQuery,
+} from "../../services/destinatiionApiSlice";
+import { useGetUserQuery } from "../../services/userApiSlice";
 const selector = (state: any) => state.user;
 const Destinations = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);

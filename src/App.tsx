@@ -23,6 +23,7 @@ import AdminDashboard from "./components/admin-dashboard/adminDashboard";
 import Roles from "./components/roles/roles";
 import Dashboard from "./components/dashboard/dashboard";
 import TranscriptCheckout from "./components/transcript-checkout/transcriptCheckout";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
 	useEffect(() => {
@@ -39,7 +40,14 @@ function App() {
 				<Route path="/error" element={<Error_ />}></Route>
 				<Route path="/login" element={<Login />}></Route>
 				<Route path="/signup" element={<SignUp />}></Route>
-				<Route path="/app" element={<Root />}>
+				<Route
+					path="/app"
+					element={
+						<ProtectedRoute>
+							<Root />
+						</ProtectedRoute>
+					}
+				>
 					<Route index element={<Dashboard />} />
 					<Route path="admin-dashboard" element={<AdminDashboard />} />
 					<Route path="user-profile" element={<UserProfile />} />

@@ -3,13 +3,11 @@ import "./styles/light/alert.css";
 import images from "../../constants/image";
 import { useEffect } from "react";
 import { Link, Outlet, useLocation, useNavigate } from "react-router-dom";
-import {
-	useGetRootQuery,
-	useGetUserQuery,
-	useLogoutUserMutation,
-} from "../../features/api/Auth/authApiSlice";
 import { useDispatch } from "react-redux";
 import { setUserId } from "../../features/User/userSlice";
+import { useGetRootQuery } from "../../services/rootApiSlice";
+import { useGetUserQuery } from "../../services/userApiSlice";
+import { useLogoutUserMutation } from "../../services/authApiSlice";
 const Root = () => {
 	const dispatch = useDispatch();
 	const location = useLocation();
@@ -555,7 +553,7 @@ const Root = () => {
 								<div className="dropdown-item">
 									<a
 										onClick={() => {
-											logoutUser();
+											logoutUser("");
 										}}
 									>
 										<svg

@@ -1,8 +1,4 @@
 import { useEffect, useRef } from "react";
-import {
-	useGetDestinationRequestsQuery,
-	useGetUserQuery,
-} from "../../features/api/Auth/authApiSlice";
 import "./styles/datables.css";
 
 import "./styles/dark/custom_dt_custom.css";
@@ -15,6 +11,8 @@ import "./styles/light/users.css";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
+import { useGetUserQuery } from "../../services/userApiSlice";
+import { useGetDestinationRequestsQuery } from "../../services/destinationRequestApiSlice";
 const selector = (state: any) => state.user;
 const DestinationRequests = () => {
 	const { userId } = useSelector(selector);
