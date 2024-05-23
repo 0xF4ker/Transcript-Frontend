@@ -1,4 +1,4 @@
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/dtkappco/public_html/transcript-frontend/
+    - export DEPLOYPATH=/home/adenibu1/public_html/transcript-frontend/
     - /bin/cp -uRa dist/* $DEPLOYPATH
