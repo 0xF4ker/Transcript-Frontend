@@ -133,7 +133,6 @@ const AdminDashboard = () => {
 									<div className="dropdown">
 										<a
 											className="dropdown-toggle"
-											href="#"
 											role="button"
 											id="pendingTask"
 											data-toggle="dropdown"

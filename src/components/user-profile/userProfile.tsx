@@ -12,7 +12,7 @@ import { useGetCollegesQuery } from "../../services/collegeApiSlice";
 import { useGetDepartmentsQuery } from "../../services/departmentApiSlice";
 const UserProfile = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
-	const [userId] = useState(localStorage.getItem("transcript-uid"));
+	const userId = localStorage.getItem("transcript-uid");
 	const { data } = useGetUserQuery(userId);
 
 	const {

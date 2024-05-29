@@ -282,7 +282,7 @@ var App = (function () {
 				if (
 					document
 						.querySelector(".submenu-sidebar")
-						.classList.contains("submenu-enable")
+						?.classList?.contains("submenu-enable")
 				) {
 					if (
 						document.documentElement.scrollTop >= getAdminDataContentElement.offsetTop
