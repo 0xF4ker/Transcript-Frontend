@@ -12,6 +12,7 @@ import { roleApiSlice } from "./services/roleApiSlice";
 import { transcriptTypeApiSlice } from "./services/transcriptTypeApiSlice";
 import { transcriptRequestApiSlice } from "./services/transcriptRequestApiSlice";
 import { rootApiSlice } from "./services/rootApiSlice";
+import { destinationRequestApiSlice } from "./services/destinationRequestApiSlice";
 
 const store = configureStore({
 	reducer: {
@@ -23,6 +24,7 @@ const store = configureStore({
 		[departmentApiSlice.reducerPath]: departmentApiSlice.reducer,
 		[collegeApiSlice.reducerPath]: collegeApiSlice.reducer,
 		[destinationApiSlice.reducerPath]: destinationApiSlice.reducer,
+		[destinationRequestApiSlice.reducerPath]: destinationRequestApiSlice.reducer,
 		[privilegeApiSlice.reducerPath]: privilegeApiSlice.reducer,
 		[roleApiSlice.reducerPath]: roleApiSlice.reducer,
 		[transcriptTypeApiSlice.reducerPath]: transcriptTypeApiSlice.reducer,
@@ -40,7 +42,8 @@ const store = configureStore({
 			roleApiSlice.middleware,
 			transcriptTypeApiSlice.middleware,
 			transcriptRequestApiSlice.middleware,
-			rootApiSlice.middleware
+			rootApiSlice.middleware,
+			destinationRequestApiSlice.middleware
 		),
 });
 

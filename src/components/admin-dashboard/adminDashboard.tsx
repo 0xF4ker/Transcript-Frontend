@@ -1,29 +1,508 @@
-import { useGetTranscriptRequestsQuery } from "../../services/transcriptRequestApiSlice";
-import { useGetUsersQuery } from "../../services/userApiSlice";
+import { useEffect } from "react";
+import image from "../../constants/image";
+import "./styles/apexcharts.css";
+import "./styles/dash_2.css";
 
 const AdminDashboard = () => {
-	const { data } = useGetUsersQuery("");
-	const { data: dataRequests } = useGetTranscriptRequestsQuery("");
+	// const { data } = useGetUsersQuery("");
+	// const { data: dataRequests } = useGetTranscriptRequestsQuery("");
+	useEffect(() => {
+		const script = document.createElement("script");
+		script.src = "/scripts/dash_2.js";
+		script.async = true;
+		document.body.appendChild(script);
+		return () => {
+			document.body.removeChild(script);
+		};
+	}, []);
 	return (
 		<>
-			<div className="middle-content container-xxl p-0">
-				<div className="page-meta">
-					<nav className="breadcrumb-style-one" aria-label="breadcrumb">
-						<ol className="breadcrumb">
-							<li className="breadcrumb-item">
-								<a href="#">App</a>
-							</li>
-							<li className="breadcrumb-item active" aria-current="page">
-								DashBoard
-							</li>
-						</ol>
-					</nav>
-				</div>
-				<div className="row layout-top-spacing">
-					<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-						<div className="widget widget-one_hybrid widget-referral">
+			<div className="header-container">
+				<header className="header navbar navbar-expand-sm">
+					<div className="d-flex">
+						<a className="sidebarCollapse" data-placement="bottom">
+							<div className="bt-menu-trigger">
+								<span></span>
+							</div>
+						</a>
+						<div className="page-header">
+							<div className="page-title">
+								<h3>Dashboard</h3>
+							</div>
+						</div>
+					</div>
+
+					<div className="header-actions">
+						<div className="nav-item dropdown language-dropdown more-dropdown">
+							<div className="dropdown custom-dropdown-icon">
+								<a
+									className="dropdown-toggle btn"
+									href="#"
+									role="button"
+									id="customDropdown"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<img src={image.flagca2} className="flag-width" alt="flag" />
+									<span>English</span>{" "}
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="feather feather-chevron-down"
+									>
+										<polyline points="6 9 12 15 18 9"></polyline>
+									</svg>
+								</a>
+
+								<div
+									className="dropdown-menu dropdown-menu-right"
+									aria-labelledby="customDropdown"
+								>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-de3"
+										data-value="German"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagde3} className="flag-width" alt="flag" /> German
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-sp"
+										data-value="Spanish"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagsp} className="flag-width" alt="flag" /> Spanish
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-fr3"
+										data-value="French"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagfr} className="flag-width" alt="flag" /> French
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-ca2"
+										data-value="English"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagca2} className="flag-width" alt="flag" /> English
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div className="toggle-notification-bar">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								className="feather feather-bell"
+							>
+								<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+								<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+							</svg>
+						</div>
+					</div>
+				</header>
+			</div>
+			<div className="admin-data-content layout-top-spacing">
+				<div className="row">
+					<div className="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+						<div className="widget widget-chart-one">
 							<div className="widget-heading">
-								<div className="w-title">
+								<h5 className="">Revenue</h5>
+								<div className="task-action">
+									<div className="dropdown">
+										<a
+											className="dropdown-toggle"
+											href="#"
+											role="button"
+											id="pendingTask"
+											data-toggle="dropdown"
+											aria-haspopup="true"
+											aria-expanded="false"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="feather feather-more-horizontal"
+											>
+												<circle cx="12" cy="12" r="1"></circle>
+												<circle cx="19" cy="12" r="1"></circle>
+												<circle cx="5" cy="12" r="1"></circle>
+											</svg>
+										</a>
+										<div
+											className="dropdown-menu dropdown-menu-right"
+											aria-labelledby="pendingTask"
+											style={{ willChange: "transform" }}
+										>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Weekly
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Monthly
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Yearly
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div className="widget-content">
+								<div id="revenueMonthly"></div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget widget-three">
+							<div className="widget-heading">
+								<h5 className="">Summary</h5>
+
+								<div className="task-action">
+									<div className="dropdown">
+										<a
+											className="dropdown-toggle"
+											href="#"
+											role="button"
+											id="pendingTask"
+											data-toggle="dropdown"
+											aria-haspopup="true"
+											aria-expanded="false"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="feather feather-more-horizontal"
+											>
+												<circle cx="12" cy="12" r="1"></circle>
+												<circle cx="19" cy="12" r="1"></circle>
+												<circle cx="5" cy="12" r="1"></circle>
+											</svg>
+										</a>
+
+										<div
+											className="dropdown-menu dropdown-menu-right"
+											aria-labelledby="pendingTask"
+											style={{ willChange: "transform" }}
+										>
+											<a className="dropdown-item" href="javascript:void(0);">
+												View Report
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Edit Report
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Mark as Done
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="widget-content">
+								<div className="order-summary">
+									<div className="summary-list summary-income">
+										<div className="summery-info">
+											<div className="w-icon">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													className="feather feather-shopping-bag"
+												>
+													<path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+													<line x1="3" y1="6" x2="21" y2="6"></line>
+													<path d="M16 10a4 4 0 0 1-8 0"></path>
+												</svg>
+											</div>
+
+											<div className="w-summary-details">
+												<div className="w-summary-info">
+													<h6>
+														Income <span className="summary-count">$92,600 </span>
+													</h6>
+													<p className="summary-average">90%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div className="summary-list summary-profit">
+										<div className="summery-info">
+											<div className="w-icon">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													className="feather feather-tag"
+												>
+													<path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path>
+													<line x1="7" y1="7" x2="7" y2="7"></line>
+												</svg>
+											</div>
+											<div className="w-summary-details">
+												<div className="w-summary-info">
+													<h6>
+														Profit <span className="summary-count">$37,515</span>
+													</h6>
+													<p className="summary-average">65%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div className="summary-list summary-expenses">
+										<div className="summery-info">
+											<div className="w-icon">
+												<svg
+													xmlns="http://www.w3.org/2000/svg"
+													width="24"
+													height="24"
+													viewBox="0 0 24 24"
+													fill="none"
+													stroke="currentColor"
+													stroke-width="2"
+													stroke-linecap="round"
+													stroke-linejoin="round"
+													className="feather feather-credit-card"
+												>
+													<rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+													<line x1="1" y1="10" x2="23" y2="10"></line>
+												</svg>
+											</div>
+											<div className="w-summary-details">
+												<div className="w-summary-info">
+													<h6>
+														Expenses <span className="summary-count">$55,085</span>
+													</h6>
+													<p className="summary-average">80%</p>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget widget-table-one">
+							<div className="widget-heading">
+								<h5 className="">Transactions</h5>
+								<div className="task-action">
+									<div className="dropdown">
+										<a
+											className="dropdown-toggle"
+											href="#"
+											role="button"
+											id="pendingTask"
+											data-toggle="dropdown"
+											aria-haspopup="true"
+											aria-expanded="false"
+										>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="feather feather-more-horizontal"
+											>
+												<circle cx="12" cy="12" r="1"></circle>
+												<circle cx="19" cy="12" r="1"></circle>
+												<circle cx="5" cy="12" r="1"></circle>
+											</svg>
+										</a>
+
+										<div
+											className="dropdown-menu dropdown-menu-right"
+											aria-labelledby="pendingTask"
+											style={{ willChange: "transform" }}
+										>
+											<a className="dropdown-item" href="javascript:void(0);">
+												View Report
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Edit Report
+											</a>
+											<a className="dropdown-item" href="javascript:void(0);">
+												Mark as Done
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div className="widget-content">
+								<div className="transactions-list">
+									<div className="t-item">
+										<div className="t-company-name">
+											<div className="t-icon">
+												<div className="icon">
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														className="feather feather-home"
+													>
+														<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+														<polyline points="9 22 9 12 15 12 15 22"></polyline>
+													</svg>
+												</div>
+											</div>
+											<div className="t-name">
+												<h4>Electricity Bill</h4>
+												<p className="meta-date">4 Aug 1:00PM</p>
+											</div>
+										</div>
+										<div className="t-rate rate-dec">
+											<p>
+												<span>-$16.44</span>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div className="transactions-list t-info">
+									<div className="t-item">
+										<div className="t-company-name">
+											<div className="t-icon">
+												<div className="avatar avatar-xl">
+													<span className="avatar-title">SP</span>
+												</div>
+											</div>
+											<div className="t-name">
+												<h4>Shaun Park</h4>
+												<p className="meta-date">4 Aug 1:00PM</p>
+											</div>
+										</div>
+										<div className="t-rate rate-inc">
+											<p>
+												<span>+$36.11</span>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div className="transactions-list">
+									<div className="t-item">
+										<div className="t-company-name">
+											<div className="t-icon">
+												<div className="avatar avatar-xl">
+													<span className="avatar-title">AD</span>
+												</div>
+											</div>
+											<div className="t-name">
+												<h4>Amy Diaz</h4>
+												<p className="meta-date">4 Aug 1:00PM</p>
+											</div>
+										</div>
+										<div className="t-rate rate-inc">
+											<p>
+												<span>+$66.44</span>
+											</p>
+										</div>
+									</div>
+								</div>
+
+								<div className="transactions-list t-secondary">
+									<div className="t-item">
+										<div className="t-company-name">
+											<div className="t-icon">
+												<div className="icon">
+													<svg
+														xmlns="http://www.w3.org/2000/svg"
+														width="24"
+														height="24"
+														viewBox="0 0 24 24"
+														fill="none"
+														stroke="currentColor"
+														stroke-width="2"
+														stroke-linecap="round"
+														stroke-linejoin="round"
+														className="feather feather-home"
+													>
+														<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+														<polyline points="9 22 9 12 15 12 15 22"></polyline>
+													</svg>
+												</div>
+											</div>
+											<div className="t-name">
+												<h4>Netflix</h4>
+												<p className="meta-date">4 Aug 1:00PM</p>
+											</div>
+										</div>
+										<div className="t-rate rate-dec">
+											<p>
+												<span>-$32.00</span>
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget-one widget">
+							<div className="widget-content">
+								<div className="w-numeric-value">
 									<div className="w-icon">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -35,29 +514,33 @@ const AdminDashboard = () => {
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											className="feather feather-link"
+											className="feather feather-shopping-cart"
 										>
-											<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-											<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+											<circle cx="9" cy="21" r="1"></circle>
+											<circle cx="20" cy="21" r="1"></circle>
+											<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
 										</svg>
 									</div>
-									<div className="">
-										<p className="w-value">{data?.length}</p>
-										<h5 className="">Total Users</h5>
+									<div className="w-content">
+										<span className="w-value">3,192</span>
+										<span className="w-numeric-title">Total Orders</span>
 									</div>
 								</div>
-							</div>
-							<div className="widget-content">
 								<div className="w-chart">
-									<div id="hybrid_followers1"></div>
+									<div id="total-orders"></div>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-						<div className="widget widget-one_hybrid widget-engagement">
-							<div className="widget-heading">
-								<div className="w-title">
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget-two">
+							<div className="widget-content">
+								<div className="w-numeric-value">
+									<div className="w-content">
+										<span className="w-value">Daily sales</span>
+										<span className="w-numeric-title">Go to columns for details.</span>
+									</div>
 									<div className="w-icon">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -69,99 +552,658 @@ const AdminDashboard = () => {
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											className="feather feather-message-circle"
+											className="feather feather-dollar-sign"
 										>
-											<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+											<line x1="12" y1="1" x2="12" y2="23"></line>
+											<path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
 										</svg>
 									</div>
-									<div className="">
-										<p className="w-value">{dataRequests?.length}</p>
-										<h5 className="">Total Transcript Requests</h5>
-									</div>
 								</div>
-							</div>
-							<div className="widget-content">
 								<div className="w-chart">
-									<div id="hybrid_followers3"></div>
+									<div id="daily-sales"></div>
 								</div>
 							</div>
 						</div>
 					</div>
+
 					<div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
-						<div className="widget widget-table-two">
+						<div className="widget widget-table-three">
 							<div className="widget-heading">
-								<h5 className="">Recent Transcript Requests</h5>
+								<h5 className="">Top Selling Product</h5>
 							</div>
 
 							<div className="widget-content">
 								<div className="table-responsive">
-									<table className="table">
+									<table className="table table-scroll">
 										<thead>
 											<tr>
 												<th>
-													<div className="th-content">Name</div>
+													<div className="th-content">Product</div>
 												</th>
 												<th>
-													<div className="th-content">Transcript Type</div>
+													<div className="th-content th-heading">Price</div>
 												</th>
 												<th>
-													<div className="th-content">Matric No</div>
+													<div className="th-content th-heading">Discount</div>
 												</th>
 												<th>
-													<div className="th-content th-heading">Fee</div>
+													<div className="th-content">Sold</div>
 												</th>
 												<th>
-													<div className="th-content">Status</div>
+													<div className="th-content">Source</div>
 												</th>
 											</tr>
 										</thead>
 										<tbody>
-											{dataRequests
-												?.slice(-10)
-												?.map((transcriptRequest: any, id: number) => (
-													<tr key={id}>
-														<td>
-															<div className="td-content customer-name">
-																<span>{transcriptRequest?.name}</span>
-															</div>
-														</td>
-														<td>
-															<div className="td-content product-brand text-primary">
-																{transcriptRequest?.transcriptType}
-															</div>
-														</td>
-														<td>
-															<div className="td-content product-invoice">
-																{transcriptRequest?.matricNo}
-															</div>
-														</td>
-														<td>
-															<div className="td-content pricing">
-																<span className="">{transcriptRequest?.totalFee}</span>
-															</div>
-														</td>
-														<td>
-															<div className="td-content">
-																<span
-																	className={`badge badge-${
-																		transcriptRequest?.status === "pending"
-																			? "danger"
-																			: transcriptRequest?.status === "paid"
-																			? "success"
-																			: transcriptRequest?.status === "shipped"
-																			? "primary"
-																			: "danger"
-																	}`}
-																>
-																	{transcriptRequest?.status}
-																</span>
-															</div>
-														</td>
-													</tr>
-												))}
+											<tr>
+												<td>
+													<div className="td-content product-name">
+														<img src={image.userImg} alt="product" />
+														<div className="align-self-center">
+															<p className="prd-name">Headphone</p>
+															<p className="prd-category text-primary">Digital</p>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="pricing">$168.09</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="discount-pricing">$60.09</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">170</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<a href="javascript:void(0);" className="text-danger">
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-chevrons-right"
+															>
+																<polyline points="13 17 18 12 13 7"></polyline>
+																<polyline points="6 17 11 12 6 7"></polyline>
+															</svg>{" "}
+															Direct
+														</a>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div className="td-content product-name">
+														<img src={image.userImg} alt="product" />
+														<div className="align-self-center">
+															<p className="prd-name">Shoes</p>
+															<p className="prd-category text-warning">Faishon</p>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="pricing">$108.09</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="discount-pricing">$47.09</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">130</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<a href="javascript:void(0);" className="text-primary">
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-chevrons-right"
+															>
+																<polyline points="13 17 18 12 13 7"></polyline>
+																<polyline points="6 17 11 12 6 7"></polyline>
+															</svg>{" "}
+															Google
+														</a>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div className="td-content product-name">
+														<img src={image.userImg} alt="product" />
+														<div className="align-self-center">
+															<p className="prd-name">Watch</p>
+															<p className="prd-category text-danger">Accessories</p>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="pricing">$88.00</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="discount-pricing">$20.00</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">66</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<a href="javascript:void(0);" className="text-warning">
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-chevrons-right"
+															>
+																<polyline points="13 17 18 12 13 7"></polyline>
+																<polyline points="6 17 11 12 6 7"></polyline>
+															</svg>{" "}
+															Ads
+														</a>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div className="td-content product-name">
+														<img src={image.userImg} alt="product" />
+														<div className="align-self-center">
+															<p className="prd-name">Laptop</p>
+															<p className="prd-category text-primary">Digital</p>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="pricing">$110.00</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="discount-pricing">$33.00</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">35</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<a href="javascript:void(0);" className="text-info">
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-chevrons-right"
+															>
+																<polyline points="13 17 18 12 13 7"></polyline>
+																<polyline points="6 17 11 12 6 7"></polyline>
+															</svg>{" "}
+															Email
+														</a>
+													</div>
+												</td>
+											</tr>
+											<tr>
+												<td>
+													<div className="td-content product-name">
+														<img src={image.userImg} alt="product" />
+														<div className="align-self-center">
+															<p className="prd-name">Camera</p>
+															<p className="prd-category text-primary">Digital</p>
+														</div>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="pricing">$126.04</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<span className="discount-pricing">$26.04</span>
+													</div>
+												</td>
+												<td>
+													<div className="td-content">30</div>
+												</td>
+												<td>
+													<div className="td-content">
+														<a href="javascript:void(0);" className="text-secondary">
+															<svg
+																xmlns="http://www.w3.org/2000/svg"
+																width="24"
+																height="24"
+																viewBox="0 0 24 24"
+																fill="none"
+																stroke="currentColor"
+																stroke-width="2"
+																stroke-linecap="round"
+																stroke-linejoin="round"
+																className="feather feather-chevrons-right"
+															>
+																<polyline points="13 17 18 12 13 7"></polyline>
+																<polyline points="6 17 11 12 6 7"></polyline>
+															</svg>{" "}
+															Referral
+														</a>
+													</div>
+												</td>
+											</tr>
 										</tbody>
 									</table>
 								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+						<div className="widget widget-account-invoice-three">
+							<div className="widget-heading">
+								<div className="wallet-usr-info">
+									<div className="usr-name">
+										<span>
+											<img src={image.userImg} alt="admin-profile" className="img-fluid" />{" "}
+											Alan Green
+										</span>
+									</div>
+									<div className="add">
+										<span>
+											<svg
+												xmlns="http://www.w3.org/2000/svg"
+												width="24"
+												height="24"
+												viewBox="0 0 24 24"
+												fill="none"
+												stroke="currentColor"
+												stroke-width="2"
+												stroke-linecap="round"
+												stroke-linejoin="round"
+												className="feather feather-plus"
+											>
+												<line x1="12" y1="5" x2="12" y2="19"></line>
+												<line x1="5" y1="12" x2="19" y2="12"></line>
+											</svg>
+										</span>
+									</div>
+								</div>
+								<div className="wallet-balance">
+									<p>Wallet Balance</p>
+									<h5 className="">
+										<span className="w-currency">$</span>2953
+									</h5>
+								</div>
+							</div>
+
+							<div className="widget-amount">
+								<div className="w-a-info funds-received">
+									<span>
+										Received{" "}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-chevron-up"
+										>
+											<polyline points="18 15 12 9 6 15"></polyline>
+										</svg>
+									</span>
+									<p>$97.99</p>
+								</div>
+
+								<div className="w-a-info funds-spent">
+									<span>
+										Spent{" "}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-chevron-down"
+										>
+											<polyline points="6 9 12 15 18 9"></polyline>
+										</svg>
+									</span>
+									<p>$53.00</p>
+								</div>
+							</div>
+
+							<div className="widget-content">
+								<div className="bills-stats">
+									<span>Pending</span>
+								</div>
+
+								<div className="invoice-list">
+									<div className="inv-detail">
+										<div className="info-detail-1">
+											<p>Netflix</p>
+											<p>
+												<span className="w-currency">$</span>{" "}
+												<span className="bill-amount">13.85</span>
+											</p>
+										</div>
+										<div className="info-detail-2">
+											<p>BlueHost VPN</p>
+											<p>
+												<span className="w-currency">$</span>{" "}
+												<span className="bill-amount">15.66</span>
+											</p>
+										</div>
+									</div>
+
+									<div className="inv-action">
+										<a
+											href="javascript:void(0);"
+											className="btn btn-outline-primary view-details"
+										>
+											View Details
+										</a>
+										<a
+											href="javascript:void(0);"
+											className="btn btn-outline-primary pay-now"
+										>
+											Pay Now $29.51
+										</a>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-12 col-12 layout-spacing">
+						<div className="widget widget-activity-four">
+							<div className="widget-heading">
+								<h5 className="">Recent Activities</h5>
+								<div className="w-icon">
+									<a className="btn btn-primary" href="javascript:void(0);">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-arrow-right"
+										>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
+									</a>
+								</div>
+							</div>
+
+							<div className="widget-content">
+								<div className="mt-container mx-auto">
+									<div className="timeline-line">
+										<div className="item-timeline timeline-primary">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													<span>Updated</span> Server Logs
+												</p>
+												<span className="badge">Pending</span>
+												<p className="t-time">Just Now</p>
+											</div>
+										</div>
+
+										<div className="item-timeline timeline-success">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Send Mail to <a href="javascript:void(0);">HR</a> and{" "}
+													<a href="javascript:void(0);">Admin</a>
+												</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">2 min ago</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-danger">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Backup <span>Files EOD</span>
+												</p>
+												<span className="badge">Pending</span>
+												<p className="t-time">14:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-dark">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Collect documents from <a href="javascript:void(0);">Sara</a>
+												</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">16:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-warning">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Conference call with{" "}
+													<a href="javascript:void(0);">Marketing Manager</a>.
+												</p>
+												<span className="badge">In progress</span>
+												<p className="t-time">17:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-secondary">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Rebooted Server</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">17:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-warning">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Send contract details to Freelancer</p>
+												<span className="badge">Pending</span>
+												<p className="t-time">18:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-dark">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Kelly want to increase the time of the project.</p>
+												<span className="badge">In Progress</span>
+												<p className="t-time">19:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-success">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Server down for maintanence</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">19:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-secondary">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Malicious link detected</p>
+												<span className="badge">Block</span>
+												<p className="t-time">20:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-warning">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>Rebooted Server</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">23:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline timeline-primary">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													<span>Updated</span> Server Logs
+												</p>
+												<span className="badge">Pending</span>
+												<p className="t-time">Just Now</p>
+											</div>
+										</div>
+
+										<div className="item-timeline timeline-success">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Send Mail to <a href="javascript:void(0);">HR</a> and{" "}
+													<a href="javascript:void(0);">Admin</a>
+												</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">2 min ago</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-danger">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Backup <span>Files EOD</span>
+												</p>
+												<span className="badge">Pending</span>
+												<p className="t-time">14:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-dark">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Collect documents from <a href="javascript:void(0);">Sara</a>
+												</p>
+												<span className="badge">Completed</span>
+												<p className="t-time">16:00</p>
+											</div>
+										</div>
+
+										<div className="item-timeline  timeline-warning">
+											<div className="t-dot" data-original-title="" title=""></div>
+											<div className="t-text">
+												<p>
+													Conference call with{" "}
+													<a href="javascript:void(0);">Marketing Manager</a>.
+												</p>
+												<span className="badge">In progress</span>
+												<p className="t-time">17:00</p>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div className="tm-action-btn">
+									<button className="btn">
+										<span>View All</span>{" "}
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-arrow-right"
+										>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+						<div className="widget widget-chart-two">
+							<div className="widget-heading">
+								<h5 className="">Sales by Category</h5>
+								<div className="w-icon">
+									<a className="btn btn-primary" href="javascript:void(0);">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-arrow-right"
+										>
+											<line x1="5" y1="12" x2="19" y2="12"></line>
+											<polyline points="12 5 19 12 12 19"></polyline>
+										</svg>
+									</a>
+								</div>
+							</div>
+							<div className="widget-content">
+								<div id="chart-2" className=""></div>
 							</div>
 						</div>
 					</div>

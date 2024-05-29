@@ -7,7 +7,6 @@ export const authApiSlice = createApi({
 	reducerPath: "authApi",
 	baseQuery: baseQueryWithReauth,
 	endpoints: (builder) => ({
-
 		loginUser: builder.mutation({
 			query: (payload) => ({
 				url: "/auth/login",

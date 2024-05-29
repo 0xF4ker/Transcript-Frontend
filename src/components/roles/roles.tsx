@@ -12,6 +12,7 @@ import {
 	useGetRolesQuery,
 } from "../../services/roleApiSlice";
 import { useGetPrivilegesQuery } from "../../services/privilegeApiSlice";
+import image from "../../constants/image";
 const selector = (state: any) => state.user;
 const Roles = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
@@ -216,19 +217,113 @@ const Roles = () => {
 	}, [data]);
 
 	return (
-		<div className="middle-content container-xxl p-0">
-			<div className="page-meta">
-				<nav className="breadcrumb-style-one" aria-label="breadcrumb">
-					<ol className="breadcrumb">
-						<li className="breadcrumb-item">
-							<a href="#">App</a>
-						</li>
-						<li className="breadcrumb-item active" aria-current="page">
-							Roles
-						</li>
-					</ol>
-				</nav>
+<>
+			<div className="header-container">
+				<header className="header navbar navbar-expand-sm">
+					<div className="d-flex">
+						<a className="sidebarCollapse" data-placement="bottom">
+							<div className="bt-menu-trigger">
+								<span></span>
+							</div>
+						</a>
+						<div className="page-header">
+							<div className="page-title">
+								<h3>Roles</h3>
+							</div>
+						</div>
+					</div>
+
+					<div className="header-actions">
+						<div className="nav-item dropdown language-dropdown more-dropdown">
+							<div className="dropdown custom-dropdown-icon">
+								<a
+									className="dropdown-toggle btn"
+									href="#"
+									role="button"
+									id="customDropdown"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<img src={image.flagca2} className="flag-width" alt="flag" />
+									<span>English</span>{" "}
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="feather feather-chevron-down"
+									>
+										<polyline points="6 9 12 15 18 9"></polyline>
+									</svg>
+								</a>
+
+								<div
+									className="dropdown-menu dropdown-menu-right"
+									aria-labelledby="customDropdown"
+								>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-de3"
+										data-value="German"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagde3} className="flag-width" alt="flag" /> German
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-sp"
+										data-value="Spanish"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagsp} className="flag-width" alt="flag" /> Spanish
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-fr3"
+										data-value="French"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagfr} className="flag-width" alt="flag" /> French
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-ca2"
+										data-value="English"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagca2} className="flag-width" alt="flag" /> English
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div className="toggle-notification-bar">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								className="feather feather-bell"
+							>
+								<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+								<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+							</svg>
+						</div>
+					</div>
+				</header>
 			</div>
+			<div className="admin-data-content layout-top-spacing">
 			<div className="row layout-top-spacing d-flex">
 				<div className="col-lg-12">
 					<button
@@ -718,6 +813,7 @@ const Roles = () => {
 				</div>
 			</div>
 		</div>
+		</>
 	);
 };
 export default Roles;

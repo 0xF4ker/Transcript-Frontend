@@ -13,6 +13,7 @@ import { useNavigate } from "react-router-dom";
 import { Skeleton } from "@mui/material";
 import { useGetUserQuery } from "../../services/userApiSlice";
 import { useGetDestinationRequestsQuery } from "../../services/destinationRequestApiSlice";
+import image from "../../constants/image";
 const selector = (state: any) => state.user;
 const DestinationRequests = () => {
 	const { userId } = useSelector(selector);
@@ -107,128 +108,223 @@ const DestinationRequests = () => {
 	}, [data]);
 
 	return (
-		<div className="middle-content container-xxl p-0">
-			<div className="page-meta">
-				<nav className="breadcrumb-style-one" aria-label="breadcrumb">
-					<ol className="breadcrumb">
-						<li className="breadcrumb-item">
-							<a href="#">App</a>
-						</li>
-						<li className="breadcrumb-item active" aria-current="page">
-							Destination Requests
-						</li>
-					</ol>
-				</nav>
+		<>
+			<div className="header-container">
+				<header className="header navbar navbar-expand-sm">
+					<div className="d-flex">
+						<a className="sidebarCollapse" data-placement="bottom">
+							<div className="bt-menu-trigger">
+								<span></span>
+							</div>
+						</a>
+						<div className="page-header">
+							<div className="page-title">
+								<h3>Destination Requests</h3>
+							</div>
+						</div>
+					</div>
+
+					<div className="header-actions">
+						<div className="nav-item dropdown language-dropdown more-dropdown">
+							<div className="dropdown custom-dropdown-icon">
+								<a
+									className="dropdown-toggle btn"
+									href="#"
+									role="button"
+									id="customDropdown"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<img src={image.flagca2} className="flag-width" alt="flag" />
+									<span>English</span>{" "}
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="feather feather-chevron-down"
+									>
+										<polyline points="6 9 12 15 18 9"></polyline>
+									</svg>
+								</a>
+
+								<div
+									className="dropdown-menu dropdown-menu-right"
+									aria-labelledby="customDropdown"
+								>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-de3"
+										data-value="German"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagde3} className="flag-width" alt="flag" /> German
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-sp"
+										data-value="Spanish"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagsp} className="flag-width" alt="flag" /> Spanish
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-fr3"
+										data-value="French"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagfr} className="flag-width" alt="flag" /> French
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-ca2"
+										data-value="English"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagca2} className="flag-width" alt="flag" /> English
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div className="toggle-notification-bar">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								className="feather feather-bell"
+							>
+								<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+								<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+							</svg>
+						</div>
+					</div>
+				</header>
 			</div>
-			<div className="row layout-top-spacing d-flex">
-				<div className="col-lg-12">
-					<div className="statbox widget box box-shadow">
-						<div className="widget-content widget-content-area">
-							<table id="style-1" className="table style-1 dt-table-hover non-hover">
-								<thead>
-									<tr>
-										<th className="checkbox-column dt-no-sorting"> Record no. </th>
-										<th>Destination Name</th>
-										<th>Request ID</th>
-										<th>User ID</th>
-										<th className="">Status</th>
-										<th className="text-center dt-no-sorting">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									{data?.map((destination: any, id: number) => (
-										<tr key={id}>
-											<td className="checkbox-column"> {id} </td>
-											<td className="user-name">{destination?.name}</td>
-											<td className="">{destination?.id}</td>
-											<td>{destination?.userId}</td>
-											<td>{destination?.status}</td>
-											<td className="text-center">
-												<ul className="table-controls">
-													<li>
-														<a
-															href="javascript:void(0);"
-															className="bs-tooltip"
-															data-bs-toggle="tooltip"
-															data-bs-placement="top"
-															title="Edit"
-															data-original-title="Edit"
-														>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-edit-2 p-1 br-8 mb-1"
-															>
-																<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-															</svg>
-														</a>
-													</li>
-													<li>
-														<a
-															href="javascript:void(0);"
-															className="bs-tooltip"
-															data-bs-toggle="tooltip"
-															data-bs-placement="top"
-															title="Delete"
-															data-original-title="Delete"
-														>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-trash p-1 br-8 mb-1"
-															>
-																<polyline points="3 6 5 6 21 6"></polyline>
-																<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-															</svg>
-														</a>
-													</li>
-												</ul>
-											</td>
-										</tr>
-									))}
-									{isLoadingDestinationRequests && (
+			<div className="admin-data-content layout-top-spacing">
+				<div className="row layout-top-spacing d-flex">
+					<div className="col-lg-12">
+						<div className="statbox widget box box-shadow">
+							<div className="widget-content widget-content-area">
+								<table id="style-1" className="table style-1 dt-table-hover non-hover">
+									<thead>
 										<tr>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
+											<th className="checkbox-column dt-no-sorting"> Record no. </th>
+											<th>Destination Name</th>
+											<th>Request ID</th>
+											<th>User ID</th>
+											<th className="">Status</th>
+											<th className="text-center dt-no-sorting">Action</th>
 										</tr>
-									)}
-								</tbody>
-							</table>
+									</thead>
+									<tbody>
+										{data?.map((destination: any, id: number) => (
+											<tr key={id}>
+												<td className="checkbox-column"> {id} </td>
+												<td className="user-name">{destination?.name}</td>
+												<td className="">{destination?.id}</td>
+												<td>{destination?.userId}</td>
+												<td>{destination?.status}</td>
+												<td className="text-center">
+													<ul className="table-controls">
+														<li>
+															<a
+																href="javascript:void(0);"
+																className="bs-tooltip"
+																data-bs-toggle="tooltip"
+																data-bs-placement="top"
+																title="Edit"
+																data-original-title="Edit"
+															>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-edit-2 p-1 br-8 mb-1"
+																>
+																	<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+																</svg>
+															</a>
+														</li>
+														<li>
+															<a
+																href="javascript:void(0);"
+																className="bs-tooltip"
+																data-bs-toggle="tooltip"
+																data-bs-placement="top"
+																title="Delete"
+																data-original-title="Delete"
+															>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-trash p-1 br-8 mb-1"
+																>
+																	<polyline points="3 6 5 6 21 6"></polyline>
+																	<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+																</svg>
+															</a>
+														</li>
+													</ul>
+												</td>
+											</tr>
+										))}
+										{isLoadingDestinationRequests && (
+											<tr>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+											</tr>
+										)}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default DestinationRequests;

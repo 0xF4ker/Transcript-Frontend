@@ -18,6 +18,21 @@ import hero1 from "../assets/img-hero1.jpg";
 import rapid from "../assets/rapid.jpg";
 import secure from "../assets/secure.jpg";
 import userFriendly from "../assets/user-friendly.jpg";
+import flagbrl from "../assets/flag-brl.svg";
+import flagca from "../assets/flag-ca.svg";
+import flagca2 from "../assets/flag-ca2.svg";
+import flagde from "../assets/flag-de.svg";
+import flagde3 from "../assets/flag-de3.svg";
+import flagfr3 from "../assets/flag-fr3.svg";
+import flagfr from "../assets/flag-fr.svg";
+import flaggbp from "../assets/flag-gbp.svg";
+import flagidr from "../assets/flag-idr.svg";
+import flaginr from "../assets/flag-inr.svg";
+import flagjp from "../assets/flag-jp.svg";
+import flagsp from "../assets/flag-sp.svg";
+import flagtry from "../assets/flag-try.svg";
+import flagus from "../assets/flag-us.svg";
+import userImg from "../assets/90x90.jpg";
 
 export default {
 	us,
@@ -40,4 +55,19 @@ export default {
 	rapid,
 	secure,
 	userFriendly,
+	flagbrl,
+	flagca,
+	flagde,
+	flagfr,
+	flaggbp,
+	flagidr,
+	flaginr,
+	flagjp,
+	flagsp,
+	flagtry,
+	flagus,
+	flagca2,
+	flagde3,
+	flagfr3,
+	userImg,
 };

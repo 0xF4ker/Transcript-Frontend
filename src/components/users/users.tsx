@@ -22,6 +22,7 @@ import {
 import { useGetCollegesQuery } from "../../services/collegeApiSlice";
 import { useGetDepartmentsQuery } from "../../services/departmentApiSlice";
 import { useGetRolesQuery } from "../../services/roleApiSlice";
+import image from "../../constants/image";
 const selector = (state: any) => state.user;
 const Users = () => {
 	const [isForceUpdate, setIsForceUpdate] = useState(false);
@@ -228,772 +229,870 @@ const Users = () => {
 	}, [data]);
 
 	return (
-		<div className="middle-content container-xxl p-0">
-			<div className="page-meta">
-				<nav className="breadcrumb-style-one" aria-label="breadcrumb">
-					<ol className="breadcrumb">
-						<li className="breadcrumb-item">
-							<a href="#">App</a>
-						</li>
-						<li className="breadcrumb-item active" aria-current="page">
-							Users
-						</li>
-					</ol>
-				</nav>
-			</div>
-			<div className="row layout-top-spacing d-flex">
-				<div className="col-lg-12">
-					<button
-						onClick={() => setHide((prev) => !prev)}
-						className="btn btn-primary mb-2 me-4"
-					>
-						Create User/Staff
-					</button>
-					{hide === true ? (
-						<form
-							className="row layout-top-spacing"
-							onSubmit={handleSubmit(submitForm)}
-						>
-							<div id="flLoginForm" className="col-lg-12 layout-spacing">
-								<div className="statbox widget box box-shadow ">
-									<div className="widget-content widget-content-area p-3">
-										<div className="row g-3">
-											<div className="col-md-6">
-												<label htmlFor="inputEmail4" className="form-label">
-													Email
-												</label>
-												<input
-													type="email"
-													className="form-control"
-													id="inputEmail4"
-													{...register("email", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputPassword4" className="form-label">
-													Password
-												</label>
-												<input
-													type="password"
-													className="form-control"
-													id="inputPassword4"
-													{...register("password", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputName4" className="form-label">
-													Full Name
-												</label>
-												<input
-													type="full-name"
-													className="form-control"
-													id="inputName4"
-													{...register("name", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputSchoolId4" className="form-label">
-													School ID
-												</label>
-												<input
-													type="password"
-													className="form-control"
-													id="inputSchoolId4"
-													{...register("schoolId", { required: true })}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputCollege" className="form-label">
-													Select College:
-												</label>
-												<Controller
-													name="college"
-													control={control}
-													defaultValue="" // Set the default value here if needed
-													rules={{ required: "College is required" }}
-													render={({ field }) => (
-														<select
-															id="inputCollege"
-															className="form-select"
-															{...field}
-															onChange={(e) => {
-																const collegeName = e.target.value;
-																console.log(collegeName);
-																field.onChange(e);
-																// Filter faculties based on the selected collegeId
-																const filtered = dataDepartments?.filter(
-																	(department: any) => department?.collegeName === collegeName
-																);
-																setFilteredDepartments(filtered);
-															}}
-														>
-															<option value="">Select a college</option>
-															{dataColleges?.map((college: any) => (
-																<option key={college?.id} value={college?.name}>
-																	{college?.name}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
+		<>
+			<div className="header-container">
+				<header className="header navbar navbar-expand-sm">
+					<div className="d-flex">
+						<a className="sidebarCollapse" data-placement="bottom">
+							<div className="bt-menu-trigger">
+								<span></span>
+							</div>
+						</a>
+						<div className="page-header">
+							<div className="page-title">
+								<h3>Users</h3>
+							</div>
+						</div>
+					</div>
 
-											<div className="col-md-6">
-												<label htmlFor="inputDepartment" className="form-label">
-													Select Department:
-												</label>
-												<Controller
-													name="department"
-													control={control}
-													defaultValue=""
-													rules={{ required: "Department is required" }}
-													render={({ field }) => (
-														<select id="inputDepartment" className="form-select" {...field}>
-															<option value="">Select a department</option>
-															{filteredDepartments?.map((department: any) => (
-																<option key={department?.id} value={department?.name}>
-																	{department?.name}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
-											<div className="col-md-6">
-												<label htmlFor="inputUserType" className="form-label">
-													Select User Type:
-												</label>
-												<Controller
-													name="userType"
-													control={control}
-													defaultValue="" // Set the default value here if needed
-													rules={{ required: "User type is required" }}
-													render={({ field }) => (
-														<select
-															id="inputUserType"
-															className="form-select"
-															{...field}
-															onChange={(e) => {
-																const userType = e.target.value;
-																console.log(userType);
-																field.onChange(e);
-															}}
+					<div className="header-actions">
+						<div className="nav-item dropdown language-dropdown more-dropdown">
+							<div className="dropdown custom-dropdown-icon">
+								<a
+									className="dropdown-toggle btn"
+									href="#"
+									role="button"
+									id="customDropdown"
+									data-toggle="dropdown"
+									aria-haspopup="true"
+									aria-expanded="false"
+								>
+									<img src={image.flagca2} className="flag-width" alt="flag" />
+									<span>English</span>{" "}
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										width="24"
+										height="24"
+										viewBox="0 0 24 24"
+										fill="none"
+										stroke="currentColor"
+										stroke-width="2"
+										stroke-linecap="round"
+										stroke-linejoin="round"
+										className="feather feather-chevron-down"
+									>
+										<polyline points="6 9 12 15 18 9"></polyline>
+									</svg>
+								</a>
+
+								<div
+									className="dropdown-menu dropdown-menu-right"
+									aria-labelledby="customDropdown"
+								>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-de3"
+										data-value="German"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagde3} className="flag-width" alt="flag" /> German
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-sp"
+										data-value="Spanish"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagsp} className="flag-width" alt="flag" /> Spanish
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-fr3"
+										data-value="French"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagfr} className="flag-width" alt="flag" /> French
+									</a>
+									<a
+										className="dropdown-item"
+										data-img-value="flag-ca2"
+										data-value="English"
+										href="javascript:void(0);"
+									>
+										<img src={image.flagca2} className="flag-width" alt="flag" /> English
+									</a>
+								</div>
+							</div>
+						</div>
+
+						<div className="toggle-notification-bar">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								width="24"
+								height="24"
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke="currentColor"
+								stroke-width="2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								className="feather feather-bell"
+							>
+								<path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+								<path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+							</svg>
+						</div>
+					</div>
+				</header>
+			</div>
+			<div className="admin-data-content layout-top-spacing">
+				<div className="row layout-top-spacing d-flex">
+					<div className="col-lg-12">
+						<button
+							onClick={() => setHide((prev) => !prev)}
+							className="btn btn-primary mb-2 me-4"
+						>
+							Create User/Staff
+						</button>
+						{hide === true ? (
+							<form
+								className="row layout-top-spacing"
+								onSubmit={handleSubmit(submitForm)}
+							>
+								<div id="flLoginForm" className="col-lg-12 layout-spacing">
+									<div className="statbox widget box box-shadow ">
+										<div className="widget-content widget-content-area p-3">
+											<div className="row g-3">
+												<div className="col-md-6">
+													<label htmlFor="inputEmail4" className="form-label">
+														Email
+													</label>
+													<input
+														type="email"
+														className="form-control"
+														id="inputEmail4"
+														{...register("email", { required: true })}
+													/>
+												</div>
+												<div className="col-md-6">
+													<label htmlFor="inputPassword4" className="form-label">
+														Password
+													</label>
+													<input
+														type="password"
+														className="form-control"
+														id="inputPassword4"
+														{...register("password", { required: true })}
+													/>
+												</div>
+												<div className="col-md-6">
+													<label htmlFor="inputName4" className="form-label">
+														Full Name
+													</label>
+													<input
+														type="full-name"
+														className="form-control"
+														id="inputName4"
+														{...register("name", { required: true })}
+													/>
+												</div>
+												<div className="col-md-6">
+													<label htmlFor="inputSchoolId4" className="form-label">
+														School ID
+													</label>
+													<input
+														type="password"
+														className="form-control"
+														id="inputSchoolId4"
+														{...register("schoolId", { required: true })}
+													/>
+												</div>
+												<div className="col-md-6">
+													<label htmlFor="inputCollege" className="form-label">
+														Select College:
+													</label>
+													<Controller
+														name="college"
+														control={control}
+														defaultValue="" // Set the default value here if needed
+														rules={{ required: "College is required" }}
+														render={({ field }) => (
+															<select
+																id="inputCollege"
+																className="form-select"
+																{...field}
+																onChange={(e) => {
+																	const collegeName = e.target.value;
+																	console.log(collegeName);
+																	field.onChange(e);
+																	// Filter faculties based on the selected collegeId
+																	const filtered = dataDepartments?.filter(
+																		(department: any) => department?.collegeName === collegeName
+																	);
+																	setFilteredDepartments(filtered);
+																}}
+															>
+																<option value="">Select a college</option>
+																{dataColleges?.map((college: any) => (
+																	<option key={college?.id} value={college?.name}>
+																		{college?.name}
+																	</option>
+																))}
+															</select>
+														)}
+													/>
+												</div>
+
+												<div className="col-md-6">
+													<label htmlFor="inputDepartment" className="form-label">
+														Select Department:
+													</label>
+													<Controller
+														name="department"
+														control={control}
+														defaultValue=""
+														rules={{ required: "Department is required" }}
+														render={({ field }) => (
+															<select id="inputDepartment" className="form-select" {...field}>
+																<option value="">Select a department</option>
+																{filteredDepartments?.map((department: any) => (
+																	<option key={department?.id} value={department?.name}>
+																		{department?.name}
+																	</option>
+																))}
+															</select>
+														)}
+													/>
+												</div>
+												<div className="col-md-6">
+													<label htmlFor="inputUserType" className="form-label">
+														Select User Type:
+													</label>
+													<Controller
+														name="userType"
+														control={control}
+														defaultValue="" // Set the default value here if needed
+														rules={{ required: "User type is required" }}
+														render={({ field }) => (
+															<select
+																id="inputUserType"
+																className="form-select"
+																{...field}
+																onChange={(e) => {
+																	const userType = e.target.value;
+																	console.log(userType);
+																	field.onChange(e);
+																}}
+															>
+																<option value="">Select a user type</option>
+																{userTypes?.map((userType: any, id: number) => (
+																	<option key={id} value={userType}>
+																		{userType}
+																	</option>
+																))}
+															</select>
+														)}
+													/>
+												</div>
+												<>
+													<label>Roles</label>
+													{roles?.map((_: any, index: number) => (
+														<>
+															<Controller
+																name={`roles[${index}]`}
+																control={control}
+																defaultValue=""
+																rules={{ required: "Role is required" }}
+																render={({ field }) => (
+																	<>
+																		<div className="col-md-6" key={index}>
+																			<select
+																				className="form-select"
+																				id="inlineFormSelectPref"
+																				{...field}
+																			>
+																				<option value="">Select a Role</option>
+																				{rolesData?.map((role: any) => (
+																					<option key={role?.id} value={role?.name}>
+																						{role?.name}
+																					</option>
+																				))}
+																			</select>
+																		</div>
+																		<div className="col-md-6">
+																			<button
+																				type="button"
+																				className="btn btn-danger"
+																				onClick={() => removeRole(index)}
+																			>
+																				Remove
+																			</button>
+																		</div>
+																	</>
+																)}
+															/>
+														</>
+													))}
+													<div className="col-12">
+														<button
+															type="button"
+															className="btn btn-primary"
+															onClick={addRole}
 														>
-															<option value="">Select a user type</option>
-															{userTypes?.map((userType: any, id: number) => (
-																<option key={id} value={userType}>
-																	{userType}
-																</option>
-															))}
-														</select>
-													)}
-												/>
-											</div>
-											<>
-												<label>Roles</label>
-												{roles?.map((_: any, index: number) => (
-													<>
-														<Controller
-															name={`roles[${index}]`}
-															control={control}
-															defaultValue=""
-															rules={{ required: "Role is required" }}
-															render={({ field }) => (
-																<>
-																	<div className="col-md-6" key={index}>
-																		<select
-																			className="form-select"
-																			id="inlineFormSelectPref"
-																			{...field}
-																		>
-																			<option value="">Select a Role</option>
-																			{rolesData?.map((role: any) => (
-																				<option key={role?.id} value={role?.name}>
-																					{role?.name}
-																				</option>
-																			))}
-																		</select>
-																	</div>
-																	<div className="col-md-6">
-																		<button
-																			type="button"
-																			className="btn btn-danger"
-																			onClick={() => removeRole(index)}
-																		>
-																			Remove
-																		</button>
-																	</div>
-																</>
-															)}
-														/>
-													</>
-												))}
+															Add New Role
+														</button>
+													</div>
+												</>
 												<div className="col-12">
-													<button
-														type="button"
-														className="btn btn-primary"
-														onClick={addRole}
-													>
-														Add New Role
+													<button type="submit" className="btn btn-primary">
+														{isLoading ? (
+															<>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-loader spin me-2"
+																>
+																	<line x1="12" y1="2" x2="12" y2="6"></line>
+																	<line x1="12" y1="18" x2="12" y2="22"></line>
+																	<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+																	<line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+																	<line x1="2" y1="12" x2="6" y2="12"></line>
+																	<line x1="18" y1="12" x2="22" y2="12"></line>
+																	<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+																	<line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+																</svg>{" "}
+															</>
+														) : (
+															"SUBMIT"
+														)}
 													</button>
 												</div>
-											</>
-											<div className="col-12">
-												<button type="submit" className="btn btn-primary">
-													{isLoading ? (
-														<>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-loader spin me-2"
-															>
-																<line x1="12" y1="2" x2="12" y2="6"></line>
-																<line x1="12" y1="18" x2="12" y2="22"></line>
-																<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-																<line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
-																<line x1="2" y1="12" x2="6" y2="12"></line>
-																<line x1="18" y1="12" x2="22" y2="12"></line>
-																<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
-																<line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
-															</svg>{" "}
-														</>
-													) : (
-														"SUBMIT"
-													)}
-												</button>
 											</div>
 										</div>
 									</div>
 								</div>
-							</div>
-						</form>
-					) : (
-						""
-					)}
-					<div className="layout-top-spacing statbox widget box box-shadow">
-						<div className="widget-content widget-content-area">
-							<table id="style-1" className="table style-1 dt-table-hover non-hover">
-								<thead>
-									<tr>
-										<th className="checkbox-column dt-no-sorting"> Record no. </th>
-										<th>Name</th>
-										<th>User Type</th>
-										<th>Email</th>
-										<th>School ID</th>
-										<th className="">Role</th>
-										<th className="text-center dt-no-sorting">Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									{data?.map((user: any, id: number) => (
-										<tr key={id}>
-											<td className="checkbox-column"> {id} </td>
-											<td className="user-name">{user?.name}</td>
-											<td className="">{user?.userType}</td>
-											<td>{user?.email}</td>
-											<td>{user?.schoolId}</td>
-											<td>
-												<div className="d-flex">
-													<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
-													<span className="label label-success">
-														{user?.isAdmin ? "Admin" : "User"}
-													</span>
-												</div>
-											</td>
-											<td className="text-center">
-												<ul className="table-controls">
-													<li>
-														<a
-															onClick={() => {
-																setValueEdit("name", user?.name);
-																setValueEdit("email", user?.email);
-																setValueEdit("password", user?.password);
-																setValueEdit("schoolId", user?.schoolId);
-																setValueEdit("roles", user?.roles);
-																setRoles(user?.roles);
-																setValueEdit("college", user?.college);
-																setValueEdit("department", user?.department);
-																setValueEdit("userType", user?.userType);
-																setIsForceUpdate(!isForceUpdate);
-															}}
-															data-bs-toggle="modal"
-															data-bs-target="#editUser"
-															className="bs-tooltip"
-															data-bs-placement="top"
-															title="Edit"
-															data-original-title="Edit"
-														>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-edit-2 p-1 br-8 mb-1"
+							</form>
+						) : (
+							""
+						)}
+						<div className="layout-top-spacing statbox widget box box-shadow">
+							<div className="widget-content widget-content-area">
+								<table id="style-1" className="table style-1 dt-table-hover non-hover">
+									<thead>
+										<tr>
+											<th className="checkbox-column dt-no-sorting"> Record no. </th>
+											<th>Name</th>
+											<th>User Type</th>
+											<th>Email</th>
+											<th>School ID</th>
+											<th className="">Role</th>
+											<th className="text-center dt-no-sorting">Action</th>
+										</tr>
+									</thead>
+									<tbody>
+										{data?.map((user: any, id: number) => (
+											<tr key={id}>
+												<td className="checkbox-column"> {id} </td>
+												<td className="user-name">{user?.name}</td>
+												<td className="">{user?.userType}</td>
+												<td>{user?.email}</td>
+												<td>{user?.schoolId}</td>
+												<td>
+													<div className="d-flex">
+														<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
+														<span className="label label-success">
+															{user?.isAdmin ? "Admin" : "User"}
+														</span>
+													</div>
+												</td>
+												<td className="text-center">
+													<ul className="table-controls">
+														<li>
+															<a
+																onClick={() => {
+																	setValueEdit("name", user?.name);
+																	setValueEdit("email", user?.email);
+																	setValueEdit("password", user?.password);
+																	setValueEdit("schoolId", user?.schoolId);
+																	setValueEdit("roles", user?.roles);
+																	setRoles(user?.roles);
+																	setValueEdit("college", user?.college);
+																	setValueEdit("department", user?.department);
+																	setValueEdit("userType", user?.userType);
+																	setIsForceUpdate(!isForceUpdate);
+																}}
+																data-bs-toggle="modal"
+																data-bs-target="#editUser"
+																className="bs-tooltip"
+																data-bs-placement="top"
+																title="Edit"
+																data-original-title="Edit"
 															>
-																<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
-															</svg>
-														</a>
-													</li>
-													<li>
-														<a
-															onClick={() => {
-																setValueDelete("id", user?.id);
-																setIsForceUpdate(!isForceUpdate);
-																const { id } = getValueDelete();
-																console.log(id);
-															}}
-															data-bs-toggle="modal"
-															className="bs-tooltip"
-															data-bs-target="#deleteUser"
-															data-bs-placement="top"
-															title="Delete"
-															data-original-title="Delete"
-														>
-															<svg
-																xmlns="http://www.w3.org/2000/svg"
-																width="24"
-																height="24"
-																viewBox="0 0 24 24"
-																fill="none"
-																stroke="currentColor"
-																stroke-width="2"
-																stroke-linecap="round"
-																stroke-linejoin="round"
-																className="feather feather-trash p-1 br-8 mb-1"
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-edit-2 p-1 br-8 mb-1"
+																>
+																	<path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path>
+																</svg>
+															</a>
+														</li>
+														<li>
+															<a
+																onClick={() => {
+																	setValueDelete("id", user?.id);
+																	setIsForceUpdate(!isForceUpdate);
+																	const { id } = getValueDelete();
+																	console.log(id);
+																}}
+																data-bs-toggle="modal"
+																className="bs-tooltip"
+																data-bs-target="#deleteUser"
+																data-bs-placement="top"
+																title="Delete"
+																data-original-title="Delete"
 															>
-																<polyline points="3 6 5 6 21 6"></polyline>
-																<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
-															</svg>
-														</a>
-													</li>
-												</ul>
-												<div
-													className="modal fade"
-													id="editUser"
-													tabIndex={-1}
-													role="dialog"
-													aria-labelledby="editUserTitle"
-													aria-hidden="true"
-												>
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-trash p-1 br-8 mb-1"
+																>
+																	<polyline points="3 6 5 6 21 6"></polyline>
+																	<path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+																</svg>
+															</a>
+														</li>
+													</ul>
 													<div
-														className="modal-dialog modal-dialog-centered modal-xl"
-														role="document"
+														className="modal fade"
+														id="editUser"
+														tabIndex={-1}
+														role="dialog"
+														aria-labelledby="editUserTitle"
+														aria-hidden="true"
 													>
-														<div className="modal-content">
-															<div className="modal-header">
-																<h5 className="modal-title" id="editDepartmentTitle">
-																	Edit User
-																</h5>
-																<button
-																	type="button"
-																	className="btn-close"
-																	data-bs-dismiss="modal"
-																	aria-label="Close"
-																>
-																	<svg
-																		aria-hidden="true"
-																		xmlns="http://www.w3.org/2000/svg"
-																		width="24"
-																		height="24"
-																		viewBox="0 0 24 24"
-																		fill="none"
-																		stroke="currentColor"
-																		stroke-width="2"
-																		stroke-linecap="round"
-																		stroke-linejoin="round"
-																		className="feather feather-x"
+														<div
+															className="modal-dialog modal-dialog-centered modal-xl"
+															role="document"
+														>
+															<div className="modal-content">
+																<div className="modal-header">
+																	<h5 className="modal-title" id="editDepartmentTitle">
+																		Edit User
+																	</h5>
+																	<button
+																		type="button"
+																		className="btn-close"
+																		data-bs-dismiss="modal"
+																		aria-label="Close"
 																	>
-																		<line x1="18" y1="6" x2="6" y2="18"></line>
-																		<line x1="6" y1="6" x2="18" y2="18"></line>
-																	</svg>
-																</button>
-															</div>
-															<div className="modal-body">
-																<form
-																	className="row layout-top-spacing"
-																	onSubmit={handleSubmitEdit(submitEditForm)}
-																>
-																	<div id="flLoginForm" className="col-lg-12 layout-spacing">
-																		<div className="statbox widget box box-shadow ">
-																			<div className="widget-content widget-content-area p-3">
-																				<div className="row g-3">
-																					<div className="col-md-6">
-																						<label htmlFor="inputEmail4" className="form-label">
-																							Email
-																						</label>
-																						<input
-																							type="email"
-																							className="form-control"
-																							id="inputEmail4"
-																							{...registerEdit("email", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputPassword4" className="form-label">
-																							Password
-																						</label>
-																						<input
-																							type="password"
-																							className="form-control"
-																							id="inputPassword4"
-																							{...registerEdit("password", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputName4" className="form-label">
-																							Full Name
-																						</label>
-																						<input
-																							type="full-name"
-																							className="form-control"
-																							id="inputName4"
-																							{...registerEdit("name", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputSchoolId4" className="form-label">
-																							School ID
-																						</label>
-																						<input
-																							type="password"
-																							className="form-control"
-																							id="inputSchoolId4"
-																							{...registerEdit("schoolId", { required: true })}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputCollege" className="form-label">
-																							Select College:
-																						</label>
-																						<Controller
-																							name="college"
-																							control={controlEdit}
-																							rules={{ required: "College is required" }}
-																							defaultValue="" // Set the default value here if needed
-																							render={({ field }) => (
-																								<select
-																									id="inputCollege"
-																									className="form-select"
-																									{...field}
-																									onChange={(e) => {
-																										const collegeName = e.target.value;
-																										console.log(collegeName);
-																										field.onChange(e);
-																										// Filter faculties based on the selected collegeId
-																										const filtered = dataDepartments?.filter(
-																											(department: any) =>
-																												department?.collegeName === collegeName
-																										);
-																										setFilteredDepartments(filtered);
-																									}}
-																								>
-																									<option value="">Select a college</option>
-																									{dataColleges?.map((college: any) => (
-																										<option key={college?.id} value={college?.name}>
-																											{college?.name}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
+																		<svg
+																			aria-hidden="true"
+																			xmlns="http://www.w3.org/2000/svg"
+																			width="24"
+																			height="24"
+																			viewBox="0 0 24 24"
+																			fill="none"
+																			stroke="currentColor"
+																			stroke-width="2"
+																			stroke-linecap="round"
+																			stroke-linejoin="round"
+																			className="feather feather-x"
+																		>
+																			<line x1="18" y1="6" x2="6" y2="18"></line>
+																			<line x1="6" y1="6" x2="18" y2="18"></line>
+																		</svg>
+																	</button>
+																</div>
+																<div className="modal-body">
+																	<form
+																		className="row layout-top-spacing"
+																		onSubmit={handleSubmitEdit(submitEditForm)}
+																	>
+																		<div id="flLoginForm" className="col-lg-12 layout-spacing">
+																			<div className="statbox widget box box-shadow ">
+																				<div className="widget-content widget-content-area p-3">
+																					<div className="row g-3">
+																						<div className="col-md-6">
+																							<label htmlFor="inputEmail4" className="form-label">
+																								Email
+																							</label>
+																							<input
+																								type="email"
+																								className="form-control"
+																								id="inputEmail4"
+																								{...registerEdit("email", { required: true })}
+																							/>
+																						</div>
+																						<div className="col-md-6">
+																							<label htmlFor="inputPassword4" className="form-label">
+																								Password
+																							</label>
+																							<input
+																								type="password"
+																								className="form-control"
+																								id="inputPassword4"
+																								{...registerEdit("password", { required: true })}
+																							/>
+																						</div>
+																						<div className="col-md-6">
+																							<label htmlFor="inputName4" className="form-label">
+																								Full Name
+																							</label>
+																							<input
+																								type="full-name"
+																								className="form-control"
+																								id="inputName4"
+																								{...registerEdit("name", { required: true })}
+																							/>
+																						</div>
+																						<div className="col-md-6">
+																							<label htmlFor="inputSchoolId4" className="form-label">
+																								School ID
+																							</label>
+																							<input
+																								type="password"
+																								className="form-control"
+																								id="inputSchoolId4"
+																								{...registerEdit("schoolId", { required: true })}
+																							/>
+																						</div>
+																						<div className="col-md-6">
+																							<label htmlFor="inputCollege" className="form-label">
+																								Select College:
+																							</label>
+																							<Controller
+																								name="college"
+																								control={controlEdit}
+																								rules={{ required: "College is required" }}
+																								defaultValue="" // Set the default value here if needed
+																								render={({ field }) => (
+																									<select
+																										id="inputCollege"
+																										className="form-select"
+																										{...field}
+																										onChange={(e) => {
+																											const collegeName = e.target.value;
+																											console.log(collegeName);
+																											field.onChange(e);
+																											// Filter faculties based on the selected collegeId
+																											const filtered = dataDepartments?.filter(
+																												(department: any) =>
+																													department?.collegeName === collegeName
+																											);
+																											setFilteredDepartments(filtered);
+																										}}
+																									>
+																										<option value="">Select a college</option>
+																										{dataColleges?.map((college: any) => (
+																											<option key={college?.id} value={college?.name}>
+																												{college?.name}
+																											</option>
+																										))}
+																									</select>
+																								)}
+																							/>
+																						</div>
 
-																					<div className="col-md-6">
-																						<label htmlFor="inputDepartment" className="form-label">
-																							Select Department:
-																						</label>
-																						<Controller
-																							name="department"
-																							control={controlEdit}
-																							rules={{ required: "Department is required" }}
-																							defaultValue=""
-																							render={({ field }) => (
-																								<select
-																									id="inputDepartment"
-																									className="form-select"
-																									{...field}
+																						<div className="col-md-6">
+																							<label htmlFor="inputDepartment" className="form-label">
+																								Select Department:
+																							</label>
+																							<Controller
+																								name="department"
+																								control={controlEdit}
+																								rules={{ required: "Department is required" }}
+																								defaultValue=""
+																								render={({ field }) => (
+																									<select
+																										id="inputDepartment"
+																										className="form-select"
+																										{...field}
+																									>
+																										<option value="">Select a department</option>
+																										{filteredDepartments?.map((department: any) => (
+																											<option
+																												key={department?.id}
+																												value={department?.name}
+																											>
+																												{department?.name}
+																											</option>
+																										))}
+																									</select>
+																								)}
+																							/>
+																						</div>
+																						<div className="col-md-6">
+																							<label htmlFor="inputUserType" className="form-label">
+																								Select User Type:
+																							</label>
+																							<Controller
+																								name="userType"
+																								rules={{ required: "User type is required" }}
+																								control={controlEdit}
+																								defaultValue="" // Set the default value here if needed
+																								render={({ field }) => (
+																									<select
+																										id="inputUserType"
+																										className="form-select"
+																										{...field}
+																										onChange={(e) => {
+																											const userType = e.target.value;
+																											console.log(userType);
+																											field.onChange(e);
+																										}}
+																									>
+																										<option value="">Select a user type</option>
+																										{userTypes?.map((userType: any, id: number) => (
+																											<option key={id} value={userType}>
+																												{userType}
+																											</option>
+																										))}
+																									</select>
+																								)}
+																							/>
+																						</div>
+																						<>
+																							<label>Roles</label>
+																							{roles?.map((_: any, index: number) => (
+																								<>
+																									<Controller
+																										name={`roles[${index}]`}
+																										control={controlEdit}
+																										rules={{ required: "Role is required" }}
+																										defaultValue=""
+																										render={({ field }) => (
+																											<>
+																												<div className="col-md-6" key={index}>
+																													<select
+																														className="form-select"
+																														id="inlineFormSelectPref"
+																														{...field}
+																													>
+																														<option value="">Select a Role</option>
+																														{rolesData?.map((role: any) => (
+																															<option key={role?.id} value={role?.name}>
+																																{role?.name}
+																															</option>
+																														))}
+																													</select>
+																												</div>
+																												<div className="col-md-6">
+																													<button
+																														type="button"
+																														className="btn btn-danger"
+																														onClick={() => removeRole(index)}
+																													>
+																														Remove
+																													</button>
+																												</div>
+																											</>
+																										)}
+																									/>
+																								</>
+																							))}
+																							<div className="col-12">
+																								<button
+																									type="button"
+																									className="btn btn-primary"
+																									onClick={addRole}
 																								>
-																									<option value="">Select a department</option>
-																									{filteredDepartments?.map((department: any) => (
-																										<option key={department?.id} value={department?.name}>
-																											{department?.name}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
-																					<div className="col-md-6">
-																						<label htmlFor="inputUserType" className="form-label">
-																							Select User Type:
-																						</label>
-																						<Controller
-																							name="userType"
-																							rules={{ required: "User type is required" }}
-																							control={controlEdit}
-																							defaultValue="" // Set the default value here if needed
-																							render={({ field }) => (
-																								<select
-																									id="inputUserType"
-																									className="form-select"
-																									{...field}
-																									onChange={(e) => {
-																										const userType = e.target.value;
-																										console.log(userType);
-																										field.onChange(e);
-																									}}
-																								>
-																									<option value="">Select a user type</option>
-																									{userTypes?.map((userType: any, id: number) => (
-																										<option key={id} value={userType}>
-																											{userType}
-																										</option>
-																									))}
-																								</select>
-																							)}
-																						/>
-																					</div>
-																					<>
-																						<label>Roles</label>
-																						{roles?.map((_: any, index: number) => (
-																							<>
-																								<Controller
-																									name={`roles[${index}]`}
-																									control={controlEdit}
-																									rules={{ required: "Role is required" }}
-																									defaultValue=""
-																									render={({ field }) => (
-																										<>
-																											<div className="col-md-6" key={index}>
-																												<select
-																													className="form-select"
-																													id="inlineFormSelectPref"
-																													{...field}
-																												>
-																													<option value="">Select a Role</option>
-																													{rolesData?.map((role: any) => (
-																														<option key={role?.id} value={role?.name}>
-																															{role?.name}
-																														</option>
-																													))}
-																												</select>
-																											</div>
-																											<div className="col-md-6">
-																												<button
-																													type="button"
-																													className="btn btn-danger"
-																													onClick={() => removeRole(index)}
-																												>
-																													Remove
-																												</button>
-																											</div>
-																										</>
-																									)}
-																								/>
-																							</>
-																						))}
+																									Add New Role
+																								</button>
+																							</div>
+																						</>
 																						<div className="col-12">
-																							<button
-																								type="button"
-																								className="btn btn-primary"
-																								onClick={addRole}
-																							>
-																								Add New Role
+																							<button type="submit" className="btn btn-primary">
+																								{isLoadingEdit ? (
+																									<>
+																										<svg
+																											xmlns="http://www.w3.org/2000/svg"
+																											width="24"
+																											height="24"
+																											viewBox="0 0 24 24"
+																											fill="none"
+																											stroke="currentColor"
+																											stroke-width="2"
+																											stroke-linecap="round"
+																											stroke-linejoin="round"
+																											className="feather feather-loader spin me-2"
+																										>
+																											<line x1="12" y1="2" x2="12" y2="6"></line>
+																											<line x1="12" y1="18" x2="12" y2="22"></line>
+																											<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+																											<line
+																												x1="16.24"
+																												y1="16.24"
+																												x2="19.07"
+																												y2="19.07"
+																											></line>
+																											<line x1="2" y1="12" x2="6" y2="12"></line>
+																											<line x1="18" y1="12" x2="22" y2="12"></line>
+																											<line
+																												x1="4.93"
+																												y1="19.07"
+																												x2="7.76"
+																												y2="16.24"
+																											></line>
+																											<line
+																												x1="16.24"
+																												y1="7.76"
+																												x2="19.07"
+																												y2="4.93"
+																											></line>
+																										</svg>{" "}
+																									</>
+																								) : (
+																									"SUBMIT"
+																								)}
 																							</button>
 																						</div>
-																					</>
-																					<div className="col-12">
-																						<button type="submit" className="btn btn-primary">
-																							{isLoadingEdit ? (
-																								<>
-																									<svg
-																										xmlns="http://www.w3.org/2000/svg"
-																										width="24"
-																										height="24"
-																										viewBox="0 0 24 24"
-																										fill="none"
-																										stroke="currentColor"
-																										stroke-width="2"
-																										stroke-linecap="round"
-																										stroke-linejoin="round"
-																										className="feather feather-loader spin me-2"
-																									>
-																										<line x1="12" y1="2" x2="12" y2="6"></line>
-																										<line x1="12" y1="18" x2="12" y2="22"></line>
-																										<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-																										<line
-																											x1="16.24"
-																											y1="16.24"
-																											x2="19.07"
-																											y2="19.07"
-																										></line>
-																										<line x1="2" y1="12" x2="6" y2="12"></line>
-																										<line x1="18" y1="12" x2="22" y2="12"></line>
-																										<line
-																											x1="4.93"
-																											y1="19.07"
-																											x2="7.76"
-																											y2="16.24"
-																										></line>
-																										<line
-																											x1="16.24"
-																											y1="7.76"
-																											x2="19.07"
-																											y2="4.93"
-																										></line>
-																									</svg>{" "}
-																								</>
-																							) : (
-																								"SUBMIT"
-																							)}
-																						</button>
 																					</div>
 																				</div>
 																			</div>
 																		</div>
-																	</div>
-																</form>
+																	</form>
+																</div>
 															</div>
 														</div>
 													</div>
-												</div>
-												<div
-													className="modal fade"
-													id="deleteUser"
-													tabIndex={-1}
-													role="dialog"
-													aria-labelledby="exampleUserTitle"
-													aria-hidden="true"
-												>
 													<div
-														className="modal-dialog modal-dialog-centered"
-														role="document"
+														className="modal fade"
+														id="deleteUser"
+														tabIndex={-1}
+														role="dialog"
+														aria-labelledby="exampleUserTitle"
+														aria-hidden="true"
 													>
-														<div className="modal-content">
-															<div className="modal-header">
-																<h5 className="modal-title" id="exampleTranscriptRequestTitle">
-																	Delete User
-																</h5>
-																<button
-																	type="button"
-																	className="btn-close"
-																	data-bs-dismiss="modal"
-																	aria-label="Close"
-																>
-																	<svg
-																		aria-hidden="true"
-																		xmlns="http://www.w3.org/2000/svg"
-																		width="24"
-																		height="24"
-																		viewBox="0 0 24 24"
-																		fill="none"
-																		stroke="currentColor"
-																		stroke-width="2"
-																		stroke-linecap="round"
-																		stroke-linejoin="round"
-																		className="feather feather-x"
+														<div
+															className="modal-dialog modal-dialog-centered"
+															role="document"
+														>
+															<div className="modal-content">
+																<div className="modal-header">
+																	<h5 className="modal-title" id="exampleTranscriptRequestTitle">
+																		Delete User
+																	</h5>
+																	<button
+																		type="button"
+																		className="btn-close"
+																		data-bs-dismiss="modal"
+																		aria-label="Close"
 																	>
-																		<line x1="18" y1="6" x2="6" y2="18"></line>
-																		<line x1="6" y1="6" x2="18" y2="18"></line>
-																	</svg>
-																</button>
-															</div>
-															<div className="modal-body">
-																<input hidden {...registerDelete("id")} />
-																<p className="modal-text">Do you confirm to delete?</p>
-															</div>
-															<div className="modal-footer">
-																<button className="btn btn-light-dark" data-bs-dismiss="modal">
-																	Discard
-																</button>
-																<button
-																	type="button"
-																	onClick={() => {
-																		const { id } = getValueDelete();
-																		console.log(id);
-																		deleteUser(id);
-																	}}
-																	className="btn btn-danger"
-																>
-																	{isLoadingDelete ? (
-																		<>
-																			<svg
-																				xmlns="http://www.w3.org/2000/svg"
-																				width="24"
-																				height="24"
-																				viewBox="0 0 24 24"
-																				fill="none"
-																				stroke="currentColor"
-																				stroke-width="2"
-																				stroke-linecap="round"
-																				stroke-linejoin="round"
-																				className="feather feather-loader spin me-2"
-																			>
-																				<line x1="12" y1="2" x2="12" y2="6"></line>
-																				<line x1="12" y1="18" x2="12" y2="22"></line>
-																				<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
-																				<line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
-																				<line x1="2" y1="12" x2="6" y2="12"></line>
-																				<line x1="18" y1="12" x2="22" y2="12"></line>
-																				<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
-																				<line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
-																			</svg>{" "}
-																		</>
-																	) : (
-																		"Delete"
-																	)}
-																</button>
+																		<svg
+																			aria-hidden="true"
+																			xmlns="http://www.w3.org/2000/svg"
+																			width="24"
+																			height="24"
+																			viewBox="0 0 24 24"
+																			fill="none"
+																			stroke="currentColor"
+																			stroke-width="2"
+																			stroke-linecap="round"
+																			stroke-linejoin="round"
+																			className="feather feather-x"
+																		>
+																			<line x1="18" y1="6" x2="6" y2="18"></line>
+																			<line x1="6" y1="6" x2="18" y2="18"></line>
+																		</svg>
+																	</button>
+																</div>
+																<div className="modal-body">
+																	<input hidden {...registerDelete("id")} />
+																	<p className="modal-text">Do you confirm to delete?</p>
+																</div>
+																<div className="modal-footer">
+																	<button className="btn btn-light-dark" data-bs-dismiss="modal">
+																		Discard
+																	</button>
+																	<button
+																		type="button"
+																		onClick={() => {
+																			const { id } = getValueDelete();
+																			console.log(id);
+																			deleteUser(id);
+																		}}
+																		className="btn btn-danger"
+																	>
+																		{isLoadingDelete ? (
+																			<>
+																				<svg
+																					xmlns="http://www.w3.org/2000/svg"
+																					width="24"
+																					height="24"
+																					viewBox="0 0 24 24"
+																					fill="none"
+																					stroke="currentColor"
+																					stroke-width="2"
+																					stroke-linecap="round"
+																					stroke-linejoin="round"
+																					className="feather feather-loader spin me-2"
+																				>
+																					<line x1="12" y1="2" x2="12" y2="6"></line>
+																					<line x1="12" y1="18" x2="12" y2="22"></line>
+																					<line x1="4.93" y1="4.93" x2="7.76" y2="7.76"></line>
+																					<line x1="16.24" y1="16.24" x2="19.07" y2="19.07"></line>
+																					<line x1="2" y1="12" x2="6" y2="12"></line>
+																					<line x1="18" y1="12" x2="22" y2="12"></line>
+																					<line x1="4.93" y1="19.07" x2="7.76" y2="16.24"></line>
+																					<line x1="16.24" y1="7.76" x2="19.07" y2="4.93"></line>
+																				</svg>{" "}
+																			</>
+																		) : (
+																			"Delete"
+																		)}
+																	</button>
+																</div>
 															</div>
 														</div>
 													</div>
-												</div>
-											</td>
-										</tr>
-									))}
-									{isLoadingUsers && (
-										<tr>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-											<td>
-												<Skeleton variant="rectangular" width={"100%"} height={20} />
-											</td>
-										</tr>
-									)}
-								</tbody>
-							</table>
+												</td>
+											</tr>
+										))}
+										{isLoadingUsers && (
+											<tr>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+												<td>
+													<Skeleton variant="rectangular" width={"100%"} height={20} />
+												</td>
+											</tr>
+										)}
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</>
 	);
 };
 export default Users;
