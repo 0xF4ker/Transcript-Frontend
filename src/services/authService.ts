@@ -1,7 +1,7 @@
 // services/authService.js
 
 export const checkAuthStatus = async () => {
-	const response = await fetch("http://localhost:3001/auth/status", {
+	const response = await fetch("https://api.transcript.adenibuyan.com", {
 		credentials: "include",
 	});
 	const data = await response.json();
