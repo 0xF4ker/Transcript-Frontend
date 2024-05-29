@@ -24,6 +24,7 @@ import Roles from "./components/roles/roles";
 import Dashboard from "./components/dashboard/dashboard";
 import TranscriptCheckout from "./components/transcript-checkout/transcriptCheckout";
 import ProtectedRoute from "./components/ProtectedRoute";
+import { Helmet } from "react-helmet";
 
 function App() {
 	useEffect(() => {
@@ -64,6 +65,16 @@ function App() {
 					<Route path="request-destination" element={<RequestDestination />} />
 				</Route>
 			</Routes>
+			<Helmet>
+				<script src="/scripts/jquery-3.1.1.min.js"></script>
+				<script src="/scripts/bootstrap.bundle.min.js"></script>
+				<script src="/scripts/popper.min.js"></script>
+				<script src="/scripts/perfect-scrollbar.min.js"></script>
+				<script src="/scripts/mousetrap.min.js"></script>
+				<script src="/scripts/waves.min.js"></script>
+				<script src="/scripts/apexcharts.min.js"></script>
+				<script src="/scripts/app.js"></script>
+			</Helmet>
 		</>
 	);
 }

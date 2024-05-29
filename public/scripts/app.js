@@ -470,3 +470,4 @@ var App = (function () {
 		},
 	};
 })();
+App.init();

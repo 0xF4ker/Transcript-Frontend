@@ -1,20 +1,21 @@
-import { useEffect } from "react";
+// import { useEffect } from "react";
 import image from "../../constants/image";
 import "./styles/apexcharts.css";
 import "./styles/dash_2.css";
+import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
 	// const { data } = useGetUsersQuery("");
 	// const { data: dataRequests } = useGetTranscriptRequestsQuery("");
-	useEffect(() => {
-		const script = document.createElement("script");
-		script.src = "/scripts/dash_2.js";
-		script.async = true;
-		document.body.appendChild(script);
-		return () => {
-			document.body.removeChild(script);
-		};
-	}, []);
+	// useEffect(() => {
+	// 	const script = document.createElement("script");
+	// 	script.src = "/scripts/dash_2.js";
+	// 	script.async = true;
+	// 	document.body.appendChild(script);
+	// 	return () => {
+	// 		document.body.removeChild(script);
+	// 	};
+	// }, []);
 	return (
 		<>
 			<div className="header-container">
@@ -1209,6 +1210,9 @@ const AdminDashboard = () => {
 					</div>
 				</div>
 			</div>
+			<Helmet>
+				<script src="/scripts/dash_2.js" />
+			</Helmet>
 		</>
 	);
 };
