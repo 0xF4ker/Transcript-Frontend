@@ -552,7 +552,7 @@ try {
 	async function fetchDashboardData() {
 		try {
 			const response = await fetch(
-				"http://localhost:3001/admin-dashboard/admin-dashboard",
+				"https://api.transcript.adenibuyan.com/admin-dashboard/admin-dashboard",
 				{
 					credentials: "include",
 				}
