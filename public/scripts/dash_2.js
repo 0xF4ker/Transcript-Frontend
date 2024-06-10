@@ -5,143 +5,143 @@ try {
     ==============================
 */
 
-	/*
-    =============================
-        Daily Sales | Options
-    =============================
-*/
-	var d_2options1 = {
-		chart: {
-			height: 160,
-			type: "bar",
-			stacked: true,
-			toolbar: {
-				show: false,
-			},
-		},
-		dataLabels: {
-			enabled: false,
-		},
-		stroke: {
-			show: true,
-			width: 1,
-		},
-		colors: ["#70B2D9", "#e7f7ff"],
-		responsive: [
-			{
-				breakpoint: 480,
-				options: {
-					legend: {
-						position: "bottom",
-						offsetX: -10,
-						offsetY: 0,
-					},
-				},
-			},
-		],
-		series: [
-			{
-				name: "Sales",
-				data: [44, 55, 41, 67, 22, 43, 21],
-			},
-			{
-				name: "Last Week",
-				data: [13, 23, 20, 8, 13, 27, 33],
-			},
-		],
-		xaxis: {
-			labels: {
-				show: false,
-			},
-			categories: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
-		},
-		yaxis: {
-			show: false,
-		},
-		fill: {
-			opacity: 1,
-		},
-		plotOptions: {
-			bar: {
-				horizontal: false,
-				startingShape: "rounded",
-				endingShape: "rounded",
-				columnWidth: "25%",
-			},
-		},
-		legend: {
-			show: false,
-		},
-		grid: {
-			show: false,
-			xaxis: {
-				lines: {
-					show: false,
-				},
-			},
-			padding: {
-				top: 10,
-				right: 0,
-				bottom: -40,
-				left: 0,
-			},
-		},
-	};
+	// 	/*
+	//     =============================
+	//         Daily Sales | Options
+	//     =============================
+	// */
+	// 	var d_2options1 = {
+	// 		chart: {
+	// 			height: 160,
+	// 			type: "bar",
+	// 			stacked: true,
+	// 			toolbar: {
+	// 				show: false,
+	// 			},
+	// 		},
+	// 		dataLabels: {
+	// 			enabled: false,
+	// 		},
+	// 		stroke: {
+	// 			show: true,
+	// 			width: 1,
+	// 		},
+	// 		colors: ["#70B2D9", "#e7f7ff"],
+	// 		responsive: [
+	// 			{
+	// 				breakpoint: 480,
+	// 				options: {
+	// 					legend: {
+	// 						position: "bottom",
+	// 						offsetX: -10,
+	// 						offsetY: 0,
+	// 					},
+	// 				},
+	// 			},
+	// 		],
+	// 		series: [
+	// 			{
+	// 				name: "Sales",
+	// 				data: [44, 55, 41, 67, 22, 43, 21],
+	// 			},
+	// 			{
+	// 				name: "Last Week",
+	// 				data: [13, 23, 20, 8, 13, 27, 33],
+	// 			},
+	// 		],
+	// 		xaxis: {
+	// 			labels: {
+	// 				show: false,
+	// 			},
+	// 			categories: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+	// 		},
+	// 		yaxis: {
+	// 			show: false,
+	// 		},
+	// 		fill: {
+	// 			opacity: 1,
+	// 		},
+	// 		plotOptions: {
+	// 			bar: {
+	// 				horizontal: false,
+	// 				startingShape: "rounded",
+	// 				endingShape: "rounded",
+	// 				columnWidth: "25%",
+	// 			},
+	// 		},
+	// 		legend: {
+	// 			show: false,
+	// 		},
+	// 		grid: {
+	// 			show: false,
+	// 			xaxis: {
+	// 				lines: {
+	// 					show: false,
+	// 				},
+	// 			},
+	// 			padding: {
+	// 				top: 10,
+	// 				right: 0,
+	// 				bottom: -40,
+	// 				left: 0,
+	// 			},
+	// 		},
+	// 	};
 
-	/*
-    =============================
-        Total Orders | Options
-    =============================
-*/
-	var d_2options2 = {
-		chart: {
-			id: "sparkline1",
-			group: "sparklines",
-			type: "area",
-			height: 280,
-			sparkline: {
-				enabled: true,
-			},
-		},
-		stroke: {
-			curve: "smooth",
-			width: 2,
-		},
-		fill: {
-			opacity: 1,
-		},
-		series: [
-			{
-				name: "Sales",
-				data: [28, 40, 36, 52, 38, 60, 38, 52, 36, 40],
-			},
-		],
-		labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
-		yaxis: {
-			min: 0,
-		},
-		grid: {
-			padding: {
-				top: 125,
-				right: 0,
-				bottom: 0,
-				left: 0,
-			},
-		},
-		tooltip: {
-			x: {
-				show: false,
-			},
-			theme: "dark",
-		},
-		colors: ["#e7515a"],
-	};
+	// 	/*
+	//     =============================
+	//         Total Orders | Options
+	//     =============================
+	// */
+	// 	var d_2options2 = {
+	// 		chart: {
+	// 			id: "sparkline1",
+	// 			group: "sparklines",
+	// 			type: "area",
+	// 			height: 280,
+	// 			sparkline: {
+	// 				enabled: true,
+	// 			},
+	// 		},
+	// 		stroke: {
+	// 			curve: "smooth",
+	// 			width: 2,
+	// 		},
+	// 		fill: {
+	// 			opacity: 1,
+	// 		},
+	// 		series: [
+	// 			{
+	// 				name: "Sales",
+	// 				data: [28, 40, 36, 52, 38, 60, 38, 52, 36, 40],
+	// 			},
+	// 		],
+	// 		labels: ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10"],
+	// 		yaxis: {
+	// 			min: 0,
+	// 		},
+	// 		grid: {
+	// 			padding: {
+	// 				top: 125,
+	// 				right: 0,
+	// 				bottom: 0,
+	// 				left: 0,
+	// 			},
+	// 		},
+	// 		tooltip: {
+	// 			x: {
+	// 				show: false,
+	// 			},
+	// 			theme: "dark",
+	// 		},
+	// 		colors: ["#e7515a"],
+	// 	};
 
-	/*
-    =================================
-        Revenue Monthly | Options
-    =================================
-*/
+	// 	/*
+	//     =================================
+	//         Revenue Monthly | Options
+	//     =================================
+	// */
 	var options1 = {
 		chart: {
 			fontFamily: "Quicksand, sans-serif",
@@ -499,45 +499,45 @@ try {
 		],
 	};
 
-	/*
-    ==============================
-    |    @Render Charts Script    |
-    ==============================
-*/
+	// 	/*
+	//     ==============================
+	//     |    @Render Charts Script    |
+	//     ==============================
+	// */
 
-	/*
-    ============================
-        Daily Sales | Render
-    ============================
-*/
-	var d_2C_1 = new ApexCharts(
-		document.querySelector("#daily-sales"),
-		d_2options1
-	);
-	d_2C_1.render();
+	// 	/*
+	//     ============================
+	//         Daily Sales | Render
+	//     ============================
+	// */
+	// 	var d_2C_1 = new ApexCharts(
+	// 		document.querySelector("#daily-sales"),
+	// 		d_2options1
+	// 	);
+	// 	d_2C_1.render();
 
-	/*
-    ============================
-        Total Orders | Render
-    ============================
-*/
-	var d_2C_2 = new ApexCharts(
-		document.querySelector("#total-orders"),
-		d_2options2
-	);
-	d_2C_2.render();
+	// 	/*
+	//     ============================
+	//         Total Orders | Render
+	//     ============================
+	// */
+	// 	var d_2C_2 = new ApexCharts(
+	// 		document.querySelector("#total-orders"),
+	// 		d_2options2
+	// 	);
+	// 	d_2C_2.render();
 
-	/*
-    ================================
-        Revenue Monthly | Render
-    ================================
-*/
-	var chart1 = new ApexCharts(
-		document.querySelector("#revenueMonthly"),
-		options1
-	);
+	// 	/*
+	//     ================================
+	//         Revenue Monthly | Render
+	//     ================================
+	// */
+	// 	var chart1 = new ApexCharts(
+	// 		document.querySelector("#revenueMonthly"),
+	// 		options1
+	// 	);
 
-	chart1.render();
+	// 	chart1.render();
 
 	/*
     =================================
@@ -547,6 +547,434 @@ try {
 	var chart = new ApexCharts(document.querySelector("#chart-2"), options);
 
 	chart.render();
+
+	// Function to fetch data from the backend API
+	async function fetchDashboardData() {
+		try {
+			const response = await fetch(
+				"http://localhost:3001/admin-dashboard/admin-dashboard",
+				{
+					credentials: "include",
+				}
+			);
+			if (!response.ok) {
+				throw new Error("Network response was not ok");
+			}
+			const data = await response.json();
+			return data;
+		} catch (error) {
+			console.error("There was a problem with the fetch operation:", error);
+		}
+	}
+
+	// Function to configure the Total Requests chart
+	function configureTotalRequestsChart(data) {
+		return {
+			chart: {
+				id: "total-requests-chart",
+				type: "area",
+				height: 280,
+				sparkline: {
+					enabled: true,
+				},
+			},
+			stroke: {
+				curve: "smooth",
+				width: 2,
+			},
+			fill: {
+				opacity: 1,
+			},
+			series: [
+				{
+					name: "Requests",
+					data: data.monthlyTranscriptRequests,
+				},
+			],
+			labels: [
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
+			],
+			yaxis: {
+				min: 0,
+			},
+			grid: {
+				padding: {
+					top: 125,
+					right: 0,
+					bottom: 0,
+					left: 0,
+				},
+			},
+			tooltip: {
+				x: {
+					show: false,
+				},
+				theme: "dark",
+			},
+			colors: ["#e7515a"],
+		};
+	}
+
+	// Function to configure the Monthly Revenue chart
+	function configureMonthlyRevenueChart(data) {
+		return {
+			chart: {
+				fontFamily: "Quicksand, sans-serif",
+				height: 365,
+				type: "area",
+				zoom: {
+					enabled: false,
+				},
+				dropShadow: {
+					enabled: true,
+					opacity: 0.2,
+					blur: 10,
+					left: -7,
+					top: 22,
+				},
+				toolbar: {
+					show: false,
+				},
+				events: {
+					mounted: function (ctx, config) {
+						const highest1 = ctx.getHighestValueInSeries(0);
+						const highest2 = ctx.getHighestValueInSeries(1);
+
+						ctx.addPointAnnotation({
+							x: new Date(
+								ctx.w.globals.seriesX[0][ctx.w.globals.series[0].indexOf(highest1)]
+							).getTime(),
+							y: highest1,
+							label: {
+								style: {
+									cssClass: "d-none",
+								},
+							},
+							customSVG: {
+								SVG: '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#2196f3" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>',
+								cssClass: undefined,
+								offsetX: -8,
+								offsetY: 5,
+							},
+						});
+
+						ctx.addPointAnnotation({
+							x: new Date(
+								ctx.w.globals.seriesX[1][ctx.w.globals.series[1].indexOf(highest2)]
+							).getTime(),
+							y: highest2,
+							label: {
+								style: {
+									cssClass: "d-none",
+								},
+							},
+							customSVG: {
+								SVG: '<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="#6d17cb" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="feather feather-circle"><circle cx="12" cy="12" r="10"></circle></svg>',
+								cssClass: undefined,
+								offsetX: -8,
+								offsetY: 5,
+							},
+						});
+					},
+				},
+			},
+			colors: ["#2196f3", "#6d17cb"],
+			dataLabels: {
+				enabled: false,
+			},
+			markers: {
+				discrete: [
+					{
+						seriesIndex: 0,
+						dataPointIndex: 7,
+						fillColor: "#000",
+						strokeColor: "#000",
+						size: 5,
+					},
+					{
+						seriesIndex: 2,
+						dataPointIndex: 11,
+						fillColor: "#000",
+						strokeColor: "#000",
+						size: 4,
+					},
+				],
+			},
+			subtitle: {
+				text: "$10,840",
+				align: "left",
+				margin: 0,
+				offsetX: 95,
+				offsetY: 0,
+				floating: false,
+				style: {
+					fontSize: "18px",
+					color: "#4361ee",
+				},
+			},
+			title: {
+				text: "Total Profit",
+				align: "left",
+				margin: 0,
+				offsetX: -10,
+				offsetY: 0,
+				floating: false,
+				style: {
+					fontSize: "18px",
+					color: "#0e1726",
+				},
+			},
+			stroke: {
+				show: true,
+				curve: "smooth",
+				width: 2,
+				lineCap: "square",
+			},
+			series: [
+				{ name: "Income", data: data?.monthlyRevenue?.income },
+				{ name: "Expenses", data: data?.monthlyRevenue?.expenses },
+			],
+			labels: [
+				"Jan",
+				"Feb",
+				"Mar",
+				"Apr",
+				"May",
+				"Jun",
+				"Jul",
+				"Aug",
+				"Sep",
+				"Oct",
+				"Nov",
+				"Dec",
+			],
+			xaxis: {
+				axisBorder: {
+					show: false,
+				},
+				axisTicks: {
+					show: false,
+				},
+				crosshairs: {
+					show: true,
+				},
+				labels: {
+					offsetX: 0,
+					offsetY: 5,
+					style: {
+						fontSize: "12px",
+						fontFamily: "Quicksand, sans-serif",
+						cssClass: "apexcharts-xaxis-title",
+					},
+				},
+			},
+			yaxis: {
+				labels: {
+					formatter: function (value, index) {
+						return value / 1000 + "K";
+					},
+					offsetX: -22,
+					offsetY: 0,
+					style: {
+						fontSize: "12px",
+						fontFamily: "Quicksand, sans-serif",
+						cssClass: "apexcharts-yaxis-title",
+					},
+				},
+			},
+			grid: {
+				borderColor: "#e0e6ed",
+				strokeDashArray: 5,
+				xaxis: {
+					lines: {
+						show: true,
+					},
+				},
+				yaxis: {
+					lines: {
+						show: false,
+					},
+				},
+				padding: {
+					top: 0,
+					right: 0,
+					bottom: 0,
+					left: -10,
+				},
+			},
+			legend: {
+				position: "top",
+				horizontalAlign: "right",
+				offsetY: -50,
+				fontSize: "16px",
+				fontFamily: "Quicksand, sans-serif",
+				markers: {
+					width: 10,
+					height: 10,
+					strokeWidth: 0,
+					strokeColor: "#fff",
+					fillColors: undefined,
+					radius: 12,
+					onClick: undefined,
+					offsetX: 0,
+					offsetY: 0,
+				},
+				itemMargin: {
+					horizontal: 0,
+					vertical: 20,
+				},
+			},
+			tooltip: {
+				theme: "dark",
+				marker: {
+					show: true,
+				},
+				x: {
+					show: false,
+				},
+			},
+			fill: {
+				type: "gradient",
+				gradient: {
+					type: "vertical",
+					shadeIntensity: 1,
+					inverseColors: !1,
+					opacityFrom: 0.28,
+					opacityTo: 0.05,
+					stops: [45, 100],
+				},
+			},
+			responsive: [
+				{
+					breakpoint: 575,
+					options: {
+						legend: {
+							offsetY: -30,
+						},
+					},
+				},
+			],
+		};
+	}
+
+	// Function to configure the Recent Transactions chart
+	function configureDailySalesChart(data) {
+		return {
+			chart: {
+				height: 160,
+				type: "bar",
+				stacked: true,
+				toolbar: {
+					show: false,
+				},
+			},
+			dataLabels: {
+				enabled: false,
+			},
+			stroke: {
+				show: true,
+				width: 1,
+			},
+			colors: ["#70B2D9", "#e7f7ff"],
+			responsive: [
+				{
+					breakpoint: 480,
+					options: {
+						legend: {
+							position: "bottom",
+							offsetX: -10,
+							offsetY: 0,
+						},
+					},
+				},
+			],
+			series: [
+				{
+					name: "Sales",
+					data: data?.currentWeekSales,
+				},
+				{
+					name: "Last Week",
+					data: data?.previousWeekSales,
+				},
+			],
+			xaxis: {
+				labels: {
+					show: false,
+				},
+				categories: ["Sun", "Mon", "Tue", "Wed", "Thur", "Fri", "Sat"],
+			},
+			yaxis: {
+				show: false,
+			},
+			fill: {
+				opacity: 1,
+			},
+			plotOptions: {
+				bar: {
+					horizontal: false,
+					startingShape: "rounded",
+					endingShape: "rounded",
+					columnWidth: "25%",
+				},
+			},
+			legend: {
+				show: false,
+			},
+			grid: {
+				show: false,
+				xaxis: {
+					lines: {
+						show: false,
+					},
+				},
+				padding: {
+					top: 10,
+					right: 0,
+					bottom: -40,
+					left: 0,
+				},
+			},
+		};
+	}
+
+	// Function to render the chart with the given options
+	function renderChart(selector, options) {
+		var chart = new ApexCharts(document.querySelector(selector), options);
+		chart.render();
+	}
+
+	// Main function to fetch data and render all charts
+	async function renderDashboardCharts() {
+		// Fetch the dashboard data
+		const dashboardData = await fetchDashboardData();
+
+		// Check if data is available
+		if (!dashboardData) {
+			console.error("Failed to load dashboard data");
+			return;
+		}
+
+		// Render each chart with its specific configuration
+		renderChart("#total-requests", configureTotalRequestsChart(dashboardData));
+		renderChart("#revenueMonthly", configureMonthlyRevenueChart(dashboardData));
+		renderChart("#daily-sales", configureDailySalesChart(dashboardData));
+		// Add more chart render calls as needed
+	}
+
+	// Call the main function to render all charts
+	renderDashboardCharts();
 
 	/*
     =============================================

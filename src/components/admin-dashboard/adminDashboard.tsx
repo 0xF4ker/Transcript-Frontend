@@ -1,11 +1,12 @@
 // import { useEffect } from "react";
 import image from "../../constants/image";
+import { useGetAdminDashboardQuery } from "../../services/adminDashboardApiSlice";
 import "./styles/apexcharts.css";
 import "./styles/dash_2.css";
 import { Helmet } from "react-helmet";
 
 const AdminDashboard = () => {
-	// const { data } = useGetUsersQuery("");
+	const { data } = useGetAdminDashboardQuery("");
 	// const { data: dataRequests } = useGetTranscriptRequestsQuery("");
 	// useEffect(() => {
 	// 	const script = document.createElement("script");
@@ -259,7 +260,10 @@ const AdminDashboard = () => {
 											<div className="w-summary-details">
 												<div className="w-summary-info">
 													<h6>
-														Income <span className="summary-count">$92,600 </span>
+														Income{" "}
+														<span className="summary-count">
+															${data?.summary?.totalRevenue}{" "}
+														</span>
 													</h6>
 													<p className="summary-average">90%</p>
 												</div>
@@ -289,7 +293,8 @@ const AdminDashboard = () => {
 											<div className="w-summary-details">
 												<div className="w-summary-info">
 													<h6>
-														Profit <span className="summary-count">$37,515</span>
+														Profit{" "}
+														<span className="summary-count">${data?.summary?.profit}</span>
 													</h6>
 													<p className="summary-average">65%</p>
 												</div>
@@ -319,7 +324,10 @@ const AdminDashboard = () => {
 											<div className="w-summary-details">
 												<div className="w-summary-info">
 													<h6>
-														Expenses <span className="summary-count">$55,085</span>
+														Expenses{" "}
+														<span className="summary-count">
+															${data?.summary?.totalExpenses}
+														</span>
 													</h6>
 													<p className="summary-average">80%</p>
 												</div>
@@ -384,117 +392,28 @@ const AdminDashboard = () => {
 							</div>
 
 							<div className="widget-content">
-								<div className="transactions-list">
-									<div className="t-item">
-										<div className="t-company-name">
-											<div className="t-icon">
-												<div className="icon">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														className="feather feather-home"
-													>
-														<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-														<polyline points="9 22 9 12 15 12 15 22"></polyline>
-													</svg>
+								{data?.recentTransactions?.map((transaction: any) => (
+									<div className="transactions-list t-info">
+										<div className="t-item">
+											<div className="t-company-name">
+												<div className="t-icon">
+													<div className="avatar avatar-xl">
+														<span className="avatar-title">SP</span>
+													</div>
+												</div>
+												<div className="t-name">
+													<h4>{transaction?.name}</h4>
+													<p className="meta-date">4 Aug 1:00PM</p>
 												</div>
 											</div>
-											<div className="t-name">
-												<h4>Electricity Bill</h4>
-												<p className="meta-date">4 Aug 1:00PM</p>
+											<div className="t-rate rate-inc">
+												<p>
+													<span>+${transaction.amount}</span>
+												</p>
 											</div>
-										</div>
-										<div className="t-rate rate-dec">
-											<p>
-												<span>-$16.44</span>
-											</p>
 										</div>
 									</div>
-								</div>
-
-								<div className="transactions-list t-info">
-									<div className="t-item">
-										<div className="t-company-name">
-											<div className="t-icon">
-												<div className="avatar avatar-xl">
-													<span className="avatar-title">SP</span>
-												</div>
-											</div>
-											<div className="t-name">
-												<h4>Shaun Park</h4>
-												<p className="meta-date">4 Aug 1:00PM</p>
-											</div>
-										</div>
-										<div className="t-rate rate-inc">
-											<p>
-												<span>+$36.11</span>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div className="transactions-list">
-									<div className="t-item">
-										<div className="t-company-name">
-											<div className="t-icon">
-												<div className="avatar avatar-xl">
-													<span className="avatar-title">AD</span>
-												</div>
-											</div>
-											<div className="t-name">
-												<h4>Amy Diaz</h4>
-												<p className="meta-date">4 Aug 1:00PM</p>
-											</div>
-										</div>
-										<div className="t-rate rate-inc">
-											<p>
-												<span>+$66.44</span>
-											</p>
-										</div>
-									</div>
-								</div>
-
-								<div className="transactions-list t-secondary">
-									<div className="t-item">
-										<div className="t-company-name">
-											<div className="t-icon">
-												<div className="icon">
-													<svg
-														xmlns="http://www.w3.org/2000/svg"
-														width="24"
-														height="24"
-														viewBox="0 0 24 24"
-														fill="none"
-														stroke="currentColor"
-														stroke-width="2"
-														stroke-linecap="round"
-														stroke-linejoin="round"
-														className="feather feather-home"
-													>
-														<path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-														<polyline points="9 22 9 12 15 12 15 22"></polyline>
-													</svg>
-												</div>
-											</div>
-											<div className="t-name">
-												<h4>Netflix</h4>
-												<p className="meta-date">4 Aug 1:00PM</p>
-											</div>
-										</div>
-										<div className="t-rate rate-dec">
-											<p>
-												<span>-$32.00</span>
-											</p>
-										</div>
-									</div>
-								</div>
+								))}
 							</div>
 						</div>
 					</div>
@@ -522,12 +441,12 @@ const AdminDashboard = () => {
 										</svg>
 									</div>
 									<div className="w-content">
-										<span className="w-value">3,192</span>
-										<span className="w-numeric-title">Total Orders</span>
+										<span className="w-value">{data?.totalTranscriptRequests}</span>
+										<span className="w-numeric-title">Total Requests</span>
 									</div>
 								</div>
 								<div className="w-chart">
-									<div id="total-orders"></div>
+									<div id="total-requests"></div>
 								</div>
 							</div>
 						</div>
@@ -566,7 +485,7 @@ const AdminDashboard = () => {
 						</div>
 					</div>
 
-					<div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+					{/* <div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
 						<div className="widget widget-table-three">
 							<div className="widget-heading">
 								<h5 className="">Top Selling Product</h5>
@@ -1206,7 +1125,7 @@ const AdminDashboard = () => {
 								<div id="chart-2" className=""></div>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 			<Helmet>

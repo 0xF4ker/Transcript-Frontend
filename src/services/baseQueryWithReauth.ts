@@ -9,7 +9,7 @@ import { Mutex } from "async-mutex";
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: "https://api.transcript.adenibuyan.com",
+	baseUrl: "http://localhost:3001",
 	credentials: "include",
 });
 

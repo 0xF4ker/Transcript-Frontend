@@ -51,7 +51,7 @@ const Login = () => {
 		if (isError) {
 			console.log(error);
 			if (error as any) {
-				toast.error(error as any, { position: "top-right" });
+				toast.error((error as any)?.data?.error, { position: "top-right" });
 			} else {
 				toast.error("Login Error", {
 					position: "top-right",

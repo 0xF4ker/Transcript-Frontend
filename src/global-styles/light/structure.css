@@ -865,6 +865,15 @@ code {
 	font-weight: 600;
 	letter-spacing: 0.8px;
 }
+
+.base-menu span {
+	display: inline-block;
+	max-width: 100%;
+	word-wrap: break-word;
+	white-space: normal; /* Allows text to wrap */
+	margin-left: 8px; /* Adjust as necessary for spacing */
+}
+
 .sidebar-wrapper
 	#compactSidebar
 	.menu-categories

@@ -951,26 +951,26 @@ select.form-control.form-custom {
 /*      Default Buttons       */
 .btn-primary {
 	color: #fff !important;
-	background-color: #4361ee !important;
-	border-color: #4361ee;
+	background-color: #009688 !important;
+	border-color: #009688;
 }
 .btn-primary:hover,
 .btn-primary:focus {
 	color: #fff !important;
-	background-color: #4361ee;
+	background-color: #009688;
 	box-shadow: none;
-	border-color: #4361ee;
+	border-color: #009688;
 }
 .btn-primary:active,
 .btn-primary.active {
-	background-color: #4361ee;
-	border-top: 1px solid #4361ee;
+	background-color: #009688;
+	border-top: 1px solid #009688;
 }
 .btn-primary.disabled,
 .btn-primary.btn[disabled],
 .btn-primary:disabled {
-	background-color: #4361ee;
-	border-color: #4361ee;
+	background-color: #009688;
+	border-color: #009688;
 	-webkit-box-shadow: none;
 	-moz-box-shadow: none;
 	box-shadow: none;

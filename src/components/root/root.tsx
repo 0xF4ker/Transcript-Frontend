@@ -57,7 +57,7 @@ const Root = () => {
 			<div className="search-overlay"></div>
 			<div className="sidebar-wrapper sidebar-theme">
 				<div className="theme-logo">
-					<Link to="/app">
+					<Link style={{ textDecoration: "none" }} to="/app">
 						<img src={images.logo1} className="navbar-logo" alt="logo" />
 						<span className="admin-logo">
 							Transcript<span></span>

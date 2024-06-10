@@ -13,6 +13,7 @@ import { transcriptTypeApiSlice } from "./services/transcriptTypeApiSlice";
 import { transcriptRequestApiSlice } from "./services/transcriptRequestApiSlice";
 import { rootApiSlice } from "./services/rootApiSlice";
 import { destinationRequestApiSlice } from "./services/destinationRequestApiSlice";
+import { adminDashboardApiSlice } from "./services/adminDashboardApiSlice";
 
 const store = configureStore({
 	reducer: {
@@ -30,6 +31,7 @@ const store = configureStore({
 		[transcriptTypeApiSlice.reducerPath]: transcriptTypeApiSlice.reducer,
 		[transcriptTypeApiSlice.reducerPath]: transcriptTypeApiSlice.reducer,
 		[transcriptRequestApiSlice.reducerPath]: transcriptRequestApiSlice.reducer,
+		[adminDashboardApiSlice.reducerPath]: adminDashboardApiSlice.reducer,
 	},
 	middleware: (getDefaultMiddleware) =>
 		getDefaultMiddleware().concat(
@@ -43,7 +45,8 @@ const store = configureStore({
 			transcriptTypeApiSlice.middleware,
 			transcriptRequestApiSlice.middleware,
 			rootApiSlice.middleware,
-			destinationRequestApiSlice.middleware
+			destinationRequestApiSlice.middleware,
+			adminDashboardApiSlice.middleware
 		),
 });
 
