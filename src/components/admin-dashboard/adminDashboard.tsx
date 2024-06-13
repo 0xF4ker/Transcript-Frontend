@@ -17,6 +17,13 @@ const AdminDashboard = () => {
 	// 		document.body.removeChild(script);
 	// 	};
 	// }, []);
+	// useEffect(() => {
+	// 	// Initialize your app here
+	// 	// Call your initialization functions
+	// }, []);
+	// const scriptUrls = ["/scripts/dash_2.js"];
+	// // Use the custom hook to add the scripts
+	// useScripts(scriptUrls);
 	return (
 		<>
 			<div className="header-container">
@@ -262,10 +269,10 @@ const AdminDashboard = () => {
 													<h6>
 														Income{" "}
 														<span className="summary-count">
-															${data?.summary?.totalRevenue}{" "}
+															&#8358;{data?.summary?.totalRevenue}{" "}
 														</span>
 													</h6>
-													<p className="summary-average">90%</p>
+													{/* <p className="summary-average">90%</p> */}
 												</div>
 											</div>
 										</div>
@@ -294,9 +301,11 @@ const AdminDashboard = () => {
 												<div className="w-summary-info">
 													<h6>
 														Profit{" "}
-														<span className="summary-count">${data?.summary?.profit}</span>
+														<span className="summary-count">
+															&#8358;{data?.summary?.profit}
+														</span>
 													</h6>
-													<p className="summary-average">65%</p>
+													{/* <p className="summary-average">65%</p> */}
 												</div>
 											</div>
 										</div>
@@ -326,10 +335,10 @@ const AdminDashboard = () => {
 													<h6>
 														Expenses{" "}
 														<span className="summary-count">
-															${data?.summary?.totalExpenses}
+															&#8358;{data?.summary?.totalExpenses}
 														</span>
 													</h6>
-													<p className="summary-average">80%</p>
+													{/* <p className="summary-average">80%</p> */}
 												</div>
 											</div>
 										</div>
@@ -1129,7 +1138,7 @@ const AdminDashboard = () => {
 				</div>
 			</div>
 			<Helmet>
-				<script src="/scripts/dash_2.js" />
+				<script src="/scripts/dash_2.js"></script>
 			</Helmet>
 		</>
 	);

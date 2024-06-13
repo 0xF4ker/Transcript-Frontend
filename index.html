@@ -3,11 +3,20 @@
 	<head>
 		<meta charset="UTF-8" />
 		<link rel="icon" type="image/svg+xml" href="/logo1.png" />
+		<link rel="preload" href="/styles/landing-page/plugins.css" as="style" />
+		<link rel="preload" href="/styles/light/plugins.css" as="style" />
+		<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Transcript</title>
-		<script src="/scripts/loader.js"></script>
 	</head>
-	<body style="padding: 0" class="admin-header">
+	<body
+		data-mobile-nav-trigger-alignment="right"
+		data-mobile-nav-style="modern"
+		data-mobile-nav-bg-color="#242E45"
+		style="padding: 0"
+		class="admin-header"
+	>
 		<div id="root"></div>
 		<script type="module" src="/src/main.tsx"></script>
 	</body>

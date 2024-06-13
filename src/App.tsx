@@ -2,7 +2,6 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import Login from "./components/login/login";
 import Root from "./components/root/root";
-import { useEffect } from "react";
 import SignUp from "./components/signup/signup";
 import { ToastContainer } from "react-toastify";
 
@@ -27,13 +26,34 @@ import ProtectedRoute from "./components/ProtectedRoute";
 import { Helmet } from "react-helmet";
 
 function App() {
-	useEffect(() => {
-		// Initialize your app here
-		// Call your initialization functions
-	}, []);
-
+	// useEffect(() => {
+	// 	// Initialize your app here
+	// 	// Call your initialization functions
+	// }, []);
+	// const scriptUrls = [
+	// 	"/scripts/landing-page/js/jquery.js",
+	// 	"/scripts/landing-page/js/vendors.min.js",
+	// 	"/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js",
+	// 	"/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js",
+	// ];
+	// // Use the custom hook to add the scripts
+	// useScripts(scriptUrls);
 	return (
 		<>
+			<Helmet>
+				<script src="/scripts/jquery-3.1.1.min.js" />
+				<script src="/scripts/bootstrap.bundle.min.js" />
+				<script src="/scripts/popper.min.js" />
+				<script src="/scripts/perfect-scrollbar.min.js" />
+				<script src="/scripts/mousetrap.min.js" />
+				<script src="/scripts/waves.min.js" />
+				<script src="/scripts/apexcharts.min.js" />
+				<script src="/scripts/app.js" />
+				<script src="/scripts/landing-page/js/jquery.js" />
+				<script src="/scripts/landing-page/js/vendors.min.js" />
+				<script src="/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js" />
+				<script src="/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js" />
+			</Helmet>
 			<ToastContainer />
 			<Routes>
 				<Route path="*" element={<Error_ />} />
@@ -65,16 +85,6 @@ function App() {
 					<Route path="request-destination" element={<RequestDestination />} />
 				</Route>
 			</Routes>
-			<Helmet>
-				<script src="/scripts/jquery-3.1.1.min.js"></script>
-				<script src="/scripts/bootstrap.bundle.min.js"></script>
-				<script src="/scripts/popper.min.js"></script>
-				<script src="/scripts/perfect-scrollbar.min.js"></script>
-				<script src="/scripts/mousetrap.min.js"></script>
-				<script src="/scripts/waves.min.js"></script>
-				<script src="/scripts/apexcharts.min.js"></script>
-				<script src="/scripts/app.js"></script>
-			</Helmet>
 		</>
 	);
 }
