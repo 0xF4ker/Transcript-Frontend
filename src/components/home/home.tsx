@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import "./carousel.css";
 import images from "../../constants/image";
 // import landingPageStyles from "../../global-styles/landing-page/plugins.css?inline";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 import useScripts from "../../hooks/addscripts";
 import { useEffect } from "react";
 // import { createGlobalStyle } from "styled-components";
@@ -40,9 +40,12 @@ const Home = () => {
 	}, []);
 	return (
 		<>
-			<Helmet>
-				<link rel="stylesheet" href="/styles/landing-page/plugins.css" />
-			</Helmet>
+			<HelmetProvider>
+				<Helmet>
+					<link rel="stylesheet" href="/styles/landing-page/plugins.css" />
+				</Helmet>
+			</HelmetProvider>
+
 			<div className="box-layout">
 				{/* start header */}
 				<header>

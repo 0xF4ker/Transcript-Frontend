@@ -23,7 +23,7 @@ import Roles from "./components/roles/roles";
 import Dashboard from "./components/dashboard/dashboard";
 import TranscriptCheckout from "./components/transcript-checkout/transcriptCheckout";
 import ProtectedRoute from "./components/ProtectedRoute";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 
 function App() {
 	// useEffect(() => {
@@ -40,26 +40,28 @@ function App() {
 	// useScripts(scriptUrls);
 	return (
 		<>
-			<Helmet>
-				<script src="/scripts/jquery-3.1.1.min.js" defer />
-				<script src="/scripts/bootstrap.bundle.min.js" defer />
-				<script src="/scripts/popper.min.js" defer />
-				<script src="/scripts/perfect-scrollbar.min.js" defer />
-				<script src="/scripts/mousetrap.min.js" defer />
-				<script src="/scripts/waves.min.js" defer />
-				<script src="/scripts/apexcharts.min.js" defer />
-				<script src="/scripts/app.js" defer />
-				<script src="/scripts/landing-page/js/jquery.js" defer />
-				<script src="/scripts/landing-page/js/vendors.min.js" defer />
-				<script
-					src="/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js"
-					defer
-				/>
-				<script
-					src="/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js"
-					defer
-				/>
-			</Helmet>
+			<HelmetProvider>
+				<Helmet>
+					<script src="/scripts/jquery-3.1.1.min.js" defer />
+					<script src="/scripts/bootstrap.bundle.min.js" defer />
+					<script src="/scripts/popper.min.js" defer />
+					<script src="/scripts/perfect-scrollbar.min.js" defer />
+					<script src="/scripts/mousetrap.min.js" defer />
+					<script src="/scripts/waves.min.js" defer />
+					<script src="/scripts/apexcharts.min.js" defer />
+					<script src="/scripts/app.js" defer />
+					<script src="/scripts/landing-page/js/jquery.js" defer />
+					<script src="/scripts/landing-page/js/vendors.min.js" defer />
+					<script
+						src="/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js"
+						defer
+					/>
+					<script
+						src="/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js"
+						defer
+					/>
+				</Helmet>
+			</HelmetProvider>
 			<ToastContainer />
 			<Routes>
 				<Route path="*" element={<Error_ />} />

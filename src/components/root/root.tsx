@@ -8,7 +8,7 @@ import { useGetUserQuery } from "../../services/userApiSlice";
 import { useLogoutUserMutation } from "../../services/authApiSlice";
 // import webAppStyles from "../../global-styles/light/plugins.css?inline";
 // import { createGlobalStyle } from "styled-components";
-import { Helmet } from "react-helmet";
+import { Helmet, HelmetProvider } from "react-helmet-async";
 // const GlobalStyle = createGlobalStyle`
 //     ${webAppStyles}
 // `;
@@ -57,9 +57,11 @@ const Root = () => {
 
 	return (
 		<>
-			<Helmet>
-				<link rel="stylesheet" href="/styles/light/plugins.css" />
-			</Helmet>
+			<HelmetProvider>
+				<Helmet>
+					<link rel="stylesheet" href="/styles/light/plugins.css" />
+				</Helmet>
+			</HelmetProvider>
 			<div id="container" className="main-container">
 				<div className="overlay"></div>
 				<div className="search-overlay"></div>
