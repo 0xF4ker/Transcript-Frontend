@@ -41,18 +41,24 @@ function App() {
 	return (
 		<>
 			<Helmet>
-				<script src="/scripts/jquery-3.1.1.min.js" />
-				<script src="/scripts/bootstrap.bundle.min.js" />
-				<script src="/scripts/popper.min.js" />
-				<script src="/scripts/perfect-scrollbar.min.js" />
-				<script src="/scripts/mousetrap.min.js" />
-				<script src="/scripts/waves.min.js" />
-				<script src="/scripts/apexcharts.min.js" />
-				<script src="/scripts/app.js" />
-				<script src="/scripts/landing-page/js/jquery.js" />
-				<script src="/scripts/landing-page/js/vendors.min.js" />
-				<script src="/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js" />
-				<script src="/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js" />
+				<script src="/scripts/jquery-3.1.1.min.js" defer />
+				<script src="/scripts/bootstrap.bundle.min.js" defer />
+				<script src="/scripts/popper.min.js" defer />
+				<script src="/scripts/perfect-scrollbar.min.js" defer />
+				<script src="/scripts/mousetrap.min.js" defer />
+				<script src="/scripts/waves.min.js" defer />
+				<script src="/scripts/apexcharts.min.js" defer />
+				<script src="/scripts/app.js" defer />
+				<script src="/scripts/landing-page/js/jquery.js" defer />
+				<script src="/scripts/landing-page/js/vendors.min.js" defer />
+				<script
+					src="/scripts/landing-page/revolution/js/jquery.themepunch.tools.min.js"
+					defer
+				/>
+				<script
+					src="/scripts/landing-page/revolution/js/jquery.themepunch.revolution.min.js"
+					defer
+				/>
 			</Helmet>
 			<ToastContainer />
 			<Routes>

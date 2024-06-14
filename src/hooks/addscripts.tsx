@@ -20,7 +20,7 @@ const useScripts = (urls: string[], callback?: () => void): void => {
 
 				const script = document.createElement("script");
 				script.src = url;
-				script.async = true;
+				script.defer = true; // Add the defer attribute
 
 				script.onload = () => {
 					console.log(`${url} loaded successfully`);
