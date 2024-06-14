@@ -552,7 +552,7 @@ try {
 	async function fetchDashboardData() {
 		try {
 			const response = await fetch(
-				"https://transcript.api.adenibuyan.com/admin-dashboard/admin-dashboard",
+				"https://api.transcript.adenibuyan.com/admin-dashboard/admin-dashboard",
 				{
 					credentials: "include",
 				}

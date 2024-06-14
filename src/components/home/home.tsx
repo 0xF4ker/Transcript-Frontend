@@ -2852,7 +2852,7 @@ const Home = () => {
 							</div>
 							<div className="col-lg-5 pt-35px pb-35px md-pt-0 order-2 order-lg-1 text-center text-lg-start last-paragraph-no-margin">
 								<p>
-									&copy; 2024 Crafto is Proudly Powered by{" "}
+									&copy; 2024 Transcript is Proudly Powered by{" "}
 									<a
 										href="/"
 										target="_blank"

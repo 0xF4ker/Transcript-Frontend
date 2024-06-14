@@ -9,7 +9,7 @@ import { Mutex } from "async-mutex";
 const mutex = new Mutex();
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: "https://transcript.api.adenibuyan.com",
+	baseUrl: "https://api.transcript.adenibuyan.com",
 	credentials: "include",
 });
 
