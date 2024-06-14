@@ -5,6 +5,7 @@ import images from "../../constants/image";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 import useScripts from "../../hooks/addscripts";
 import { useEffect } from "react";
+import "../../global-styles/landing-page/plugins.css";
 // import { createGlobalStyle } from "styled-components";
 // const GlobalStyle = createGlobalStyle`
 //     ${landingPageStyles}

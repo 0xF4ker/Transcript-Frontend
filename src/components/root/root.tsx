@@ -8,6 +8,7 @@ import { useGetUserQuery } from "../../services/userApiSlice";
 import { useLogoutUserMutation } from "../../services/authApiSlice";
 // import webAppStyles from "../../global-styles/light/plugins.css?inline";
 // import { createGlobalStyle } from "styled-components";
+import "../../global-styles/light/plugins.css";
 import { Helmet, HelmetProvider } from "react-helmet-async";
 // const GlobalStyle = createGlobalStyle`
 //     ${webAppStyles}
