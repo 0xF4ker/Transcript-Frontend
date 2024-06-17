@@ -1317,145 +1317,148 @@ const Home = () => {
 				</section>
 				{/* end section */}
 				{/* start section */}
-				<section>
-					<div className="container">
-						<div className="row justify-content-center align-items-center mb-6 sm-pb-9">
-							<div
-								className="col-lg-6 col-md-9 position-relative md-mb-15 text-center text-lg-start"
-								data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 15, "easing": "easeOutQuad" }'
-							>
-								<div className="absolute-middle-center z-index-9 counter-style-02 text-center">
-									<span className="fs-160 fw-800 text-dark-gray ls-minus-10px xs-ls-minus-5px position-relative lg-fs-130 xs-fs-75">
-										28
-										<sub className="align-top fs-80 lg-fs-70 text-dark-gray position-relative top-minus-3px">
-											+
-										</sub>
+				{false && (
+					<section>
+						<div className="container">
+							<div className="row justify-content-center align-items-center mb-6 sm-pb-9">
+								<div
+									className="col-lg-6 col-md-9 position-relative md-mb-15 text-center text-lg-start"
+									data-anime='{ "el": "childs", "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 15, "easing": "easeOutQuad" }'
+								>
+									<div className="absolute-middle-center z-index-9 counter-style-02 text-center">
+										<span className="fs-160 fw-800 text-dark-gray ls-minus-10px xs-ls-minus-5px position-relative lg-fs-130 xs-fs-75">
+											28
+											<sub className="align-top fs-80 lg-fs-70 text-dark-gray position-relative top-minus-3px">
+												+
+											</sub>
+										</span>
+										<span className="d-block mx-auto fs-20 fw-500 lh-26 w-70 text-center text-dark-gray xs-w-100">
+											Years working experience
+										</span>
+									</div>
+									<img src="images/demo-corporate-03.png" alt="" />
+									<img
+										src="/images/demo/demo-corporate-01.png"
+										className="position-absolute top-50 left-minus-100px lg-left-minus-40px sm-left-minus-30px lg-w-50 sm-w-55"
+										data-bottom-top="transform: translateY(50px)"
+										data-top-bottom="transform: translateY(-220px)"
+										alt=""
+									/>
+									<img
+										src="images/demo-corporate-02.png"
+										className="position-absolute top-0px xl-top-minus-10px w-170px right-20px md-right-40px xs-w-40"
+										data-bottom-top="transform: translateY(-50px)"
+										data-top-bottom="transform: translateY(50px)"
+										alt=""
+									/>
+								</div>
+								<div
+									className="col-lg-6 ps-6 text-center text-lg-start lg-ps-15px"
+									data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+								>
+									<span className="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block">
+										Creative approach
 									</span>
-									<span className="d-block mx-auto fs-20 fw-500 lh-26 w-70 text-center text-dark-gray xs-w-100">
-										Years working experience
+									<h3 className="text-dark-gray fw-700 ls-minus-1px">
+										Powerful agency for corporate business.
+									</h3>
+									<p className="w-80 xl-w-90 lg-w-100 mb-40px sm-mb-25px">
+										We strive to develop real-world web solutions that are ideal for small
+										to large projects with bespoke project requirements. We create
+										compelling web designs, which are the right-fit for your target groups
+										and also deliver optimized.
+									</p>
+									<a
+										href="demo-corporate-about.html"
+										className="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
+									>
+										<span>
+											<span className="btn-text">Read about us</span>
+											<span className="btn-icon">
+												<i className="feather icon-feather-arrow-right"></i>
+											</span>
+											<span className="btn-icon">
+												<i className="feather icon-feather-arrow-right"></i>
+											</span>
+										</span>
+									</a>
+									<span className="text-dark-gray fw-700 ls-minus-05px d-block d-sm-inline-block sm-mt-15px">
+										<a href="tel:1800222000">
+											<i className="feather icon-feather-phone-call me-10px"></i>1 800 222
+											000
+										</a>
 									</span>
 								</div>
-								<img src="images/demo-corporate-03.png" alt="" />
-								<img
-									src="/images/demo/demo-corporate-01.png"
-									className="position-absolute top-50 left-minus-100px lg-left-minus-40px sm-left-minus-30px lg-w-50 sm-w-55"
-									data-bottom-top="transform: translateY(50px)"
-									data-top-bottom="transform: translateY(-220px)"
-									alt=""
-								/>
-								<img
-									src="images/demo-corporate-02.png"
-									className="position-absolute top-0px xl-top-minus-10px w-170px right-20px md-right-40px xs-w-40"
-									data-bottom-top="transform: translateY(-50px)"
-									data-top-bottom="transform: translateY(50px)"
-									alt=""
-								/>
 							</div>
 							<div
-								className="col-lg-6 ps-6 text-center text-lg-start lg-ps-15px"
-								data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+								className="row row-cols-1 row-cols-md-4 row-cols-sm-2 justify-content-center counter-style-07 ps-3 pe-3"
+								data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
 							>
-								<span className="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block">
-									Creative approach
-								</span>
-								<h3 className="text-dark-gray fw-700 ls-minus-1px">
-									Powerful agency for corporate business.
-								</h3>
-								<p className="w-80 xl-w-90 lg-w-100 mb-40px sm-mb-25px">
-									We strive to develop real-world web solutions that are ideal for small
-									to large projects with bespoke project requirements. We create
-									compelling web designs, which are the right-fit for your target groups
-									and also deliver optimized.
-								</p>
-								<a
-									href="demo-corporate-about.html"
-									className="btn btn-large btn-dark-gray btn-hover-animation-switch btn-box-shadow btn-rounded me-25px xs-me-0"
-								>
-									<span>
-										<span className="btn-text">Read about us</span>
-										<span className="btn-icon">
-											<i className="feather icon-feather-arrow-right"></i>
+								{/* start counter item */}
+								<div className="col text-center sm-mb-30px">
+									<h2
+										className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+										data-to="4586"
+									>
+										<span className="text-highlight position-absolute bottom-9px w-100">
+											<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
 										</span>
-										<span className="btn-icon">
-											<i className="feather icon-feather-arrow-right"></i>
-										</span>
+									</h2>
+									<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+										Telephonic talk
 									</span>
-								</a>
-								<span className="text-dark-gray fw-700 ls-minus-05px d-block d-sm-inline-block sm-mt-15px">
-									<a href="tel:1800222000">
-										<i className="feather icon-feather-phone-call me-10px"></i>1 800 222
-										000
-									</a>
-								</span>
+								</div>
+								{/* end counter item */}
+								{/* start counter item */}
+								<div className="col text-center sm-mb-30px">
+									<h2
+										className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+										data-to="583"
+									>
+										<span className="text-highlight position-absolute bottom-9px w-100">
+											<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
+										</span>
+									</h2>
+									<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+										Cases solved
+									</span>
+								</div>
+								{/* end counter item */}
+								{/* start counter item */}
+								<div className="col text-center sm-mb-30px">
+									<h2
+										className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+										data-to="6548"
+									>
+										<span className="text-highlight position-absolute bottom-9px w-100">
+											<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
+										</span>
+									</h2>
+									<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+										Cofee cups
+									</span>
+								</div>
+								{/* end counter item */}
+								{/* start counter item */}
+								<div className="col text-center">
+									<h2
+										className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
+										data-to="836"
+									>
+										<span className="text-highlight position-absolute bottom-9px w-100">
+											<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
+										</span>
+									</h2>
+									<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
+										Happy clients
+									</span>
+								</div>
+								{/* end counter item */}
 							</div>
 						</div>
-						<div
-							className="row row-cols-1 row-cols-md-4 row-cols-sm-2 justify-content-center counter-style-07 ps-3 pe-3"
-							data-anime='{ "el": "childs", "translateY": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-						>
-							{/* start counter item */}
-							<div className="col text-center sm-mb-30px">
-								<h2
-									className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
-									data-to="4586"
-								>
-									<span className="text-highlight position-absolute bottom-9px w-100">
-										<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
-									</span>
-								</h2>
-								<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
-									Telephonic talk
-								</span>
-							</div>
-							{/* end counter item */}
-							{/* start counter item */}
-							<div className="col text-center sm-mb-30px">
-								<h2
-									className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
-									data-to="583"
-								>
-									<span className="text-highlight position-absolute bottom-9px w-100">
-										<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
-									</span>
-								</h2>
-								<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
-									Cases solved
-								</span>
-							</div>
-							{/* end counter item */}
-							{/* start counter item */}
-							<div className="col text-center sm-mb-30px">
-								<h2
-									className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
-									data-to="6548"
-								>
-									<span className="text-highlight position-absolute bottom-9px w-100">
-										<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
-									</span>
-								</h2>
-								<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
-									Cofee cups
-								</span>
-							</div>
-							{/* end counter item */}
-							{/* start counter item */}
-							<div className="col text-center">
-								<h2
-									className="vertical-counter d-inline-flex text-dark-gray fw-800 mb-0 ls-minus-3px position-relative z-index-0"
-									data-to="836"
-								>
-									<span className="text-highlight position-absolute bottom-9px w-100">
-										<span className="bg-gradient-flamingo-amethyst-green h-10px opacity-2"></span>
-									</span>
-								</h2>
-								<span className="d-block fs-14 fw-700 text-uppercase text-dark-gray">
-									Happy clients
-								</span>
-							</div>
-							{/* end counter item */}
-						</div>
-					</div>
-				</section>
+					</section>
+				)}
+
 				{/* end section */}
 				{/* start section */}
 				{false && (
@@ -1824,7 +1827,7 @@ const Home = () => {
 									Simple process
 								</span>
 								<h3 className="text-dark-gray fw-700 ls-minus-2px mb-40px">
-									Understand the business process.
+									Transcript Request Process
 								</h3>
 								<div
 									className="row row-cols-1"
@@ -1843,10 +1846,12 @@ const Home = () => {
 											</div>
 											<div className="process-content ps-30px last-paragraph-no-margin mb-30px">
 												<span className="d-block fw-700 text-dark-gray mb-5px fs-18">
-													Start market research
+													Create Destination and Request
 												</span>
 												<p className="w-90 lg-w-100 lh-32">
-													Lorem ipsum amet consectetur eiusmod tempor incididunt.
+													Start by creating a destination for your transcript. Fill out the
+													request form with the necessary details including the location
+													where you want the transcript to be shipped.
 												</p>
 											</div>
 										</div>
@@ -1864,10 +1869,12 @@ const Home = () => {
 											</div>
 											<div className="process-content ps-30px last-paragraph-no-margin mb-30px">
 												<span className="d-block fw-700 text-dark-gray mb-5px fs-18">
-													Discussion of the idea
+													Fee Calculation and Payment
 												</span>
 												<p className="w-90 lg-w-100 lh-32">
-													Lorem ipsum amet consectetur eiusmod tempor incididunt.
+													Once the request is submitted, the fee for processing and shipping
+													your transcript will be calculated. You can securely make your
+													payment through Paystack.
 												</p>
 											</div>
 										</div>
@@ -1884,10 +1891,12 @@ const Home = () => {
 											</div>
 											<div className="process-content ps-30px last-paragraph-no-margin">
 												<span className="d-block fw-700 text-dark-gray mb-5px fs-18">
-													Production planning
+													Admin Review and Email Delivery
 												</span>
 												<p className="w-90 lg-w-100 lh-32">
-													Lorem ipsum amet consectetur eiusmod tempor incididunt.
+													After your payment is confirmed, our administrators will review
+													your request. Once approved, your transcript will be emailed to you
+													at the provided email address.
 												</p>
 											</div>
 										</div>
@@ -1949,7 +1958,7 @@ const Home = () => {
 								<div className="fs-18 fw-500 text-dark-gray d-inline-block align-middle">
 									Let's make something great work together.{" "}
 									<a
-										href="demo-corporate-contact.html"
+										href="/"
 										className="text-dark-gray text-decoration-line-bottom fw-700"
 									>
 										Got a project in mind?
@@ -2214,7 +2223,7 @@ const Home = () => {
 										</div>
 										<div className="col-md-2 position-relative z-index-1 text-center sm-mb-20px">
 											<a
-												href="https://www.youtube.com/watch?v=cfXHhfNy7tU"
+												href="/"
 												className="position-relative d-inline-block text-center border border-2 border-color-white rounded-circle video-icon-box video-icon-large popup-youtube"
 											>
 												<span>
@@ -2228,10 +2237,7 @@ const Home = () => {
 									<div className="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
 										<div className="fs-14 text-uppercase text-white fw-600 ls-05px">
 											Let's make something great work together.{" "}
-											<a
-												href="demo-corporate-contact.html"
-												className="text-decoration-line-bottom text-white"
-											>
+											<a href="/" className="text-decoration-line-bottom text-white">
 												Got a project in mind?
 											</a>
 										</div>
@@ -2241,277 +2247,284 @@ const Home = () => {
 						</div>
 					</div>
 				</section>
-				<section>
-					<div className="container">
-						<div className="row justify-content-center mb-3">
+				{false && (
+					<section>
+						<div className="container">
+							<div className="row justify-content-center mb-3">
+								<div
+									className="col-xl-5 col-lg-6 col-md-7 text-center"
+									data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+								>
+									<span className="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block">
+										Predictable pricing
+									</span>
+									<h3 className="text-dark-gray fw-700 ls-minus-1px">
+										Tailored pricing plans for everyone
+									</h3>
+								</div>
+							</div>
 							<div
-								className="col-xl-5 col-lg-6 col-md-7 text-center"
-								data-anime='{ "el": "childs", "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
+								className="row align-items-end pricing-table-style-05 g-0 mb-6 background-position-center background-no-repeat justify-content-center"
+								style={{
+									backgroundImage: "url('/images/demo/demo-corporate-bg-03.png')",
+								}}
 							>
-								<span className="ps-25px pe-25px mb-20px text-uppercase text-base-color fs-14 lh-42px fw-700 border-radius-100px bg-gradient-very-light-gray-transparent d-inline-block">
-									Predictable pricing
-								</span>
-								<h3 className="text-dark-gray fw-700 ls-minus-1px">
-									Tailored pricing plans for everyone
-								</h3>
+								<div
+									className="col-lg-4 col-md-8 md-mb-30px"
+									data-anime='{ "translateX": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+								>
+									<div className="border-radius-6px position-relative overflow-hidden">
+										<div className="pricing-header pt-45px pb-10px border-radius-6px text-center position-relative top-minus-3px">
+											<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
+												Starter
+											</span>
+											<h5 className="fw-700 mb-0 text-dark-gray alt-font">Individual</h5>
+											<div className="pricing-body pt-35px">
+												<ul className="p-0 m-0 list-style-02 fw-500">
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Marketing strategy
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Competitive work analysis
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Social media share audit
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Monthly management
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div className="row align-items-center pt-25px pb-25px">
+											<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
+												<h3 className="alt-font text-dark-gray mb-0 me-15px fw-700 ls-minus-2px">
+													$29
+												</h3>
+												<p className="w-120px fs-15 lh-22 text-start">
+													Per user/month billed annually*
+												</p>
+											</div>
+										</div>
+										<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
+											<a
+												href="demo-corporate-pricing.html"
+												className="btn btn-large btn-dark-gray btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px"
+											>
+												<span>
+													<span className="btn-text">Join this plan </span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+												</span>
+											</a>
+											<span className="fs-16">Cancel anytime</span>
+										</div>
+									</div>
+								</div>
+								<div
+									className="col-lg-4 col-md-8 md-mb-30px"
+									data-anime='{ "translateX": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+								>
+									<div className="bg-dark-gray border-radius-6px overflow-hidden position-relative box-shadow-double-large z-index-9">
+										<div className="p-10px fw-700 fs-14 text-white bg-gradient-flamingo-amethyst-green text-uppercase text-center">
+											Popular
+										</div>
+										<div className="pricing-header pt-45px pb-10px bg-white border-radius-6px text-center position-relative top-minus-3px">
+											<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
+												Professional
+											</span>
+											<h5 className="fw-700 mb-0 text-dark-gray alt-font">Business</h5>
+											<div className="pricing-body pt-35px">
+												<ul className="p-0 m-0 list-style-02 fw-500 text-center text-md-start">
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Marketing strategy
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Competitive work analysis
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Social media share audit
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Monthly management
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div className="row align-items-center pt-25px pb-25px">
+											<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
+												<h3 className="alt-font text-white mb-0 me-15px fw-700 ls-minus-2px">
+													$39
+												</h3>
+												<p className="w-120px fs-15 lh-22 text-start">
+													Per user/month billed annually*
+												</p>
+											</div>
+										</div>
+										<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
+											<a
+												href="demo-corporate-pricing.html"
+												className="btn btn-large btn-white btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px fw-700"
+											>
+												<span>
+													<span className="btn-text">Join this plan </span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+												</span>
+											</a>
+											<span className="fs-16 text-white opacity-5 fw-300">
+												Cancel anytime
+											</span>
+										</div>
+									</div>
+								</div>
+								<div
+									className="col-lg-4 col-md-8"
+									data-anime='{ "translateX": [-50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
+								>
+									<div className="border-radius-6px position-relative overflow-hidden">
+										<div className="pricing-header pt-45px pb-10px border-radius-6px text-center position-relative top-minus-3px">
+											<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
+												Enterprise
+											</span>
+											<h5 className="fw-700 mb-0 text-dark-gray alt-font">Corporate</h5>
+											<div className="pricing-body pt-35px">
+												<ul className="p-0 m-0 list-style-02 fw-500 text-center text-md-start">
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Marketing strategy
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Competitive work analysis
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Social media share audit
+													</li>
+													<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
+														<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
+															<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
+														</span>
+														Monthly management
+													</li>
+												</ul>
+											</div>
+										</div>
+										<div className="row align-items-center pt-25px pb-25px">
+											<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
+												<h3 className="alt-font text-dark-gray mb-0 me-15px fw-700 ls-minus-2px">
+													$59
+												</h3>
+												<p className="w-120px fs-15 lh-22 text-start">
+													Per user/month billed annually*
+												</p>
+											</div>
+										</div>
+										<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
+											<a
+												href="demo-corporate-pricing.html"
+												className="btn btn-large btn-dark-gray btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px"
+											>
+												<span>
+													<span className="btn-text">Join this plan </span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+													<span className="btn-icon">
+														<i className="feather icon-feather-arrow-right"></i>
+													</span>
+												</span>
+											</a>
+											<span className="fs-16">Cancel anytime</span>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div className="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 justify-content-center align-items-center">
+								<div className="col icon-with-text-style-08 sm-mb-25px text-center text-sm-start md-mb-30px">
+									<div className="d-flex justify-content-center">
+										<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
+											<div className="feature-box-icon me-10px">
+												<i className="bi bi-calendar-check fs-20 text-dark-gray"></i>
+											</div>
+											<div className="feature-box-content">
+												<span className="fw-600 text-dark-gray">Get 30 day free trial</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="col icon-with-text-style-08 sm-mb-25px text-center text-sm-start md-mb-30px">
+									<div className="d-flex justify-content-center">
+										<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
+											<div className="feature-box-icon me-10px">
+												<i className="bi bi-wallet2 fs-20 text-dark-gray"></i>
+											</div>
+											<div className="feature-box-content">
+												<span className="fw-600 text-dark-gray">
+													No any hidden fees pay
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div className="col icon-with-text-style-08 text-center text-sm-start">
+									<div className="d-flex justify-content-center">
+										<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
+											<div className="feature-box-icon me-10px">
+												<i className="bi bi-clock fs-20 text-dark-gray"></i>
+											</div>
+											<div className="feature-box-content">
+												<span className="fw-600 text-dark-gray">
+													You can cancel anytime
+												</span>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 						</div>
-						<div
-							className="row align-items-end pricing-table-style-05 g-0 mb-6 background-position-center background-no-repeat justify-content-center"
-							style={{
-								backgroundImage: "url('/images/demo/demo-corporate-bg-03.png')",
-							}}
-						>
-							<div
-								className="col-lg-4 col-md-8 md-mb-30px"
-								data-anime='{ "translateX": [50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-							>
-								<div className="border-radius-6px position-relative overflow-hidden">
-									<div className="pricing-header pt-45px pb-10px border-radius-6px text-center position-relative top-minus-3px">
-										<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
-											Starter
-										</span>
-										<h5 className="fw-700 mb-0 text-dark-gray alt-font">Individual</h5>
-										<div className="pricing-body pt-35px">
-											<ul className="p-0 m-0 list-style-02 fw-500">
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Marketing strategy
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Competitive work analysis
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Social media share audit
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Monthly management
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div className="row align-items-center pt-25px pb-25px">
-										<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
-											<h3 className="alt-font text-dark-gray mb-0 me-15px fw-700 ls-minus-2px">
-												$29
-											</h3>
-											<p className="w-120px fs-15 lh-22 text-start">
-												Per user/month billed annually*
-											</p>
-										</div>
-									</div>
-									<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
-										<a
-											href="demo-corporate-pricing.html"
-											className="btn btn-large btn-dark-gray btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px"
-										>
-											<span>
-												<span className="btn-text">Join this plan </span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-											</span>
-										</a>
-										<span className="fs-16">Cancel anytime</span>
-									</div>
-								</div>
-							</div>
-							<div
-								className="col-lg-4 col-md-8 md-mb-30px"
-								data-anime='{ "translateX": [0, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-							>
-								<div className="bg-dark-gray border-radius-6px overflow-hidden position-relative box-shadow-double-large z-index-9">
-									<div className="p-10px fw-700 fs-14 text-white bg-gradient-flamingo-amethyst-green text-uppercase text-center">
-										Popular
-									</div>
-									<div className="pricing-header pt-45px pb-10px bg-white border-radius-6px text-center position-relative top-minus-3px">
-										<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
-											Professional
-										</span>
-										<h5 className="fw-700 mb-0 text-dark-gray alt-font">Business</h5>
-										<div className="pricing-body pt-35px">
-											<ul className="p-0 m-0 list-style-02 fw-500 text-center text-md-start">
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Marketing strategy
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Competitive work analysis
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Social media share audit
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-red h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-x align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Monthly management
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div className="row align-items-center pt-25px pb-25px">
-										<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
-											<h3 className="alt-font text-white mb-0 me-15px fw-700 ls-minus-2px">
-												$39
-											</h3>
-											<p className="w-120px fs-15 lh-22 text-start">
-												Per user/month billed annually*
-											</p>
-										</div>
-									</div>
-									<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
-										<a
-											href="demo-corporate-pricing.html"
-											className="btn btn-large btn-white btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px fw-700"
-										>
-											<span>
-												<span className="btn-text">Join this plan </span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-											</span>
-										</a>
-										<span className="fs-16 text-white opacity-5 fw-300">
-											Cancel anytime
-										</span>
-									</div>
-								</div>
-							</div>
-							<div
-								className="col-lg-4 col-md-8"
-								data-anime='{ "translateX": [-50, 0], "opacity": [0,1], "duration": 1200, "delay": 0, "staggervalue": 150, "easing": "easeOutQuad" }'
-							>
-								<div className="border-radius-6px position-relative overflow-hidden">
-									<div className="pricing-header pt-45px pb-10px border-radius-6px text-center position-relative top-minus-3px">
-										<span className="ps-25px pe-25px mb-15px text-uppercase text-base-color fs-13 lh-34 fw-700 border-radius-100px bg-solitude-blue d-inline-block">
-											Enterprise
-										</span>
-										<h5 className="fw-700 mb-0 text-dark-gray alt-font">Corporate</h5>
-										<div className="pricing-body pt-35px">
-											<ul className="p-0 m-0 list-style-02 fw-500 text-center text-md-start">
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Marketing strategy
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Competitive work analysis
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Social media share audit
-												</li>
-												<li className="pt-15px pb-15px ps-12 pe-12 border-top border-color-extra-medium-gray text-dark-gray lg-ps-10 lg-pe-10">
-													<span className="d-flex align-self-center justify-content-center bg-green h-20px w-20px border-radius-100 me-10px">
-														<i className="bi bi-check align-self-center text-white fs-14 d-flex"></i>
-													</span>
-													Monthly management
-												</li>
-											</ul>
-										</div>
-									</div>
-									<div className="row align-items-center pt-25px pb-25px">
-										<div className="col text-center last-paragraph-no-margin d-flex align-items-center justify-content-center">
-											<h3 className="alt-font text-dark-gray mb-0 me-15px fw-700 ls-minus-2px">
-												$59
-											</h3>
-											<p className="w-120px fs-15 lh-22 text-start">
-												Per user/month billed annually*
-											</p>
-										</div>
-									</div>
-									<div className="pricing-footer ps-12 pe-12 pb-8 text-center">
-										<a
-											href="demo-corporate-pricing.html"
-											className="btn btn-large btn-dark-gray btn-box-shadow btn-hover-animation-switch btn-round-edge w-100 text-transform-none mb-15px"
-										>
-											<span>
-												<span className="btn-text">Join this plan </span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-												<span className="btn-icon">
-													<i className="feather icon-feather-arrow-right"></i>
-												</span>
-											</span>
-										</a>
-										<span className="fs-16">Cancel anytime</span>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="row row-cols-1 row-cols-xl-4 row-cols-lg-3 row-cols-md-2 row-cols-sm-2 justify-content-center align-items-center">
-							<div className="col icon-with-text-style-08 sm-mb-25px text-center text-sm-start md-mb-30px">
-								<div className="d-flex justify-content-center">
-									<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
-										<div className="feature-box-icon me-10px">
-											<i className="bi bi-calendar-check fs-20 text-dark-gray"></i>
-										</div>
-										<div className="feature-box-content">
-											<span className="fw-600 text-dark-gray">Get 30 day free trial</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col icon-with-text-style-08 sm-mb-25px text-center text-sm-start md-mb-30px">
-								<div className="d-flex justify-content-center">
-									<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
-										<div className="feature-box-icon me-10px">
-											<i className="bi bi-wallet2 fs-20 text-dark-gray"></i>
-										</div>
-										<div className="feature-box-content">
-											<span className="fw-600 text-dark-gray">No any hidden fees pay</span>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div className="col icon-with-text-style-08 text-center text-sm-start">
-								<div className="d-flex justify-content-center">
-									<div className="feature-box feature-box-left-icon-middle d-inline-flex align-middle">
-										<div className="feature-box-icon me-10px">
-											<i className="bi bi-clock fs-20 text-dark-gray"></i>
-										</div>
-										<div className="feature-box-content">
-											<span className="fw-600 text-dark-gray">You can cancel anytime</span>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
+					</section>
+				)}
+
 				{false && (
 					<section className="bg-gradient-quartz-white border-radius-6px lg-border-radius-0px pb-0">
 						<div className="container">
@@ -2719,7 +2732,7 @@ const Home = () => {
 									<img src={images.logo} data-at2x={images.logo} alt="" />
 								</a>
 								<p className="lh-30 w-90 xl-w-100 mx-lg-auto mx-xl-0">
-									Gearing your company through an innovative strategy.
+									Delivering your transcripts swiftly and securely.
 								</p>
 								<div className="elements-social social-icon-style-02 mt-20px xs-mt-15px">
 									<ul className="medium-icon dark">
@@ -2862,7 +2875,7 @@ const Home = () => {
 										target="_blank"
 										className="text-dark-gray fw-600 text-decoration-line-bottom"
 									>
-										Ascript
+										Axript
 									</a>
 								</p>
 							</div>

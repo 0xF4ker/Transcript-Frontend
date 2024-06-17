@@ -18,6 +18,17 @@ export const transcriptRequestApiSlice = createApi({
 			transformResponse: (response: any) => response?.data,
 			providesTags: ["TranscriptRequests"],
 		}),
+		getRecentTranscriptRequests: builder.query({
+			query: (id) => ({
+				url: `/transcript-request/recent-transcript-requests/${id}`,
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+				},
+			}),
+			transformResponse: (response: any) => response?.data,
+			providesTags: ["TranscriptRequests"],
+		}),
 		getTranscriptRequest: builder.query({
 			query: (id) => ({
 				url: `/transcript-request/transcript-request/${id}`,
@@ -69,6 +80,7 @@ export const transcriptRequestApiSlice = createApi({
 
 export const {
 	useGetTranscriptRequestQuery,
+	useGetRecentTranscriptRequestsQuery,
 	useGetTranscriptRequestsQuery,
 	useSubmitTranscriptRequestMutation,
 	useDeleteTranscriptRequestMutation,

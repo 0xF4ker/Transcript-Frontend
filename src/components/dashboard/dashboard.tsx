@@ -1,11 +1,16 @@
 import { useState } from "react";
-import { useGetTranscriptRequestsQuery } from "../../services/transcriptRequestApiSlice";
+import {
+	useGetRecentTranscriptRequestsQuery,
+	useGetTranscriptRequestsQuery,
+} from "../../services/transcriptRequestApiSlice";
 import { useGetDestinationRequestsQuery } from "../../services/destinationRequestApiSlice";
 import image from "../../constants/image";
 const Dashboard = () => {
 	const [userId] = useState(localStorage.getItem("transcript-uid"));
 	const { data: dataRequests } = useGetTranscriptRequestsQuery("");
 	const { data: dataRequestss } = useGetDestinationRequestsQuery("");
+	const { data: dataRequestsss } = useGetRecentTranscriptRequestsQuery(userId);
+
 	return (
 		<>
 			<div className="header-container">
@@ -115,49 +120,10 @@ const Dashboard = () => {
 			</div>
 			<div className="admin-data-content layout-top-spacing">
 				<div className="row layout-top-spacing">
-					<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-						<div className="widget widget-one_hybrid widget-referral">
-							<div className="widget-heading">
-								<div className="w-title">
-									<div className="w-icon">
-										<svg
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round"
-											className="feather feather-link"
-										>
-											<path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
-											<path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
-										</svg>
-									</div>
-									<div className="">
-										<p className="w-value">
-											{
-												dataRequestss?.filter((request: any) => request.userId === userId)
-													.length
-											}
-										</p>
-										<h5 className="">Total Destination Requests</h5>
-									</div>
-								</div>
-							</div>
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget-one widget">
 							<div className="widget-content">
-								<div className="w-chart">
-									<div id="hybrid_followers1"></div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div className="col-xl-4 col-lg-4 col-md-4 col-sm-4 col-12 layout-spacing">
-						<div className="widget widget-one_hybrid widget-engagement">
-							<div className="widget-heading">
-								<div className="w-title">
+								<div className="w-numeric-value">
 									<div className="w-icon">
 										<svg
 											xmlns="http://www.w3.org/2000/svg"
@@ -169,20 +135,144 @@ const Dashboard = () => {
 											stroke-width="2"
 											stroke-linecap="round"
 											stroke-linejoin="round"
-											className="feather feather-message-circle"
+											className="feather feather-shopping-cart"
 										>
-											<path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path>
+											<circle cx="9" cy="21" r="1"></circle>
+											<circle cx="20" cy="21" r="1"></circle>
+											<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
 										</svg>
 									</div>
-									<div className="">
-										<p className="w-value">
+									<div className="w-content">
+										<span className="w-value">
 											{
 												dataRequests?.filter((request: any) => request.userId === userId)
 													.length
 											}
-										</p>
-										<h5 className="">Total Transcript Request</h5>
+										</span>
+										<span className="w-numeric-title">Total Transcript Requests</span>
 									</div>
+								</div>
+								<div className="w-chart">
+									<div id="total-requests"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12 layout-spacing">
+						<div className="widget-one widget">
+							<div className="widget-content">
+								<div className="w-numeric-value">
+									<div className="w-icon">
+										<svg
+											xmlns="http://www.w3.org/2000/svg"
+											width="24"
+											height="24"
+											viewBox="0 0 24 24"
+											fill="none"
+											stroke="currentColor"
+											stroke-width="2"
+											stroke-linecap="round"
+											stroke-linejoin="round"
+											className="feather feather-shopping-cart"
+										>
+											<circle cx="9" cy="21" r="1"></circle>
+											<circle cx="20" cy="21" r="1"></circle>
+											<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+										</svg>
+									</div>
+									<div className="w-content">
+										<span className="w-value">
+											{
+												dataRequestss?.filter((request: any) => request.userId === userId)
+													.length
+											}
+										</span>
+										<span className="w-numeric-title">Total Destination Requests</span>
+									</div>
+								</div>
+								<div className="w-chart">
+									<div id="total-requests"></div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div className="col-xl-6 col-lg-12 col-md-12 col-sm-12 col-12 layout-spacing">
+						<div className="widget widget-table-three">
+							<div className="widget-heading">
+								<h5 className="">Recent Transcript Requests</h5>
+							</div>
+
+							<div className="widget-content">
+								<div className="table-responsive">
+									<table className="table table-scroll">
+										<thead>
+											<tr>
+												<th>
+													<div className="th-content">Type</div>
+												</th>
+												<th>
+													<div className="th-content th-heading">Matric No</div>
+												</th>
+												<th>
+													<div className="th-content th-heading">Fee</div>
+												</th>
+												<th>
+													<div className="th-content">Status</div>
+												</th>
+												{/* <th>
+													<div className="th-content">Action</div>
+												</th> */}
+											</tr>
+										</thead>
+										<tbody>
+											{dataRequestsss?.map((request: any) => (
+												<tr>
+													<td>
+														<div className="td-content product-name">
+															<div className="align-self-center">
+																<p className="prd-name">{request?.type}</p>
+															</div>
+														</div>
+													</td>
+													<td>
+														<div className="td-content">
+															<span className="pricing">{request?.matricNo}</span>
+														</div>
+													</td>
+													<td>
+														<div className="td-content">
+															<span className="discount-pricing">{request?.fee}</span>
+														</div>
+													</td>
+													<td>
+														<div className="td-content">{request?.fee}</div>
+													</td>
+													{/* <td>
+														<div className="td-content">
+															<a href="javascript:void(0);" className="text-danger">
+																<svg
+																	xmlns="http://www.w3.org/2000/svg"
+																	width="24"
+																	height="24"
+																	viewBox="0 0 24 24"
+																	fill="none"
+																	stroke="currentColor"
+																	stroke-width="2"
+																	stroke-linecap="round"
+																	stroke-linejoin="round"
+																	className="feather feather-chevrons-right"
+																>
+																	<polyline points="13 17 18 12 13 7"></polyline>
+																	<polyline points="6 17 11 12 6 7"></polyline>
+																</svg>{" "}
+																Direct
+															</a>
+														</div>
+													</td> */}
+												</tr>
+											))}
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>

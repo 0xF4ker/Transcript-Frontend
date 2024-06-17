@@ -22,7 +22,11 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
 	}, []);
 
 	if (isAuthenticated === null) {
-		return <div>Loading...</div>; // Or a spinner
+		return (
+			<div className="loader">
+				<div className="spinner"></div>
+			</div>
+		); // Or a spinner
 	}
 
 	if (!isAuthenticated) {
