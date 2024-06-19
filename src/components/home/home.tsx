@@ -250,7 +250,7 @@ const Home = () => {
 								>
 									{/* slide's main background image */}
 									<img
-										src="/images/demo/demo-corporate-main-slider-01.jpg"
+										src="/images/demo/demo-college-bg-01.png"
 										alt="Image"
 										data-bgposition="center center"
 										data-bgfit="cover"
@@ -590,7 +590,7 @@ const Home = () => {
 								>
 									{/* slide's main background image */}
 									<img
-										src="/images/demo/demo-corporate-main-slider-02.jpg"
+										src="/images/demo/demo-college-bg-02.webp"
 										alt="Image"
 										data-bgposition="center center"
 										data-bgfit="cover"
@@ -930,7 +930,7 @@ const Home = () => {
 								>
 									{/* slide's main background image */}
 									<img
-										src="/images/demo/demo-corporate-main-slider-03.jpg"
+										src="/images/demo/demo-college-bg-03.jpg"
 										alt="Image"
 										data-bgposition="center center"
 										data-bgfit="cover"
@@ -1270,7 +1270,7 @@ const Home = () => {
 									<div>
 										<span className="lh-24 fw-600 d-block">
 											Track and analyze <br />
-											business reports.
+											transcript requests.
 										</span>
 									</div>
 								</div>
@@ -1290,7 +1290,7 @@ const Home = () => {
 											<i className="bi bi-star-fill"></i>
 											<i className="bi bi-star-fill"></i>
 										</div>
-										<span className="lh-24 fw-600 d-block">Best rated agency</span>
+										<span className="lh-24 fw-600 d-block">User Satisfaction</span>
 									</div>
 								</div>
 							</div>
@@ -1305,8 +1305,7 @@ const Home = () => {
 									</div>
 									<div>
 										<span className="lh-24 fw-600 d-block">
-											Genuine repeated <br />
-											happy customers.
+											Fast and <br /> Secure Algorithm
 										</span>
 									</div>
 								</div>
