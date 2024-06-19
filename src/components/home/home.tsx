@@ -1946,7 +1946,7 @@ const Home = () => {
 								/>
 							</div>
 						</div>
-						<div className="row justify-content-center align-items-center">
+						{/* <div className="row justify-content-center align-items-center">
 							<div
 								className="col-12 text-center align-items-center"
 								data-anime='{ "translateY": [30, 0], "opacity": [0,1], "duration": 600, "delay": 0, "staggervalue": 300, "easing": "easeOutQuad" }'
@@ -1964,7 +1964,7 @@ const Home = () => {
 									</a>
 								</div>
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</section>
 				{false && (
@@ -2206,7 +2206,7 @@ const Home = () => {
 								<div
 									className="border-radius-6px h-450px md-h-350px sm-h-400px d-flex flex-wrap align-items-center justify-content-center overflow-hidden cover-background box-shadow-quadruple-large pt-15"
 									style={{
-										backgroundImage: "url('/images/demo/demo-corporate-video-img.jpg')",
+										backgroundImage: "url('/images/demo/demo-college-bg-01.png')",
 									}}
 								>
 									<div className="opacity-full-dark bg-gradient-regal-blue-transparent"></div>
@@ -2216,7 +2216,7 @@ const Home = () => {
 												We make the creative solutions for{" "}
 												<span
 													className="fw-600"
-													data-fancy-text='{ "effect": "rotate", "string": ["business!", "problems!", "brands!"] }'
+													data-fancy-text='{ "effect": "rotate", "string": ["requests!", "problems!", "payments!"] }'
 												></span>
 											</h3>
 										</div>
@@ -2234,12 +2234,12 @@ const Home = () => {
 										</div>
 									</div>
 									<div className="w-100 text-center position-relative mt-auto pt-20px pb-25px ps-15px pe-15px border-top border-color-transparent-white-light">
-										<div className="fs-14 text-uppercase text-white fw-600 ls-05px">
+										{/* <div className="fs-14 text-uppercase text-white fw-600 ls-05px">
 											Let's make something great work together.{" "}
 											<a href="/" className="text-decoration-line-bottom text-white">
 												Got a project in mind?
 											</a>
-										</div>
+										</div> */}
 									</div>
 								</div>
 							</div>
