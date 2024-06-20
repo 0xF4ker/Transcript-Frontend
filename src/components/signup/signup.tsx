@@ -156,13 +156,13 @@ const SignUp = () => {
 										Select Department:
 									</label>
 									<Controller
-										name="faculty"
+										name="department"
 										control={control}
 										defaultValue=""
 										rules={{ required: "Department is required" }}
 										render={({ field }) => (
-											<select id="inputFaculty" className="form-select" {...field}>
-												<option value="">Select a faculty</option>
+											<select id="inputDepartment" className="form-select" {...field}>
+												<option value="">Select a department</option>
 												{filteredDepartments?.map((department: any) => (
 													<option key={department?.id} value={department?.name}>
 														{department?.name}
