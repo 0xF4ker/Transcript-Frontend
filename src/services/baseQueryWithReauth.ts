@@ -8,8 +8,11 @@ import { Mutex } from "async-mutex";
 
 const mutex = new Mutex();
 
+export const localUrl = "http://localhost:3001";
+export const url = "https://api.transcript.adenibuyan.com";
+
 const baseQuery = fetchBaseQuery({
-	baseUrl: "https://api.transcript.adenibuyan.com",
+	baseUrl: url,
 	credentials: "include",
 });
 

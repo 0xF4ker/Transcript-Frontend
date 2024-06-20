@@ -8,6 +8,11 @@ import image from "../../constants/image";
 
 const selector = (state: any) => state.user;
 
+const config = {
+	reference: new Date().getTime().toString(),
+	publicKey: "pk_test_ca94a46bdb50763f37bafb6bce8a0d6623821a23",
+};
+
 const TranscriptCheckout = () => {
 	const navigate = useNavigate();
 	const { id } = useParams();
@@ -21,6 +26,42 @@ const TranscriptCheckout = () => {
 	}, [isSuccessUser, userData, navigate]);
 
 	const { data, isLoading: isLoadingRequest } = useGetTranscriptRequestQuery(id);
+
+	const handlePaystackSuccessAction = (reference: any) => {
+		// Implementation for whatever you want to do with reference and after success call.
+		console.log(reference);
+	};
+
+	// you can call this function anything
+	const handlePaystackCloseAction = () => {
+		// implementation for  whatever you want to do when the Paystack dialog closed.
+		console.log("closed");
+	};
+
+	const componentProps = {
+		...config,
+		email: userData?.email,
+		amount: data?.total * 100,
+		metadata: {
+			transcriptRequestId: data?.id,
+			userId: userId,
+			custom_fields: [
+				{
+					display_name: "Invoice ID",
+					variable_name: "invoice_id",
+					value: 209,
+				},
+				{
+					display_name: "Cart Items",
+					variable_name: "cart_items",
+					value: "3 bananas, 12 mangoes",
+				},
+			],
+		},
+		text: "Checkout",
+		onSuccess: (reference: any) => handlePaystackSuccessAction(reference),
+		onClose: handlePaystackCloseAction,
+	};
 
 	return (
 		<>
@@ -129,7 +170,10 @@ const TranscriptCheckout = () => {
 			<div className="admin-data-content layout-top-spacing">
 				<div className="row layout-top-spacing d-flex">
 					<div className="col-lg-12">
-						<form className="row layout-top-spacing">
+						<form
+							className="row layout-top-spacing"
+							onSubmit={(e) => e.preventDefault()}
+						>
 							<div id="flLoginForm" className="col-lg-12 layout-spacing">
 								<div className="statbox widget box box-shadow ">
 									<div className="widget-content widget-content-area p-3">
@@ -154,7 +198,7 @@ const TranscriptCheckout = () => {
 													type="text"
 													className="form-control"
 													disabled
-													value={data?.totalFee}
+													value={data?.total}
 													id="fee"
 												/>
 											</div>
@@ -166,7 +210,7 @@ const TranscriptCheckout = () => {
 													type="text"
 													className="form-control"
 													disabled
-													value={data?.transcriptType}
+													value={data?.TranscriptType?.name}
 													id="inputMethod"
 												/>
 											</div>
@@ -179,7 +223,7 @@ const TranscriptCheckout = () => {
 													className="form-control"
 													id="inputCollege"
 													disabled
-													value={data?.college}
+													value={data?.College?.name}
 												/>
 											</div>
 											<div className="col-md-6">
@@ -191,12 +235,12 @@ const TranscriptCheckout = () => {
 													className="form-control"
 													id="inputDepartment"
 													disabled
-													value={data?.department}
+													value={data?.Department?.name}
 												/>
 											</div>
 											<div className="col-12">
 												<label>Destination Names</label>
-												{data?.destinations?.map((destination: any) => (
+												{data?.Destinations?.map((destination: any) => (
 													<input
 														type="text"
 														className="form-control"
@@ -209,28 +253,7 @@ const TranscriptCheckout = () => {
 											<div className="col-12 layout-top-spacing">
 												<PaystackButton
 													className={`btn btn-primary ${isLoadingRequest && "disabled"}`}
-													{...{
-														publicKey: "pk_test_ca94a46bdb50763f37bafb6bce8a0d6623821a23",
-														email: userData?.email,
-														amount: data?.totalFee * 100,
-														metadata: {
-															transcriptRequestId: data?.id,
-															userId: userId,
-															custom_fields: [
-																{
-																	display_name: "Invoice ID",
-																	variable_name: "invoice_id",
-																	value: 209,
-																},
-																{
-																	display_name: "Cart Items",
-																	variable_name: "cart_items",
-																	value: "3 bananas, 12 mangoes",
-																},
-															],
-														},
-														text: "Checkout",
-													}}
+													{...componentProps}
 												/>
 											</div>
 										</div>
@@ -244,4 +267,5 @@ const TranscriptCheckout = () => {
 		</>
 	);
 };
+
 export default TranscriptCheckout;

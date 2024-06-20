@@ -460,10 +460,10 @@ const RequestTranscript = () => {
 											?.map((transcriptRequest: any, id: number) => (
 												<tr key={id}>
 													<td className="checkbox-column"> {id} </td>
-													<td className="user-name">{transcriptRequest?.name}</td>
-													<td className="">{transcriptRequest?.transcriptType}</td>
+													<td className="user-name">{transcriptRequest?.User?.name}</td>
+													<td className="">{transcriptRequest?.TranscriptType?.name}</td>
 													<td>{transcriptRequest?.matricNo}</td>
-													<td>{transcriptRequest?.totalFee}</td>
+													<td>{transcriptRequest?.total}</td>
 													<td>
 														<div className="d-flex">
 															<div className=" align-self-center d-m-success  mr-1 data-marker"></div>
