@@ -336,7 +336,7 @@ const RequestTranscript = () => {
 														className="form-control"
 														id="inputColege"
 														disabled
-														value={userData?.college}
+														value={userData?.College?.name}
 													/>
 												</div>
 												<div className="col-md-6">
@@ -348,7 +348,7 @@ const RequestTranscript = () => {
 														className="form-control"
 														id="inputDepartment"
 														disabled
-														value={userData?.department}
+														value={userData?.Department?.name}
 													/>
 												</div>
 												<>

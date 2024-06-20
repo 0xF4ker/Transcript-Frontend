@@ -613,8 +613,8 @@ const Users = () => {
 																	setValueEdit("schoolId", user?.schoolId);
 																	setValueEdit("roles", user?.roles);
 																	setRoles(user?.roles);
-																	setValueEdit("college", user?.college);
-																	setValueEdit("department", user?.department);
+																	setValueEdit("college", user?.College?.name);
+																	setValueEdit("department", user?.Department?.name);
 																	setValueEdit("userType", user?.userType);
 																	setIsForceUpdate(!isForceUpdate);
 																}}
