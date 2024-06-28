@@ -44,8 +44,46 @@
 					transform: rotate(360deg);
 				}
 			}
+
+			.dt-control {
+				cursor: pointer;
+				text-align: center;
+			}
+
+			.dt-control button {
+				background-color: transparent;
+				border: none;
+				color: blue;
+				font-size: 1em;
+				width: 30px;
+				height: 30px;
+				border-radius: 50%;
+				transition: background-color 0.3s;
+			}
+
+			.dt-control button:focus {
+				outline: none;
+			}
+
+			.dt-control button::after {
+				content: "+";
+				font-size: 1.5em;
+				font-weight: bold;
+			}
+
+			.expanded-row {
+				display: none;
+			}
+
+			.minus::after {
+				content: "-";
+			}
+
+			.expanded .plus-btn::after {
+				content: "-";
+			}
 		</style>
-		<script type="module" crossorigin src="/assets/index-a72cb04e.js"></script>
+		<script type="module" crossorigin src="/assets/index-575dd9b9.js"></script>
 		<link rel="stylesheet" href="/assets/index-5ef86316.css">
 	</head>
 	<body

@@ -170,6 +170,125 @@ const TranscriptRequests = () => {
 									pageLength: 10,
 								});
 
+								function format(d: string[]) {
+									const transcript = (data as any[]).find((row) => row.id === d[0]);
+									console.log(transcript, d[0]);
+									const details = `
+									<div class="row layout-top-spacing d-flex">
+					<div class="col-lg-12">
+						<div
+							class="row layout-top-spacing"
+						>
+									<div id="flLoginForm" class="col-lg-12 layout-spacing">
+									<div class="statbox widget box box-shadow ">
+										<div class="widget-content widget-content-area p-3">
+											<div class="row g-3">
+												<div class="col-md-6">
+													<label htmlFor="matricNo" class="form-label">
+														Matric No
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														disabled
+														value=${transcript?.matricNo}
+														id="inputMatricNo"
+													/>
+												</div>
+												<div class="col-md-6">
+													<label htmlFor="fee" class="form-label">
+														Fee
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														disabled
+														value=&#8358;${transcript?.total}
+														id="fee"
+													/>
+												</div>
+												<div class="col-md-6">
+													<label htmlFor="inputMethod" class="form-label">
+														Transcript Type
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														disabled
+														value=${transcript?.TranscriptType?.name}
+														id="inputMethod"
+													/>
+												</div>
+												<div class="col-md-6">
+													<label htmlFor="inputCollege" class="form-label">
+														College
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														id="inputCollege"
+														disabled
+														value=${transcript?.College?.name}
+													/>
+												</div>
+												<div class="col-md-6">
+													<label htmlFor="inputDepartment" className="form-label">
+														Department
+													</label>
+													<input
+														type="text"
+														class="form-control"
+														id="inputDepartment"
+														disabled
+														value=${transcript?.Department?.name}
+													/>
+												</div>
+												<div class="col-12">
+													<label>Destination Names</label>
+													${transcript?.Destinations?.map(
+														(destination: any) =>
+															`<input
+															type="text"
+															class="form-control"
+															disabled
+															value=${destination?.name}
+															key=${destination.name}
+														/>`
+													)}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+								</div>
+								</div>
+								</div>
+								`;
+									return details;
+								}
+
+								c1.on(
+									"click",
+									"td.dt-control",
+									function (this: HTMLTableCellElement, e: any) {
+										let $button = $(this as any);
+										let tr = e.target.closest("tr");
+										let row = c1.row(tr);
+
+										if (row.child.isShown()) {
+											// This row is already open - close it
+											row.child.hide();
+											tr.removeClass("expanded");
+											$button.removeClass("minus");
+										} else {
+											// Open this row
+											row.child(format(row.data())).show();
+											tr.addClass("expanded");
+											$button.addClass("minus");
+										}
+									}
+								);
+
 								// Store the DataTable instance in the ref
 								dataTableRef.current = c1;
 							}
@@ -301,6 +420,7 @@ const TranscriptRequests = () => {
 									<thead>
 										<tr>
 											<th className="checkbox-column dt-no-sorting"> Record no. </th>
+											<th></th>
 											<th>Name</th>
 											<th>Transcript Type</th>
 											<th>Matric No</th>
@@ -312,12 +432,15 @@ const TranscriptRequests = () => {
 									<tbody>
 										{data?.map((transcriptRequest: any, id: number) => (
 											<tr key={id}>
-												<td className="checkbox-column"> {id} </td>
-												<td className="user-name">{transcriptRequest?.name}</td>
-												<td className="">{transcriptRequest?.transcriptType}</td>
+												<td className="checkbox-column"> {transcriptRequest?.id} </td>
+												<td className="dt-control">
+													<button className="plus-btn"></button>
+												</td>
+												<td className="user-name">{transcriptRequest?.User?.name}</td>
+												<td className="">{transcriptRequest?.TranscriptType?.name}</td>
 
 												<td>{transcriptRequest?.matricNo}</td>
-												<td>{transcriptRequest?.totalFee}</td>
+												<td>&#8358;{transcriptRequest?.total}</td>
 												<td>
 													<div className="d-flex">
 														<div className=" align-self-center d-m-success  mr-1 data-marker"></div>

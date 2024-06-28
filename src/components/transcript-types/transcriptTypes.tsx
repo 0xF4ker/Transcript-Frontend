@@ -416,7 +416,7 @@ const TranscriptTypes = () => {
 											<tr key={id}>
 												<td className="checkbox-column"> {id} </td>
 												<td className="user-name">{transcriptType?.name}</td>
-												<td>{transcriptType?.amount}</td>
+												<td>&#8358;{transcriptType?.amount}</td>
 												<td className="text-center">
 													<ul className="table-controls">
 														<li>

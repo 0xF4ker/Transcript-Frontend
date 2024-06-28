@@ -431,7 +431,7 @@ const Destinations = () => {
 												<td className="checkbox-column"> {id} </td>
 												<td className="user-name">{destination?.name}</td>
 												<td className="">{destination?.deliveryMethod}</td>
-												<td>{destination?.rate}</td>
+												<td>#8358;{destination?.rate}</td>
 												<td>{destination?.id}</td>
 												<td className="text-center">
 													<ul className="table-controls">
