@@ -12,7 +12,7 @@ export const localUrl = "http://localhost:3001";
 export const url = "https://api.transcript.adenibuyan.com";
 
 const baseQuery = fetchBaseQuery({
-	baseUrl: localUrl,
+	baseUrl: url,
 	credentials: "include",
 });
 

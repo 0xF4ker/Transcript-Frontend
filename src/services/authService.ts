@@ -1,9 +1,9 @@
 // services/authService.js
 
-import { localUrl } from "./baseQueryWithReauth";
+import { url } from "./baseQueryWithReauth";
 
 export const checkAuthStatus = async () => {
-	const response = await fetch(localUrl, {
+	const response = await fetch(url, {
 		credentials: "include",
 	});
 	const data = await response.json();
