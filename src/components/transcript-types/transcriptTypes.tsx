@@ -484,7 +484,7 @@ const TranscriptTypes = () => {
 													</ul>
 													<div
 														className="modal fade"
-														id="editDestination"
+														id="editTranscriptype"
 														tabIndex={-1}
 														role="dialog"
 														aria-labelledby="editDestinationTitle"
