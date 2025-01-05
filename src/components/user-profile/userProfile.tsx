@@ -179,7 +179,7 @@ const UserProfile = () => {
 										setValueEdit("department", data?.department);
 										setIsForceUpdate(!isForceUpdate);
 									}}
-									data-bs-toggle="modal fade"
+									data-bs-toggle="modal"
 									data-bs-target="#editUser"
 									className="mt-2 edit-profile"
 								>
