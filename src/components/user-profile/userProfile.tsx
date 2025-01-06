@@ -182,6 +182,7 @@ const UserProfile = () => {
 									data-bs-toggle="modal"
 									data-bs-target="#editUser"
 									className="mt-2 edit-profile"
+									style={{ cursor: "pointer" }}
 								>
 									{" "}
 									<svg
@@ -208,7 +209,10 @@ const UserProfile = () => {
 									aria-labelledby="editUserTitle"
 									aria-hidden="true"
 								>
-									<div className="modal-dialog" role="document">
+									<div
+										className="modal-dialog modal-dialog-centered modal-xl"
+										role="document"
+									>
 										<div className="modal-content">
 											<div className="modal-header">
 												<h5 className="modal-title" id="editDepartmentTitle">
